@@ -6887,15 +6887,7 @@
             var vertical_z = - (board_depth + frame_thickness + 5) / 2;
             var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
             
-            // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
-            // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0이므로)
-            geometry = new THREE.BoxBufferGeometry(storage_sliding2_width, storage_sliding2_height, storage_sliding2_depth);
-            var storage_sliding2_dup = new THREE.Mesh(geometry, storage_sliding2_material);
-            storage_sliding2_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
-            storage_sliding2_dup.castShadow = true;
-            scene.add(storage_sliding2_dup);
-            
-            // GLB 모델이 로드된 경우 함께 표시 (기본 박스 크기에 맞춰 스케일링)
+            // GLB 모델만 표시 (기본 박스 제거)
             if (storage_sliding2_models[model_height]) {
               var storage_sliding2_glb = storage_sliding2_models[model_height].clone();
               
