@@ -144,8 +144,33 @@
       .mal_buttons>div:hover>img { width: 46px; height: 84px; }
       .mal_buttons>div:hover>span { color: #888; }
 
-    .footer { position: fixed; left: 0; bottom: 0; width: 100%; height: 180px; padding:20px 0; background-color: rgba(0, 0, 0, 0.7);}
-        .ft_inner>div { float: left; height: 140px; padding: 20px 40px 0; border-left: 1px solid rgba(255, 255, 255, 0.1);}
+    .footer { position: fixed; left: 0; bottom: 0; width: 100%; max-height: 50vh; padding:20px 0; background-color: rgba(0, 0, 0, 0.85); display: flex; flex-direction: column; z-index: 100;}
+        .ft_inner { display: flex; flex-wrap: wrap; padding: 0 20px; }
+        .ft_inner>div { float: left; padding: 20px 40px 0; border-left: 1px solid rgba(255, 255, 255, 0.1);}
+        
+        /* 옵션 명세 리스트 영역 */
+        .option_spec_container { width: 100%; margin-top: 20px; padding: 0 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+        .option_spec_header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; }
+        .option_spec_header:hover { background-color: rgba(255, 255, 255, 0.05); }
+        .option_spec_title { color: #fff; font-size: 18px; font-weight: bold; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        .option_spec_toggle { color: #9f9f9f; font-size: 14px; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        .option_spec_list { max-height: 300px; overflow-y: auto; overflow-x: hidden; display: block; }
+        .option_spec_list.hidden { display: none; }
+        .option_spec_list::-webkit-scrollbar { width: 8px; }
+        .option_spec_list::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); }
+        .option_spec_list::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 4px; }
+        .option_spec_list::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
+        .option_spec_item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .option_spec_item:hover { background-color: rgba(255, 255, 255, 0.03); }
+        .option_spec_name { flex: 1; color: #fff; font-size: 14px; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        .option_spec_qty { width: 60px; text-align: center; color: #9f9f9f; font-size: 14px; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        .option_spec_unit { width: 120px; text-align: right; color: #fff; font-size: 14px; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        .option_spec_total { width: 140px; text-align: right; color: #fff; font-size: 14px; font-weight: bold; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        .option_spec_item.header { background-color: rgba(255, 255, 255, 0.1); font-weight: bold; border-bottom: 2px solid rgba(255, 255, 255, 0.2); }
+        .option_spec_item.header .option_spec_name,
+        .option_spec_item.header .option_spec_qty,
+        .option_spec_item.header .option_spec_unit,
+        .option_spec_item.header .option_spec_total { color: #ed9c00; }
 
           .ft_title { font-weight: normal; color: #9f9f9f; font-size: 16px; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
           .ft_prd_code { color: #fff; font-size: 18px; letter-spacing: -0.5px; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 300; }
@@ -189,10 +214,12 @@
       .m_sidebar .menu_all_list { display: none; top: 0; }
     
       
-      .footer { height: 220px; }
-      .ft_inner>div { height: 175px; }
+      .footer { max-height: 60vh; }
+      .ft_inner>div { height: auto; min-height: 140px; }
       .delivery_box { margin-bottom: 10px; }
       .ft_total_price { position: relative; top: -50px; }
+      .option_spec_container { padding: 10px; }
+      .option_spec_list { max-height: 200px; }
     }
   </style>
 </head>
@@ -200,8 +227,8 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="h_title"><img src="img/configurator.jpg"></div>
-      <div class="h_logo"><img src="img/logo.png"></div>
+      <div class="h_title"><img id="configurator_img" src="img/configurator.jpg"></div>
+      <div class="h_logo"><img id="logo_img" src="img/logo.png"></div>
     </div>
     <div class="sidebar">
       <div class="swiper-container">
@@ -923,11 +950,17 @@
         <div style="width: 35.6%; border-left: 0;">
           <strong class="ft_title">상품코드</strong>
           <div style="position: relative; display: flex; align-items: center;">
-            <input type="text" id="product_code_input" class="ft_prd_code" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 18px; letter-spacing: -0.5px; width: calc(100% - 40px); padding: 5px; box-sizing: border-box; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 300;" value="14211-12345-00110" onchange="loadProductFromCode(this.value)" onkeypress="if(event.key==='Enter') loadProductFromCode(this.value)">
+            <input type="text" id="product_code_input" class="ft_prd_code" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 18px; letter-spacing: -0.5px; width: calc(100% - 80px); padding: 5px; box-sizing: border-box; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 300;" value="14211-12345-00110" onchange="loadProductFromCode(this.value)" onkeypress="if(event.key==='Enter') loadProductFromCode(this.value)">
             <button id="copy_code_btn" onclick="copyProductCode()" style="background: transparent; border: none; color: #fff; cursor: pointer; padding: 5px 10px; margin-left: 5px; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'" title="상품코드 복사">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+            <button id="copy_url_btn" onclick="copyProductURL()" style="background: transparent; border: none; color: #fff; cursor: pointer; padding: 5px 10px; margin-left: 5px; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'" title="URL 복사">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
               </svg>
             </button>
           </div>
@@ -960,7 +993,17 @@
         </div>
         <div style="width: 27.4%; padding-top: 0;">
           <strong class="ft_total_title">총 결제금액</strong>
-          <span class="ft_total_price">123,000<span>원</span></span>
+          <span class="ft_total_price" id="total_price_display">0<span>원</span></span>
+        </div>
+      </div>
+      <!-- 옵션 명세 리스트 -->
+      <div class="option_spec_container" id="option_spec_container">
+        <div class="option_spec_header" onclick="toggleOptionSpec()">
+          <span class="option_spec_title">적용된 옵션 명세</span>
+          <span class="option_spec_toggle" id="option_spec_toggle">▼ 펼치기</span>
+        </div>
+        <div class="option_spec_list hidden" id="option_spec_list">
+          <!-- 옵션 리스트가 여기에 동적으로 생성됩니다 -->
         </div>
       </div>
     </div>
@@ -998,6 +1041,233 @@
     <script src="./STLExporter.js"></script>
 
     <script>
+      // 현재 페이지의 base path 자동 감지
+      // GitHub Pages 등 다양한 호스팅 환경에서 작동하도록 개선
+      // 루트 배포 (username.github.io)와 서브디렉토리 배포 모두 지원
+      function getBasePath() {
+        var path = window.location.pathname;
+        var fullUrl = window.location.href;
+        var origin = window.location.origin;
+        
+        // GitHub Pages 루트 배포인 경우 (pathname이 '/' 또는 '/index.html')
+        if (path === '/' || path === '/index.html') {
+          console.log('🔍 Base Path 감지 (루트 배포):', {
+            '전체 URL': fullUrl,
+            'Origin': origin,
+            'Pathname': path,
+            '감지된 Base Path': '/',
+            '예상 리소스 경로 예시': '/texture/natural.jpg',
+            '배포 유형': 'GitHub Pages 루트'
+          });
+          return '/';
+        }
+        
+        // index.html이 포함된 경우 그 앞까지가 base path
+        var indexPos = path.lastIndexOf('index.html');
+        if (indexPos >= 0) {
+          var detectedPath = path.substring(0, indexPos);
+          // 빈 문자열이면 루트
+          if (detectedPath === '') {
+            detectedPath = '/';
+          }
+          console.log('🔍 Base Path 감지 (index.html 포함):', {
+            '전체 URL': fullUrl,
+            'Origin': origin,
+            'Pathname': path,
+            '감지된 Base Path': detectedPath,
+            '예상 리소스 경로 예시': detectedPath + 'texture/natural.jpg',
+            '배포 유형': '서브디렉토리 또는 로컬'
+          });
+          return detectedPath;
+        }
+        
+        // index.html이 없으면 마지막 / 앞까지
+        var lastSlashPos = path.lastIndexOf('/');
+        if (lastSlashPos >= 0) {
+          var detectedPath = path.substring(0, lastSlashPos + 1);
+          // 루트인 경우
+          if (detectedPath === '/') {
+            console.log('🔍 Base Path 감지 (루트):', {
+              '전체 URL': fullUrl,
+              'Origin': origin,
+              'Pathname': path,
+              '감지된 Base Path': '/',
+              '예상 리소스 경로 예시': '/texture/natural.jpg',
+              '배포 유형': '루트'
+            });
+            return '/';
+          }
+          console.log('🔍 Base Path 감지 (경로 분석):', {
+            '전체 URL': fullUrl,
+            'Origin': origin,
+            'Pathname': path,
+            '감지된 Base Path': detectedPath,
+            '예상 리소스 경로 예시': detectedPath + 'texture/natural.jpg',
+            '배포 유형': '서브디렉토리'
+          });
+          return detectedPath;
+        }
+        
+        // 루트 경로인 경우 (기본값)
+        console.log('🔍 Base Path 감지 (기본값):', {
+          '전체 URL': fullUrl,
+          'Origin': origin,
+          'Pathname': path,
+          '감지된 Base Path': '/',
+          '예상 리소스 경로 예시': '/texture/natural.jpg',
+          '배포 유형': '기본값 (루트)'
+        });
+        return '/';
+      }
+      
+      var basePath = getBasePath();
+      
+      // 가격 데이터 전역 변수
+      var priceData = null;
+      var priceDataLoaded = false;
+      
+      // 가격 데이터 로드 함수
+      function loadPriceData() {
+        return fetch(getResourcePath('prices.json'))
+          .then(function(response) {
+            if (!response.ok) {
+              throw new Error('가격 파일을 불러올 수 없습니다: ' + response.status);
+            }
+            return response.json();
+          })
+          .then(function(data) {
+            priceData = data;
+            priceDataLoaded = true;
+            console.log('✅ 가격 데이터 로드 완료:', data.version || '버전 정보 없음');
+            return data;
+          })
+          .catch(function(error) {
+            console.error('❌ 가격 데이터 로드 실패:', error);
+            console.warn('기본 가격 데이터를 사용합니다.');
+            // 기본 가격 데이터 (fallback)
+            priceData = {
+              version: "fallback",
+              prices: {
+                board: {
+                  table: [
+                    [0, 0, 0, 0, 0, 0],
+                    [109800, 129800, 141700, 159700, 193100, 0],
+                    [118400, 139900, 159900, 198800, 214500, 0],
+                    [151000, 169800, 189800, 217300, 241400, 0],
+                    [0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0]
+                  ]
+                },
+                delivery: { basic: 29800 },
+                mium: { product: 69900, delivery: 29800 },
+                shelf: {
+                  product: [34000, 43000, 45000, 51000, 57000, 0],
+                  delivery: [29800, 29800, 32800, 35800, 38800, 41800, 44800],
+                  heightExtra: { "925": 11400, "1400": 16000, "1860": 21900 }
+                },
+                giyeok: { product: 94500 },
+                deskMat: { product: 65000, delivery: 5000 },
+                drawer: { product: 34400, delivery: 3000 },
+                fence: {
+                  product: [81700, 101700, 103400, 105000, 113900, 0],
+                  delivery: 19800
+                },
+                moving2: { product: 88000, delivery: 19800 },
+                moving3: { product: 121000, delivery: 19800 }
+              }
+            };
+            priceDataLoaded = true;
+            return priceData;
+          });
+      }
+      
+      // 경로 정보를 화면에 표시 (개발 모드)
+      function showPathInfo() {
+        var info = {
+          '현재 전체 URL': window.location.href,
+          'Origin': window.location.origin,
+          'Pathname': window.location.pathname,
+          '감지된 Base Path': basePath,
+          '예상 리소스 경로': {
+            '텍스처': basePath + 'texture/natural.jpg',
+            '이미지': basePath + 'img/configurator.jpg',
+            'GLB 모델': basePath + 'glb/attach1.glb'
+          }
+        };
+        console.table(info);
+        return info;
+      }
+      
+      // F12 개발자 도구에서 showPathInfo() 함수를 호출하면 경로 정보 확인 가능
+      window.showPathInfo = showPathInfo;
+      
+      // 화면에 경로 정보 표시 (개발/디버깅용)
+      function showPathInfoOnScreen() {
+        var infoDiv = document.getElementById('path-info-debug');
+        if (!infoDiv) {
+          infoDiv = document.createElement('div');
+          infoDiv.id = 'path-info-debug';
+          infoDiv.style.cssText = 'position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.9); color: #fff; padding: 15px; border-radius: 5px; font-family: monospace; font-size: 12px; z-index: 10000; max-width: 400px; max-height: 300px; overflow: auto;';
+          document.body.appendChild(infoDiv);
+        }
+        
+        var info = {
+          '현재 URL': window.location.href,
+          'Base Path': basePath,
+          '예시 경로': {
+            '텍스처': basePath + 'texture/natural.jpg',
+            '이미지': basePath + 'img/configurator.jpg',
+            'GLB': basePath + 'glb/attach1.glb'
+          }
+        };
+        
+        var html = '<div style="margin-bottom: 10px;"><strong style="color: #0f0;">📍 경로 정보</strong></div>';
+        html += '<div style="margin-bottom: 5px;"><strong>현재 URL:</strong><br>' + info['현재 URL'] + '</div>';
+        html += '<div style="margin-bottom: 5px;"><strong>Base Path:</strong><br><span style="color: #ff0;">' + info['Base Path'] + '</span></div>';
+        html += '<div style="margin-bottom: 5px;"><strong>예시 경로:</strong><br>';
+        html += '텍스처: <span style="color: #0ff;">' + info['예시 경로']['텍스처'] + '</span><br>';
+        html += '이미지: <span style="color: #0ff;">' + info['예시 경로']['이미지'] + '</span><br>';
+        html += 'GLB: <span style="color: #0ff;">' + info['예시 경로']['GLB'] + '</span></div>';
+        html += '<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #666; font-size: 10px; color: #999;">F12 → Console에서 showPathInfo() 실행 시 더 자세한 정보 확인</div>';
+        html += '<button onclick="document.getElementById(\'path-info-debug\').style.display=\'none\'" style="margin-top: 10px; padding: 5px 10px; background: #f00; color: #fff; border: none; border-radius: 3px; cursor: pointer;">닫기</button>';
+        
+        infoDiv.innerHTML = html;
+      }
+      
+      // 개발 모드: URL에 ?debug=1 파라미터가 있으면 경로 정보 표시
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('debug') === '1') {
+        setTimeout(function() {
+          showPathInfoOnScreen();
+        }, 1000);
+      }
+      
+      // 상대 경로를 절대 경로로 변환하는 헬퍼 함수
+      function getResourcePath(relativePath) {
+        // 이미 절대 경로(http:// 또는 https://로 시작)인 경우 그대로 반환
+        if (relativePath.indexOf('http://') === 0 || relativePath.indexOf('https://') === 0) {
+          return relativePath;
+        }
+        
+        // /로 시작하는 절대 경로인 경우 base path와 결합
+        if (relativePath.indexOf('/') === 0) {
+          // base path가 /가 아닌 경우 (예: /repo/) base path 제거하고 사용
+          if (basePath !== '/') {
+            return relativePath;
+          }
+          return relativePath;
+        }
+        
+        // 상대 경로인 경우 base path 추가
+        // base path가 /로 끝나지 않으면 / 추가
+        var path = basePath;
+        if (path !== '/' && path[path.length - 1] !== '/') {
+          path += '/';
+        }
+        return path + relativePath;
+      }
+
       var container;
       var camera, controls, scene, renderer;
       var geometry, geometry1, material;
@@ -1028,7 +1298,7 @@
       }
       
       // 텍스처 로드 (콜백으로 로드 완료 후 설정)
-      var texture_natural = textureLoader.load('texture/natural.jpg', function(texture) {
+      var texture_natural = textureLoader.load(getResourcePath('texture/natural.jpg'), function(texture) {
         configureTexture(texture);
         // 현재 선택된 색상이 이 텍스처를 사용하는 경우 업데이트
         if (board_color == 4 || board_color == 9) {
@@ -1040,7 +1310,7 @@
         console.error('natural.jpg 로드 실패:', error);
       });
       
-      var texture_pine = textureLoader.load('texture/pine.jpg', function(texture) {
+      var texture_pine = textureLoader.load(getResourcePath('texture/pine.jpg'), function(texture) {
         configureTexture(texture);
         if (board_color == 5) {
           board_material = getMaterial(board_color);
@@ -1051,7 +1321,7 @@
         console.error('pine.jpg 로드 실패:', error);
       });
       
-      var texture_concrete = textureLoader.load('texture/concrete.jpg', function(texture) {
+      var texture_concrete = textureLoader.load(getResourcePath('texture/concrete.jpg'), function(texture) {
         configureTexture(texture);
         if (board_color == 6) {
           board_material = getMaterial(board_color);
@@ -1062,7 +1332,7 @@
         console.error('concrete.jpg 로드 실패:', error);
       });
       
-      var texture_redpine = textureLoader.load('texture/redpine.jpg', function(texture) {
+      var texture_redpine = textureLoader.load(getResourcePath('texture/redpine.jpg'), function(texture) {
         configureTexture(texture);
         if (board_color == 7) {
           board_material = getMaterial(board_color);
@@ -1073,7 +1343,7 @@
         console.error('redpine.jpg 로드 실패:', error);
       });
       
-      var texture_maple = textureLoader.load('texture/maple.jpg', function(texture) {
+      var texture_maple = textureLoader.load(getResourcePath('texture/maple.jpg'), function(texture) {
         configureTexture(texture);
         if (board_color == 8) {
           board_material = getMaterial(board_color);
@@ -1084,7 +1354,7 @@
         console.error('maple.jpg 로드 실패:', error);
       });
       
-      var texture_walnut = textureLoader.load('texture/walnut.jpg', function(texture) {
+      var texture_walnut = textureLoader.load(getResourcePath('texture/walnut.jpg'), function(texture) {
         configureTexture(texture);
         if (board_color == 10) {
           board_material = getMaterial(board_color);
@@ -1320,6 +1590,12 @@
       document.body.appendChild( link );
 
       var product_code_string;
+      
+      // URL 업데이트 제어 플래그 (loadProductFromCode에서 호출 시 URL 업데이트 방지)
+      var skipURLUpdate = false;
+      
+      // 씬 업데이트 제어 플래그 (loadProductFromCode에서 호출 시 각 setter의 updateScene/render 호출 방지)
+      var skipSceneUpdate = false;
 
       // 아웃라인을 위한 변수 (중복 방지)
       var outlineMeshes = new Set();
@@ -1373,10 +1649,38 @@
         });
       }
 
-      init();
-      animate();
+      // 가격 데이터 먼저 로드 후 초기화
+      loadPriceData().then(function() {
+        console.log('✅ 가격 데이터 로드 완료, 씬 초기화 시작');
+        init();
+        animate();
+      }).catch(function(error) {
+        console.error('❌ 가격 데이터 로드 실패, 기본값으로 진행:', error);
+        // 실패해도 기본값으로 진행
+        init();
+        animate();
+      });
 
       function init() {
+        // HTML 이미지 경로도 base path 적용
+        var configuratorImg = document.getElementById('configurator_img');
+        if (configuratorImg) {
+          configuratorImg.src = getResourcePath('img/configurator.jpg');
+        }
+        var logoImg = document.getElementById('logo_img');
+        if (logoImg) {
+          logoImg.src = getResourcePath('img/logo.png');
+        }
+        
+        // 모든 texture 이미지 경로 업데이트
+        var textureImages = document.querySelectorAll('img[src^="texture/"]');
+        textureImages.forEach(function(img) {
+          var originalSrc = img.getAttribute('src');
+          if (originalSrc && originalSrc.indexOf('http') !== 0 && originalSrc.indexOf('/') !== 0) {
+            img.src = getResourcePath(originalSrc);
+          }
+        });
+        
         container = document.getElementById('canvas');
         width = window.innerWidth;
         height = window.innerHeight;
@@ -1392,7 +1696,7 @@
           gltfLoader = new THREE.GLTFLoader();
           
           // attach1, attach2, attach3 GLB 모델 로드
-          gltfLoader.load('glb/attach1.glb', function(gltf) {
+          gltfLoader.load(getResourcePath('glb/attach1.glb'), function(gltf) {
             attach1_model = gltf.scene;
             attach1_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
@@ -1406,7 +1710,7 @@
             console.error('attach1.glb 로드 실패:', error);
           });
           
-          gltfLoader.load('glb/attach2.glb', function(gltf) {
+          gltfLoader.load(getResourcePath('glb/attach2.glb'), function(gltf) {
             attach2_model = gltf.scene;
             attach2_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
@@ -1420,7 +1724,7 @@
             console.error('attach2.glb 로드 실패:', error);
           });
           
-          gltfLoader.load('glb/attach3.glb', function(gltf) {
+          gltfLoader.load(getResourcePath('glb/attach3.glb'), function(gltf) {
             attach3_model = gltf.scene;
             attach3_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
@@ -1437,7 +1741,7 @@
           // Storage_Sliding1 높이별 모델 로드
           var sliding1_heights = [1200, 1400, 1600, 1800, 2060];
           sliding1_heights.forEach(function(height) {
-            gltfLoader.load('glb/Storage_Sliding1 ' + height + '.glb', function(gltf) {
+            gltfLoader.load(getResourcePath('glb/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
               storage_sliding1_models[height] = gltf.scene;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
@@ -1455,7 +1759,7 @@
           // Storage_Sliding2 높이별 모델 로드
           var sliding2_heights = [1200, 1400, 1600, 1800, 2060];
           sliding2_heights.forEach(function(height) {
-            gltfLoader.load('glb/Storage_Sliding2 ' + height + '.glb', function(gltf) {
+            gltfLoader.load(getResourcePath('glb/Storage_Sliding2 ' + height + '.glb'), function(gltf) {
               storage_sliding2_models[height] = gltf.scene;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
@@ -1473,7 +1777,7 @@
           // Storage_Flap 높이별 모델 로드
           var flap_heights = [1200, 1400, 1600, 1800, 2060];
           flap_heights.forEach(function(height) {
-            gltfLoader.load('glb/Storage_Flap ' + height + '.glb', function(gltf) {
+            gltfLoader.load(getResourcePath('glb/Storage_Flap ' + height + '.glb'), function(gltf) {
               storage_flap_models[height] = gltf.scene;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
@@ -1491,7 +1795,7 @@
           // Storage_FlapStay 높이별 모델 로드
           var flapstay_heights = [1200, 1400, 1600, 1800, 2060];
           flapstay_heights.forEach(function(height) {
-            gltfLoader.load('glb/Storage_FlapStay ' + height + '.glb', function(gltf) {
+            gltfLoader.load(getResourcePath('glb/Storage_FlapStay ' + height + '.glb'), function(gltf) {
               storage_flapstay_models[height] = gltf.scene;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
@@ -1556,8 +1860,25 @@
         }, 100);
 
         window.addEventListener('resize', onWindowResize, false);
-
+        
+        // 초기 씬 생성
+        updateScene();
         render();
+        
+        // URL에서 코드 로드 (없으면 기본값 사용)
+        // updateScene() 호출 후에 로드해야 모든 변수가 초기화됨
+        if (!loadCodeFromURL()) {
+          // URL에 코드가 없으면 기본 코드로 초기화
+          var codeInput = document.getElementById('product_code_input');
+          if (codeInput) {
+            codeInput.value = generateProductCode();
+            // 초기 로드 시에는 replaceState로 히스토리 교체
+            updateURL(true);
+          }
+        }
+        
+        // 옵션 명세 리스트는 기본적으로 숨김 상태로 시작 (사용자가 펼칠 수 있도록)
+        // updateScene()에서 이미 updateOptionSpecList()가 호출되므로 여기서는 호출하지 않음
       }
 
       function setMium(m) {
@@ -1568,8 +1889,10 @@
           return;
         }
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setWidth(w) {
@@ -1604,8 +1927,10 @@
           board_width_idx = 0;
         }
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setDepth(d) {
@@ -1806,8 +2131,10 @@
           board_material = getMaterial(c);
         }
         
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setFrameColor(c) {
@@ -1819,29 +2146,37 @@
         else
           leg_pad_meterial = new THREE.MeshPhongMaterial({ color: black_color });
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setVerticalColor(c) {
         vertical_color = c;
         vertical_material = getMaterial(c);
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setShelfBoardColor(c) {
         shelf_board_color = c;
         shelf_board_material = getMaterial(c);
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setShelfFrameColor(c) {
         shelf_frame_color = c;
         shelf_frame_material = getMaterial(c);
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setVertical(c) {
@@ -1879,8 +2214,10 @@
 
         adjustShlefNum();
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function moveVerticalUp() {
@@ -1957,8 +2294,10 @@
         shelf_num = n;
         adjustShlefNum();
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setShelfDirection(d) {
@@ -1979,8 +2318,10 @@
         adjustShlefNum();
         updateShelfDirectionUI();
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // 선반 방향 UI 업데이트 함수
@@ -2027,8 +2368,10 @@
         }
 
         // d: 0=없음, 1=L, 2=R, 3=C, 4=L+R
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setDeskMat(c) {
@@ -2059,8 +2402,10 @@
           desk_mat_material = getMaterial(13);
           break;
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setDrawerColor(c) {
@@ -2081,8 +2426,10 @@
           drawer_material = getMaterial(color_map[c] || c);
         }
         
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setFence(c) {
@@ -2090,8 +2437,10 @@
         if (fence_color)
           fence_material = getMaterial(c);
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setMoving2(c) {
@@ -2118,8 +2467,10 @@
           }
         }
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setMoving3(c) {
@@ -2152,15 +2503,19 @@
           }
         }
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setDeskArray(n) {
         num_desk = n;
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setDeskOpposite(distance) {
@@ -2182,8 +2537,10 @@
           return $(this).find(".menu_title").text().trim().includes("책상") && $(this).find(".menu_title").text().trim().includes("맞은편");
         }).find(".menu_sel_text").text(menuText);
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // ㄱ자 하부 서랍 타입 선택 - 좌측 (0: 없음, 1: 부착서랍1단, 2: 부착서랍2단, 3: 본체함, 4: 이동서랍2단, 5: 이동서랍3단)
@@ -2204,8 +2561,10 @@
           $("#giyeok-drawer-color-left").show();
           // 타입 선택 메뉴는 숨기지 않음 (같은 menu_all_list 안에 있으므로)
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // ㄱ자 하부 서랍 색상 선택 - 좌측 (선택된 타입 하나만 표시)
@@ -2216,14 +2575,20 @@
         giyeok_attach3_left_color = 0;
         giyeok_moving2_left_color = 0;
         giyeok_moving3_left_color = 0;
+        giyeok_attach1_material = null;
+        giyeok_attach2_material = null;
+        giyeok_attach3_material = null;
+        giyeok_moving2_material = null;
+        giyeok_moving3_material = null;
+        
+        var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
+        var colorNames = ["없음", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드", "라이트그레이", "", "", "오렌지", "", "레몬"];
         
         if (c == 0) {
           $(".swiper-slide").has("#giyeok-drawer-type-left").find(".menu_sel_text").text("없음");
         } else {
           // 선택된 타입에만 색상 설정
           var material = getMaterial(c);
-          var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
-          var colorNames = ["없음", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드", "라이트그레이", "", "", "오렌지", "", "레몬"];
           
           if (giyeok_drawer_type_left == 1) {
             giyeok_attach1_left_color = c;
@@ -2246,8 +2611,10 @@
           $(".swiper-slide").has("#giyeok-drawer-type-left").find(".menu_sel_text").text(typeNames[giyeok_drawer_type_left] + " " + colorName);
         }
         $(".swiper-slide").has("#giyeok-drawer-type-left").find(".menu_all_list").fadeOut();
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // ㄱ자 하부 서랍 타입 선택 - 우측
@@ -2267,8 +2634,10 @@
           // 색상 선택 메뉴 표시
           $("#giyeok-drawer-color-right").show();
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // ㄱ자 하부 서랍 색상 선택 - 우측 (선택된 타입 하나만 표시)
@@ -2279,14 +2648,20 @@
         giyeok_attach3_right_color = 0;
         giyeok_moving2_right_color = 0;
         giyeok_moving3_right_color = 0;
+        giyeok_attach1_material = null;
+        giyeok_attach2_material = null;
+        giyeok_attach3_material = null;
+        giyeok_moving2_material = null;
+        giyeok_moving3_material = null;
+        
+        var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
+        var colorNames = ["없음", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드", "라이트그레이", "", "", "오렌지", "", "레몬"];
         
         if (c == 0) {
           $(".swiper-slide").has("#giyeok-drawer-type-right").find(".menu_sel_text").text("없음");
         } else {
           // 선택된 타입에만 색상 설정
           var material = getMaterial(c);
-          var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
-          var colorNames = ["없음", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드", "라이트그레이", "", "", "오렌지", "", "레몬"];
           
           if (giyeok_drawer_type_right == 1) {
             giyeok_attach1_right_color = c;
@@ -2309,15 +2684,19 @@
           $(".swiper-slide").has("#giyeok-drawer-type-right").find(".menu_sel_text").text(typeNames[giyeok_drawer_type_right] + " " + colorName);
         }
         $(".swiper-slide").has("#giyeok-drawer-type-right").find(".menu_all_list").fadeOut();
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setOppositeKeepSides(keep) {
         opposite_keep_sides = keep;
 
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setShelfDepth(d) {
@@ -2335,8 +2714,10 @@
           storage_flap_color = 0;
           storage_flapstay_color = 0;
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // 부착형 서랍 1단 - 좌측 (좌측에는 1단, 2단, 본체함, 이동서랍 2단, 3단 중 하나만 선택 가능)
@@ -2355,8 +2736,10 @@
           }
           attach1_material = getMaterial(c);
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // 부착형 서랍 1단 - 우측 (우측에는 1단, 2단, 본체함, 이동서랍 2단, 3단 중 하나만 선택 가능)
@@ -2375,8 +2758,10 @@
           }
           attach1_material = getMaterial(c);
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // 부착형 서랍 2단 - 좌측 (좌측에는 1단, 2단, 본체함, 이동서랍 2단, 3단 중 하나만 선택 가능)
@@ -2395,8 +2780,10 @@
           }
           attach2_material = getMaterial(c);
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // 부착형 서랍 2단 - 우측 (우측에는 1단, 2단, 본체함, 이동서랍 2단, 3단 중 하나만 선택 가능)
@@ -2415,8 +2802,10 @@
           }
           attach2_material = getMaterial(c);
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // 본체함 - 좌측 (좌측에는 1단, 2단, 본체함, 이동서랍 2단, 3단 중 하나만 선택 가능)
@@ -2435,8 +2824,10 @@
           }
           attach3_material = getMaterial(c);
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       // 본체함 - 우측 (우측에는 1단, 2단, 본체함, 이동서랍 2단, 3단 중 하나만 선택 가능)
@@ -2455,8 +2846,10 @@
           }
           attach3_material = getMaterial(c);
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setStorageSliding1(c) {
@@ -2500,8 +2893,10 @@
             }).find(".menu_sel_text").text("3");
           }
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setStorageSliding2(c) {
@@ -2545,8 +2940,10 @@
             }).find(".menu_sel_text").text("3");
           }
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setStorageFlap(c) {
@@ -2590,8 +2987,10 @@
             }).find(".menu_sel_text").text("3");
           }
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setStorageFlapStay(c) {
@@ -2703,74 +3102,102 @@
 
       function setPartiVerLHeight(h) {
         parti_ver_L_height = h;
-        if (parti_ver_L_height > 0 && parti_ver_L_color == 0) {
+        // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
+        if (!skipSceneUpdate && parti_ver_L_height > 0 && parti_ver_L_color == 0) {
           parti_ver_L_color = 3; // 기본값: 그레이
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setPartiVerLColor(c) {
         parti_ver_L_color = c;
-        if (parti_ver_L_color) {
+        if (parti_ver_L_color > 0) {
           parti_ver_L_material = getMaterial(c);
+        } else {
+          parti_ver_L_material = null;
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setPartiVerRHeight(h) {
         parti_ver_R_height = h;
-        if (parti_ver_R_height > 0 && parti_ver_R_color == 0) {
+        // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
+        if (!skipSceneUpdate && parti_ver_R_height > 0 && parti_ver_R_color == 0) {
           parti_ver_R_color = 3; // 기본값: 그레이
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setPartiVerRColor(c) {
         parti_ver_R_color = c;
-        if (parti_ver_R_color) {
+        if (parti_ver_R_color > 0) {
           parti_ver_R_material = getMaterial(c);
+        } else {
+          parti_ver_R_material = null;
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setPartiHolBWidth(w) {
         parti_hol_B_width = w;
-        if (parti_hol_B_width > 0 && parti_hol_B_color == 0) {
+        // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
+        if (!skipSceneUpdate && parti_hol_B_width > 0 && parti_hol_B_color == 0) {
           parti_hol_B_color = 3; // 기본값: 그레이
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setPartiHolBColor(c) {
         parti_hol_B_color = c;
-        if (parti_hol_B_color) {
+        if (parti_hol_B_color > 0) {
           parti_hol_B_material = getMaterial(c);
+        } else {
+          parti_hol_B_material = null;
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setPartiVerMHeight(h) {
         parti_ver_M_height = h;
-        if (parti_ver_M_height > 0 && parti_ver_M_color == 0) {
+        // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
+        if (!skipSceneUpdate && parti_ver_M_height > 0 && parti_ver_M_color == 0) {
           parti_ver_M_color = 3; // 기본값: 그레이
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
 
       function setPartiVerMColor(c) {
         parti_ver_M_color = c;
-        if (parti_ver_M_color) {
+        if (parti_ver_M_color > 0) {
           parti_ver_M_material = getMaterial(c);
+        } else {
+          parti_ver_M_material = null;
         }
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
       
       function setPartiZAlignFront(align) {
@@ -2780,9 +3207,75 @@
         var menuText = align == 1 ? "하부옵션 전면" : "기본 위치";
         $("#parti-z-align-menu .menu_sel_text").text(menuText);
         
-        updateScene();
-        render();
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
       }
+      
+      // URL 업데이트 디바운싱을 위한 타이머
+      var urlUpdateTimer = null;
+      
+      // URL 쿼리 파라미터 업데이트 함수
+      function updateURL(replaceState) {
+        if (skipURLUpdate) return; // loadProductFromCode에서 호출된 경우 스킵
+        
+        // 디바운싱: 300ms 이내의 연속 호출은 마지막 호출만 실행
+        if (urlUpdateTimer) {
+          clearTimeout(urlUpdateTimer);
+        }
+        
+        urlUpdateTimer = setTimeout(function() {
+          var code = generateProductCode();
+          var url = new URL(window.location.href);
+          var currentCode = url.searchParams.get('code');
+          
+          // 코드가 실제로 변경된 경우에만 URL 업데이트
+          if (currentCode !== code) {
+            url.searchParams.set('code', code);
+            // replaceState가 명시적으로 false가 아니면 히스토리 교체 (기본값: true)
+            // 이렇게 하면 히스토리가 계속 쌓이지 않음
+            if (replaceState === false) {
+              window.history.pushState({code: code}, '', url.toString());
+            } else {
+              window.history.replaceState({code: code}, '', url.toString());
+            }
+          }
+          
+          urlUpdateTimer = null;
+        }, 300); // 300ms 디바운싱
+      }
+      
+      // URL에서 코드 읽기
+      function loadCodeFromURL() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var code = urlParams.get('code');
+        if (code) {
+          loadProductFromCode(code);
+          return true;
+        }
+        return false;
+      }
+      
+      // 브라우저 뒤로가기/앞으로가기 지원
+      window.addEventListener('popstate', function(event) {
+        // popstate 이벤트 발생 시 URL에서 코드 읽기
+        skipURLUpdate = true; // URL 업데이트 방지 (이미 URL이 변경되었으므로)
+        
+        if (event.state && event.state.code) {
+          // state에 코드가 있으면 사용
+          loadProductFromCode(event.state.code);
+        } else {
+          // state가 없으면 URL에서 직접 읽기
+          var urlParams = new URLSearchParams(window.location.search);
+          var code = urlParams.get('code');
+          if (code) {
+            loadProductFromCode(code);
+          }
+        }
+        
+        skipURLUpdate = false;
+      });
       
       // 상품코드 복사 함수
       function copyProductCode() {
@@ -2822,6 +3315,63 @@
               alert('상품코드를 복사할 수 없습니다. 브라우저를 업데이트해주세요.');
             }
           }
+        }
+      }
+      
+      // URL 복사 함수
+      function copyProductURL() {
+        var url = window.location.href;
+        
+        try {
+          // Clipboard API 사용 (최신 브라우저)
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function() {
+              var copyUrlBtn = document.getElementById("copy_url_btn");
+              if (copyUrlBtn) {
+                var originalTitle = copyUrlBtn.getAttribute('title');
+                copyUrlBtn.setAttribute('title', 'URL이 복사되었습니다!');
+                setTimeout(function() {
+                  copyUrlBtn.setAttribute('title', originalTitle || 'URL 복사');
+                }, 2000);
+              }
+            }).catch(function(err) {
+              console.error('URL 복사 실패:', err);
+              // fallback: execCommand 사용
+              fallbackCopyURL(url);
+            });
+          } else {
+            // fallback: execCommand 사용
+            fallbackCopyURL(url);
+          }
+        } catch (err) {
+          fallbackCopyURL(url);
+        }
+      }
+      
+      // URL 복사 fallback 함수
+      function fallbackCopyURL(url) {
+        var textarea = document.createElement('textarea');
+        textarea.value = url;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, 99999);
+        
+        try {
+          document.execCommand('copy');
+          var copyUrlBtn = document.getElementById("copy_url_btn");
+          if (copyUrlBtn) {
+            var originalTitle = copyUrlBtn.getAttribute('title');
+            copyUrlBtn.setAttribute('title', 'URL이 복사되었습니다!');
+            setTimeout(function() {
+              copyUrlBtn.setAttribute('title', originalTitle || 'URL 복사');
+            }, 2000);
+          }
+        } catch (err) {
+          alert('URL 복사에 실패했습니다. 브라우저를 업데이트해주세요.');
+        } finally {
+          document.body.removeChild(textarea);
         }
       }
 
@@ -3121,6 +3671,34 @@
           shelf_num = 1;
       }
 
+      // 숫자를 한 글자 문자로 변환 (0-9는 숫자, 10-35는 알파벳)
+      // 0-9: '0'-'9', 10-35: 'a'-'z'
+      function numberToSingleChar(n) {
+        if (n === undefined || n === null) n = 0;
+        if (n < 10) {
+          return n.toString();
+        } else if (n < 36) {
+          return String.fromCharCode(97 + (n - 10)); // 'a' = 97
+        } else {
+          return '0'; // 범위 초과 시 기본값
+        }
+      }
+
+      // 한 글자 문자를 숫자로 변환 ('0'-'9'는 0-9, 'a'-'z'는 10-35)
+      function singleCharToNumber(c) {
+        if (!c) return 0;
+        var charCode = c.charCodeAt(0);
+        if (charCode >= 48 && charCode <= 57) { // '0'-'9'
+          return charCode - 48;
+        } else if (charCode >= 97 && charCode <= 122) { // 'a'-'z'
+          return 10 + (charCode - 97);
+        } else if (charCode >= 65 && charCode <= 90) { // 'A'-'Z' (대문자도 지원)
+          return 10 + (charCode - 65);
+        } else {
+          return 0; // 알 수 없는 문자는 0
+        }
+      }
+
       function generateProductCode() {
         var ret;
         var sub_str;
@@ -3154,49 +3732,41 @@
         else
           ret += "1";
           
-        sub_str = board_color.toString();
-        ret += sub_str;
+        // 색상 값은 10 이상일 수 있으므로 알파벳으로 변환
+        ret += numberToSingleChar(board_color || 0);
 
-        sub_str = frame_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(frame_color || 0);
 
-        sub_str = vertical_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(vertical_color || 0);
 
-        sub_str = shelf_board_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(shelf_board_color || 0);
 
         // delimiter
         ret += "-";
 
-        sub_str = shelf_frame_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(shelf_frame_color || 0);
 
-        sub_str = giyeok_position.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(giyeok_position || 0);
 
-        sub_str = desk_mat_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(desk_mat_color || 0);
 
-        sub_str = drawer_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(drawer_color || 0);
 
-        sub_str = fence_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(fence_color || 0);
 
         // delimiter
         ret += "-";
 
-        sub_str = moving2_color.toString();
-        ret += sub_str;
+        // 색상 값은 10 이상일 수 있으므로 알파벳으로 변환
+        ret += numberToSingleChar(moving2_color || 0);
 
-        sub_str = moving3_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(moving3_color || 0);
 
-        sub_str = num_desk.toString();
+        sub_str = (num_desk || 1).toString();
         ret += sub_str;
 
         // 맞은편 배열 거리: 0=복사 안함, 3600=거리 3600, -1030=거리 -1030, -2400=거리 -2400
+        // 코드 저장: 0=1, 3600=2, -1030=3, -2400=4
         if (opposite_desk_distance == 0)
           ret += "1";
         else if (opposite_desk_distance == 3600)
@@ -3208,36 +3778,24 @@
         else
           ret += "1";
 
-        // delimiter
-        ret += "-";
+        // 새로운 옵션들 추가 (좌우 각각) - part4에 모두 포함
+        // 색상 값은 10 이상일 수 있으므로 알파벳으로 변환
+        ret += numberToSingleChar(attach1_left_color || 0);
+        ret += numberToSingleChar(attach1_right_color || 0);
 
-        // 새로운 옵션들 추가 (좌우 각각)
-        sub_str = attach1_left_color.toString();
-        ret += sub_str;
-        sub_str = attach1_right_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(attach2_left_color || 0);
+        ret += numberToSingleChar(attach2_right_color || 0);
 
-        sub_str = attach2_left_color.toString();
-        ret += sub_str;
-        sub_str = attach2_right_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(attach3_left_color || 0);
+        ret += numberToSingleChar(attach3_right_color || 0);
 
-        sub_str = attach3_left_color.toString();
-        ret += sub_str;
-        sub_str = attach3_right_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(storage_sliding1_color || 0);
 
-        sub_str = storage_sliding1_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(storage_sliding2_color || 0);
 
-        sub_str = storage_sliding2_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(storage_flap_color || 0);
 
-        sub_str = storage_flap_color.toString();
-        ret += sub_str;
-
-        sub_str = storage_flapstay_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(storage_flapstay_color || 0);
 
         // delimiter
         ret += "-";
@@ -3253,8 +3811,8 @@
         else if (parti_ver_L_height == 1800) parti_ver_L_height_idx = 6;
         ret += parti_ver_L_height_idx.toString();
 
-        sub_str = parti_ver_L_color.toString();
-        ret += sub_str;
+        // 색상 값은 10 이상일 수 있으므로 알파벳으로 변환
+        ret += numberToSingleChar(parti_ver_L_color || 0);
 
         // parti_ver_R_height: 0=없음, 1=480, 2=800, 3=1200, 4=1400, 5=1600, 6=1800
         var parti_ver_R_height_idx = 0;
@@ -3266,8 +3824,7 @@
         else if (parti_ver_R_height == 1800) parti_ver_R_height_idx = 6;
         ret += parti_ver_R_height_idx.toString();
 
-        sub_str = parti_ver_R_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(parti_ver_R_color || 0);
 
         // parti_ver_M_height: 0=없음, 1=460, 2=800, 3=1200, 4=1400, 5=1600, 6=1800
         var parti_ver_M_height_idx = 0;
@@ -3279,8 +3836,7 @@
         else if (parti_ver_M_height == 1800) parti_ver_M_height_idx = 6;
         ret += parti_ver_M_height_idx.toString();
 
-        sub_str = parti_ver_M_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(parti_ver_M_color || 0);
 
         // parti_hol_B_width: 0=없음, 1=1200, 2=1400, 3=1600, 4=1800
         var parti_hol_B_width_idx = 0;
@@ -3290,54 +3846,48 @@
         else if (parti_hol_B_width == 1800) parti_hol_B_width_idx = 4;
         ret += parti_hol_B_width_idx.toString();
 
-        sub_str = parti_hol_B_color.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(parti_hol_B_color || 0);
         
         // 파티션 Z축 위치 정렬 (책상 깊이 1000 이상일 때만 사용)
-        sub_str = parti_z_align_front.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(parti_z_align_front || 0);
 
         // delimiter
         ret += "-";
 
         // ㄱ자 하부 서랍 옵션들
-        sub_str = giyeok_drawer_type_left.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(giyeok_drawer_type_left || 0);
         
         // 좌측 색상: 타입에 따라 해당 색상 값 사용
         var giyeok_left_color_val = 0;
         if (giyeok_drawer_type_left == 1) {
-          giyeok_left_color_val = giyeok_attach1_left_color;
+          giyeok_left_color_val = giyeok_attach1_left_color || 0;
         } else if (giyeok_drawer_type_left == 2) {
-          giyeok_left_color_val = giyeok_attach2_left_color;
+          giyeok_left_color_val = giyeok_attach2_left_color || 0;
         } else if (giyeok_drawer_type_left == 3) {
-          giyeok_left_color_val = giyeok_attach3_left_color;
+          giyeok_left_color_val = giyeok_attach3_left_color || 0;
         } else if (giyeok_drawer_type_left == 4) {
-          giyeok_left_color_val = giyeok_moving2_left_color;
+          giyeok_left_color_val = giyeok_moving2_left_color || 0;
         } else if (giyeok_drawer_type_left == 5) {
-          giyeok_left_color_val = giyeok_moving3_left_color;
+          giyeok_left_color_val = giyeok_moving3_left_color || 0;
         }
-        sub_str = giyeok_left_color_val.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(giyeok_left_color_val);
 
-        sub_str = giyeok_drawer_type_right.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(giyeok_drawer_type_right || 0);
         
         // 우측 색상: 타입에 따라 해당 색상 값 사용
         var giyeok_right_color_val = 0;
         if (giyeok_drawer_type_right == 1) {
-          giyeok_right_color_val = giyeok_attach1_right_color;
+          giyeok_right_color_val = giyeok_attach1_right_color || 0;
         } else if (giyeok_drawer_type_right == 2) {
-          giyeok_right_color_val = giyeok_attach2_right_color;
+          giyeok_right_color_val = giyeok_attach2_right_color || 0;
         } else if (giyeok_drawer_type_right == 3) {
-          giyeok_right_color_val = giyeok_attach3_right_color;
+          giyeok_right_color_val = giyeok_attach3_right_color || 0;
         } else if (giyeok_drawer_type_right == 4) {
-          giyeok_right_color_val = giyeok_moving2_right_color;
+          giyeok_right_color_val = giyeok_moving2_right_color || 0;
         } else if (giyeok_drawer_type_right == 5) {
-          giyeok_right_color_val = giyeok_moving3_right_color;
+          giyeok_right_color_val = giyeok_moving3_right_color || 0;
         }
-        sub_str = giyeok_right_color_val.toString();
-        ret += sub_str;
+        ret += numberToSingleChar(giyeok_right_color_val);
 
         // 선반 깊이 (part6의 마지막)
         if (shelf_depth == 200)
@@ -3356,6 +3906,11 @@
           alert('상품코드를 입력해주세요.');
           return;
         }
+        
+        // URL 업데이트 방지 플래그 설정
+        skipURLUpdate = true;
+        // 씬 업데이트 방지 플래그 설정 (각 setter에서 updateScene/render 호출 방지)
+        skipSceneUpdate = true;
         
         try {
           var parts = code.split('-');
@@ -3408,12 +3963,13 @@
           }
           
           // part2 파싱: shelf_direction(1) + board_color(1) + frame_color(1) + vertical_color(1) + shelf_board_color(1)
+          // 색상 값은 알파벳일 수 있으므로 singleCharToNumber 사용
           if (part2.length >= 5) {
-            var shelf_direction_val = parseInt(part2[0]);
-            var board_color_val = parseInt(part2[1]);
-            var frame_color_val = parseInt(part2[2]);
-            var vertical_color_val = parseInt(part2[3]);
-            var shelf_board_color_val = parseInt(part2[4]);
+            var shelf_direction_val = parseInt(part2[0]) || 1;
+            var board_color_val = singleCharToNumber(part2[1]);
+            var frame_color_val = singleCharToNumber(part2[2]);
+            var vertical_color_val = singleCharToNumber(part2[3]);
+            var shelf_board_color_val = singleCharToNumber(part2[4]);
             
             setShelfDirection(shelf_direction_val == 2 ? 1 : 0);
             setBoardColor(board_color_val);
@@ -3423,12 +3979,13 @@
           }
           
           // part3 파싱: shelf_frame_color(1) + giyeok_position(1) + desk_mat_color(1) + drawer_color(1) + fence_color(1)
+          // 색상 값은 알파벳일 수 있으므로 singleCharToNumber 사용
           if (part3.length >= 5) {
-            var shelf_frame_color_val = parseInt(part3[0]);
-            var giyeok_position_val = parseInt(part3[1]);
-            var desk_mat_color_val = parseInt(part3[2]);
-            var drawer_color_val = parseInt(part3[3]);
-            var fence_color_val = parseInt(part3[4]);
+            var shelf_frame_color_val = singleCharToNumber(part3[0]);
+            var giyeok_position_val = singleCharToNumber(part3[1]);
+            var desk_mat_color_val = singleCharToNumber(part3[2]);
+            var drawer_color_val = singleCharToNumber(part3[3]);
+            var fence_color_val = singleCharToNumber(part3[4]);
             
             setShelfFrameColor(shelf_frame_color_val);
             setGiyeok(giyeok_position_val);
@@ -3438,21 +3995,22 @@
           }
           
           // part4 파싱: moving2_color(1) + moving3_color(1) + num_desk(1) + is_desk_duplicated(1) + attach1_left(1) + attach1_right(1) + attach2_left(1) + attach2_right(1) + attach3_left(1) + attach3_right(1) + storage_sliding1(1) + storage_sliding2(1) + storage_flap(1) + storage_flapstay(1)
+          // 색상 값은 알파벳일 수 있으므로 singleCharToNumber 사용
           if (part4.length >= 14) {
-            var moving2_color_val = parseInt(part4[0]);
-            var moving3_color_val = parseInt(part4[1]);
-            var num_desk_val = parseInt(part4[2]);
-            var is_desk_duplicated_val = parseInt(part4[3]);
-            var attach1_left_val = parseInt(part4[4]);
-            var attach1_right_val = parseInt(part4[5]);
-            var attach2_left_val = parseInt(part4[6]);
-            var attach2_right_val = parseInt(part4[7]);
-            var attach3_left_val = parseInt(part4[8]);
-            var attach3_right_val = parseInt(part4[9]);
-            var storage_sliding1_val = parseInt(part4[10]);
-            var storage_sliding2_val = parseInt(part4[11]);
-            var storage_flap_val = parseInt(part4[12]);
-            var storage_flapstay_val = parseInt(part4[13]);
+            var moving2_color_val = singleCharToNumber(part4[0]);
+            var moving3_color_val = singleCharToNumber(part4[1]);
+            var num_desk_val = parseInt(part4[2]) || 1; // 최소 1 (숫자만)
+            var is_desk_duplicated_val = parseInt(part4[3]) || 1; // 기본값: 복사 안함 (숫자만)
+            var attach1_left_val = singleCharToNumber(part4[4]);
+            var attach1_right_val = singleCharToNumber(part4[5]);
+            var attach2_left_val = singleCharToNumber(part4[6]);
+            var attach2_right_val = singleCharToNumber(part4[7]);
+            var attach3_left_val = singleCharToNumber(part4[8]);
+            var attach3_right_val = singleCharToNumber(part4[9]);
+            var storage_sliding1_val = singleCharToNumber(part4[10]);
+            var storage_sliding2_val = singleCharToNumber(part4[11]);
+            var storage_flap_val = singleCharToNumber(part4[12]);
+            var storage_flapstay_val = singleCharToNumber(part4[13]);
             
             setMoving2(moving2_color_val);
             setMoving3(moving3_color_val);
@@ -3470,43 +4028,13 @@
               setDeskOpposite(0);
             }
             
-            // 부착형 서랍 설정
-            if (attach1_left_val > 0) {
-              attach1_left_color = attach1_left_val;
-              attach1_material = getMaterial(attach1_left_val);
-            } else {
-              attach1_left_color = 0;
-            }
-            if (attach1_right_val > 0) {
-              attach1_right_color = attach1_right_val;
-              attach1_material = getMaterial(attach1_right_val);
-            } else {
-              attach1_right_color = 0;
-            }
-            if (attach2_left_val > 0) {
-              attach2_left_color = attach2_left_val;
-              attach2_material = getMaterial(attach2_left_val);
-            } else {
-              attach2_left_color = 0;
-            }
-            if (attach2_right_val > 0) {
-              attach2_right_color = attach2_right_val;
-              attach2_material = getMaterial(attach2_right_val);
-            } else {
-              attach2_right_color = 0;
-            }
-            if (attach3_left_val > 0) {
-              attach3_left_color = attach3_left_val;
-              attach3_material = getMaterial(attach3_left_val);
-            } else {
-              attach3_left_color = 0;
-            }
-            if (attach3_right_val > 0) {
-              attach3_right_color = attach3_right_val;
-              attach3_material = getMaterial(attach3_right_val);
-            } else {
-              attach3_right_color = 0;
-            }
+            // 부착형 서랍 설정 (setter 함수 사용)
+            setAttach1Left(attach1_left_val);
+            setAttach1Right(attach1_right_val);
+            setAttach2Left(attach2_left_val);
+            setAttach2Right(attach2_right_val);
+            setAttach3Left(attach3_left_val);
+            setAttach3Right(attach3_right_val);
             
             // 수납 도어 설정
             if (storage_sliding1_val > 0) {
@@ -3532,36 +4060,36 @@
           }
           
           // part5 파싱: parti_ver_L_height_idx + parti_ver_L_color + parti_ver_R_height_idx + parti_ver_R_color + parti_ver_M_height_idx + parti_ver_M_color + parti_hol_B_width_idx + parti_hol_B_color + parti_z_align_front
+          // 색상 값은 알파벳일 수 있으므로 singleCharToNumber 사용
           if (part5.length >= 8) {
-            var parti_ver_L_height_idx = parseInt(part5[0]);
-            var parti_ver_L_color_val = parseInt(part5[1]);
-            var parti_ver_R_height_idx = parseInt(part5[2]);
-            var parti_ver_R_color_val = parseInt(part5[3]);
-            var parti_ver_M_height_idx = parseInt(part5[4]);
-            var parti_ver_M_color_val = parseInt(part5[5]);
-            var parti_hol_B_width_idx = parseInt(part5[6]);
-            var parti_hol_B_color_val = parseInt(part5[7]);
-            var parti_z_align_front_val = part5.length >= 9 ? parseInt(part5[8]) : 0;
+            var parti_ver_L_height_idx = parseInt(part5[0]) || 0;
+            var parti_ver_L_color_val = singleCharToNumber(part5[1]);
+            var parti_ver_R_height_idx = parseInt(part5[2]) || 0;
+            var parti_ver_R_color_val = singleCharToNumber(part5[3]);
+            var parti_ver_M_height_idx = parseInt(part5[4]) || 0;
+            var parti_ver_M_color_val = singleCharToNumber(part5[5]);
+            var parti_hol_B_width_idx = parseInt(part5[6]) || 0;
+            var parti_hol_B_color_val = singleCharToNumber(part5[7]);
+            var parti_z_align_front_val = part5.length >= 9 ? parseInt(part5[8]) || 0 : 0;
             
             // 파티션 높이/넓이 값 설정 (인덱스로 저장됨)
+            // skipSceneUpdate가 true이므로 높이 설정 시 자동 색상 설정이 작동하지 않음
             var height_values_LR = [0, 480, 800, 1200, 1400, 1600, 1800];
             if (parti_ver_L_height_idx >= 0 && parti_ver_L_height_idx < height_values_LR.length) {
               setPartiVerLHeight(height_values_LR[parti_ver_L_height_idx]);
             } else {
               setPartiVerLHeight(0);
             }
-            if (parti_ver_L_color_val > 0) {
-              setPartiVerLColor(parti_ver_L_color_val);
-            }
+            // 색상 설정 (높이 설정 후)
+            setPartiVerLColor(parti_ver_L_color_val);
             
             if (parti_ver_R_height_idx >= 0 && parti_ver_R_height_idx < height_values_LR.length) {
               setPartiVerRHeight(height_values_LR[parti_ver_R_height_idx]);
             } else {
               setPartiVerRHeight(0);
             }
-            if (parti_ver_R_color_val > 0) {
-              setPartiVerRColor(parti_ver_R_color_val);
-            }
+            // 색상 설정 (높이 설정 후)
+            setPartiVerRColor(parti_ver_R_color_val);
             
             var height_values_M = [0, 460, 800, 1200, 1400, 1600, 1800];
             if (parti_ver_M_height_idx >= 0 && parti_ver_M_height_idx < height_values_M.length) {
@@ -3569,9 +4097,8 @@
             } else {
               setPartiVerMHeight(0);
             }
-            if (parti_ver_M_color_val > 0) {
-              setPartiVerMColor(parti_ver_M_color_val);
-            }
+            // 색상 설정 (높이 설정 후)
+            setPartiVerMColor(parti_ver_M_color_val);
             
             var width_values_parti = [0, 1200, 1400, 1600, 1800];
             if (parti_hol_B_width_idx >= 0 && parti_hol_B_width_idx < width_values_parti.length) {
@@ -3579,9 +4106,8 @@
             } else {
               setPartiHolBWidth(0);
             }
-            if (parti_hol_B_color_val > 0) {
-              setPartiHolBColor(parti_hol_B_color_val);
-            }
+            // 색상 설정 (너비 설정 후)
+            setPartiHolBColor(parti_hol_B_color_val);
             
             // 파티션 Z축 위치 정렬 설정
             if (parti_z_align_front_val == 1) {
@@ -3592,23 +4118,22 @@
           }
           
           // part6 파싱: giyeok_drawer_type_left + giyeok_left_color + giyeok_drawer_type_right + giyeok_right_color + shelf_depth
+          // 색상 값은 알파벳일 수 있으므로 singleCharToNumber 사용
           if (part6 && part6.length >= 5) {
-            var giyeok_drawer_type_left_val = parseInt(part6[0]);
-            var giyeok_left_color_val = parseInt(part6[1]);
-            var giyeok_drawer_type_right_val = parseInt(part6[2]);
-            var giyeok_right_color_val = parseInt(part6[3]);
-            var shelf_depth_val = parseInt(part6[4]);
+            var giyeok_drawer_type_left_val = parseInt(part6[0]) || 0;
+            var giyeok_left_color_val = singleCharToNumber(part6[1]);
+            var giyeok_drawer_type_right_val = parseInt(part6[2]) || 0;
+            var giyeok_right_color_val = singleCharToNumber(part6[3]);
+            var shelf_depth_val = parseInt(part6[4]) || 0;
             
             // ㄱ자 하부 서랍 설정
             setGiyeokDrawerTypeLeft(giyeok_drawer_type_left_val);
-            if (giyeok_left_color_val > 0) {
-              setGiyeokDrawerColorLeft(giyeok_left_color_val);
-            }
+            // 색상이 0이어도 명시적으로 설정 (색상 정보 보존)
+            setGiyeokDrawerColorLeft(giyeok_left_color_val);
             
             setGiyeokDrawerTypeRight(giyeok_drawer_type_right_val);
-            if (giyeok_right_color_val > 0) {
-              setGiyeokDrawerColorRight(giyeok_right_color_val);
-            }
+            // 색상이 0이어도 명시적으로 설정 (색상 정보 보존)
+            setGiyeokDrawerColorRight(giyeok_right_color_val);
             
             // shelf_depth 설정
             if (shelf_depth_val == 1) {
@@ -3630,7 +4155,10 @@
             }
           }
           
-          // 모든 설정이 완료된 후 씬 업데이트
+          // 플래그 해제 (모든 설정 완료 후)
+          skipSceneUpdate = false;
+          
+          // 모든 설정이 완료된 후 씬 업데이트 (한 번만 호출)
           updateScene();
           render();
           
@@ -3640,9 +4168,20 @@
             codeInput.value = generateProductCode();
           }
           
+          // URL 업데이트 (히스토리 교체 - 이미 로드 중이므로 replaceState 사용)
+          // skipURLUpdate 플래그를 해제하기 전에 업데이트해야 함
+          var finalCode = generateProductCode();
+          var url = new URL(window.location.href);
+          url.searchParams.set('code', finalCode);
+          window.history.replaceState({code: finalCode}, '', url.toString());
+          
         } catch (error) {
           console.error('코드 파싱 오류:', error);
           alert('상품코드를 읽는 중 오류가 발생했습니다: ' + error.message);
+        } finally {
+          // 플래그 해제
+          skipURLUpdate = false;
+          skipSceneUpdate = false;
         }
       }
 
@@ -3651,89 +4190,139 @@
         var product_price = 0;
         var ret_price = new Array(2);
 
-        // Extended Price Table Placeholder (36 entries needed for 6x6 grid)
-        // NOTE: CSV did not contain prices for new sizes (Width 2360, Depth 800+). 
-        // 0 is used as placeholder. Please update with real prices.
-        var board_price_table = [
-             // Depth 500 (Idx 1)
-             109800, 129800, 141700, 159700, 193100, 0,
-             // Depth 600 (Idx 2)
-             118400, 139900, 159900, 198800, 214500, 0,
-             // Depth 700 (Idx 3)
-             151000, 169800, 189800, 217300, 241400, 0,
-             // Depth 800 (Idx 4) - Placeholder
-             0, 0, 0, 0, 0, 0,
-             // Depth 1000 (Idx 5) - Placeholder
-             0, 0, 0, 0, 0, 0,
-             // Depth 1200 (Idx 6) - Placeholder
-             0, 0, 0, 0, 0, 0
-        ];
+        // 가격 데이터가 로드되지 않았으면 기본값 사용
+        if (!priceData || !priceDataLoaded) {
+          console.warn('가격 데이터가 아직 로드되지 않았습니다. 기본값을 사용합니다.');
+        }
 
-        var shelf_product_price_table = [34000, 43000, 45000, 51000, 57000, 0]; // Extended
-        var shelf_delivery_price_table = [29800, 29800, 32800, 35800, 38800, 41800, 44800];
-        var fence_price_table = [81700, 101700, 103400, 105000, 113900, 0]; // Extended
+        // 가격 데이터에서 가져오기 (없으면 기본값 사용)
+        var prices = priceData && priceData.prices ? priceData.prices : null;
+        
+        // 책상 본체 가격
+        var board_price_table = prices && prices.board && prices.board.table ? 
+          prices.board.table.flat() : // 2D 배열을 1D로 변환
+          [0, 0, 0, 0, 0, 0,
+           109800, 129800, 141700, 159700, 193100, 0,
+           118400, 139900, 159900, 198800, 214500, 0,
+           151000, 169800, 189800, 217300, 241400, 0,
+           0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0];
+
+        var shelf_product_price_table = prices && prices.shelf && prices.shelf.product ? 
+          prices.shelf.product : [34000, 43000, 45000, 51000, 57000, 0];
+        var shelf_delivery_price_table = prices && prices.shelf && prices.shelf.delivery ? 
+          prices.shelf.delivery : [29800, 29800, 32800, 35800, 38800, 41800, 44800];
+        var fence_price_table = prices && prices.fence && prices.fence.product ? 
+          prices.fence.product : [81700, 101700, 103400, 105000, 113900, 0];
 
         // Updated Table Index Logic for 6x6 grid (Width Max 6)
         var table_index = (board_width_idx - 1) + (board_depth_idx - 1) * 6; 
         
-        if (board_price_table[table_index] !== undefined) {
+        if (board_price_table[table_index] !== undefined && board_price_table[table_index] > 0) {
              product_price += board_price_table[table_index];
         }
-        delivery_price += 29800;
+        
+        // 기본 배송비
+        var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+          prices.delivery.basic : 29800;
+        delivery_price += basic_delivery;
 
+        // ㅁ다리
         if (is_mium) {
-          product_price += 69900;
-          delivery_price += 29800;
+          var mium_product = prices && prices.mium && prices.mium.product ? 
+            prices.mium.product : 69900;
+          var mium_delivery = prices && prices.mium && prices.mium.delivery ? 
+            prices.mium.delivery : 29800;
+          product_price += mium_product;
+          delivery_price += mium_delivery;
         }
 
+        // 선반
         if (vertical_length_idx) {
           if (shelf_product_price_table[board_width_idx - 1]) {
              product_price += shelf_product_price_table[board_width_idx - 1] * shelf_num;
           }
-          delivery_price += shelf_delivery_price_table[shelf_num - 1];
+          if (shelf_delivery_price_table[shelf_num - 1]) {
+            delivery_price += shelf_delivery_price_table[shelf_num - 1];
+          }
 
-          if (vertical_length_idx == 2)
-            product_price += 11400;
-          else if (vertical_length_idx == 3) // New height cost
-            product_price += 16000; // Estimation needed
-          else if (vertical_length_idx == 4)
-            product_price += 21900;
+          // 높이 추가 비용
+          var heightExtra = prices && prices.shelf && prices.shelf.heightExtra ? 
+            prices.shelf.heightExtra : { "925": 11400, "1400": 16000, "1860": 21900 };
+          
+          if (vertical_length_idx == 2 && heightExtra["925"])
+            product_price += heightExtra["925"];
+          else if (vertical_length_idx == 3 && heightExtra["1400"])
+            product_price += heightExtra["1400"];
+          else if (vertical_length_idx == 4 && heightExtra["1860"])
+            product_price += heightExtra["1860"];
         }
 
-        if (giyeok_position)
-          product_price += 94500;
+        // ㄱ자 모듈
+        if (giyeok_position) {
+          var giyeok_price = prices && prices.giyeok && prices.giyeok.product ? 
+            prices.giyeok.product : 94500;
+          product_price += giyeok_price;
+        }
 
+        // 데스크 매트
         if (desk_mat_color) {
-          product_price += 65000;
-          delivery_price += 5000;
+          var deskMat_product = prices && prices.deskMat && prices.deskMat.product ? 
+            prices.deskMat.product : 65000;
+          var deskMat_delivery = prices && prices.deskMat && prices.deskMat.delivery ? 
+            prices.deskMat.delivery : 5000;
+          product_price += deskMat_product;
+          delivery_price += deskMat_delivery;
         }
 
+        // 미니서랍
         if (drawer_color) {
-          product_price += 34400;
-          delivery_price += 3000;
+          var drawer_product = prices && prices.drawer && prices.drawer.product ? 
+            prices.drawer.product : 34400;
+          var drawer_delivery = prices && prices.drawer && prices.drawer.delivery ? 
+            prices.drawer.delivery : 3000;
+          product_price += drawer_product;
+          delivery_price += drawer_delivery;
         }
 
+        // 하부가림막
         if (fence_color) {
-          if (fence_price_table[board_width_idx - 1])
+          if (fence_price_table[board_width_idx - 1]) {
              product_price += fence_price_table[board_width_idx - 1];
-          delivery_price += 19800;
+          }
+          var fence_delivery = prices && prices.fence && prices.fence.delivery ? 
+            prices.fence.delivery : 19800;
+          delivery_price += fence_delivery;
         }
 
+        // 2단 이동 서랍
         if (moving2_color) {
-          product_price += 88000;
-          delivery_price += 19800;
+          var moving2_product = prices && prices.moving2 && prices.moving2.product ? 
+            prices.moving2.product : 88000;
+          var moving2_delivery = prices && prices.moving2 && prices.moving2.delivery ? 
+            prices.moving2.delivery : 19800;
+          product_price += moving2_product;
+          delivery_price += moving2_delivery;
         }
 
+        // 3단 이동 서랍
         if (moving3_color) {
-          product_price += 121000;
-          delivery_price += 19800;
+          var moving3_product = prices && prices.moving3 && prices.moving3.product ? 
+            prices.moving3.product : 121000;
+          var moving3_delivery = prices && prices.moving3 && prices.moving3.delivery ? 
+            prices.moving3.delivery : 19800;
+          product_price += moving3_product;
+          delivery_price += moving3_delivery;
         }
 
+        // 책상 배열 배수
         if (num_desk > 1) {
           product_price *= num_desk;
           delivery_price *= num_desk;
         }
 
+        // 반대편 책상 배수
         if (opposite_desk_distance != 0) {
           product_price *= 2;
           delivery_price *= 2;
@@ -3744,6 +4333,349 @@
         ret_price[1] = product_price;
 
         return ret_price;
+      }
+      
+      // 옵션 명세 리스트 생성 함수
+      function generateOptionSpecList() {
+        var specList = [];
+        
+        // 가격 데이터에서 가져오기 (없으면 기본값 사용)
+        var prices = priceData && priceData.prices ? priceData.prices : null;
+        
+        var board_price_table = prices && prices.board && prices.board.table ? 
+          prices.board.table.flat() : // 2D 배열을 1D로 변환
+          [0, 0, 0, 0, 0, 0,
+           109800, 129800, 141700, 159700, 193100, 0,
+           118400, 139900, 159900, 198800, 214500, 0,
+           151000, 169800, 189800, 217300, 241400, 0,
+           0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0];
+        var shelf_product_price_table = prices && prices.shelf && prices.shelf.product ? 
+          prices.shelf.product : [34000, 43000, 45000, 51000, 57000, 0];
+        var shelf_delivery_price_table = prices && prices.shelf && prices.shelf.delivery ? 
+          prices.shelf.delivery : [29800, 29800, 32800, 35800, 38800, 41800, 44800];
+        var fence_price_table = prices && prices.fence && prices.fence.product ? 
+          prices.fence.product : [81700, 101700, 103400, 105000, 113900, 0];
+        
+        var width_names = ["", "1200", "1400", "1600", "1800", "2060", "2360"];
+        var depth_names = ["", "500", "600", "700", "800", "1000", "1200"];
+        var vertical_names = ["", "646", "925", "1400", "1860"];
+        
+        var table_index = (board_width_idx - 1) + (board_depth_idx - 1) * 6;
+        var board_price = board_price_table[table_index] || 0;
+        var desk_multiplier = num_desk > 1 ? num_desk : 1;
+        var opposite_multiplier = opposite_desk_distance != 0 ? 2 : 1;
+        var total_multiplier = desk_multiplier * opposite_multiplier;
+        
+        // 책상 본체
+        if (board_price > 0) {
+          specList.push({
+            name: "책상 본체 (" + width_names[board_width_idx] + " x " + depth_names[board_depth_idx] + ")",
+            qty: total_multiplier,
+            unitPrice: board_price,
+            totalPrice: board_price * total_multiplier
+          });
+        }
+        
+        // 배송비
+        var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+          prices.delivery.basic : 29800;
+        specList.push({
+          name: "기본 배송비",
+          qty: total_multiplier,
+          unitPrice: basic_delivery,
+          totalPrice: basic_delivery * total_multiplier
+        });
+        
+        // ㅁ다리
+        if (is_mium) {
+          var mium_product = prices && prices.mium && prices.mium.product ? 
+            prices.mium.product : 69900;
+          specList.push({
+            name: "ㅁ다리",
+            qty: total_multiplier,
+            unitPrice: mium_product,
+            totalPrice: mium_product * total_multiplier
+          });
+          var mium_delivery = prices && prices.mium && prices.mium.delivery ? 
+            prices.mium.delivery : 29800;
+          specList.push({
+            name: "ㅁ다리 배송비",
+            qty: total_multiplier,
+            unitPrice: mium_delivery,
+            totalPrice: mium_delivery * total_multiplier
+          });
+        }
+        
+        // 선반
+        if (vertical_length_idx > 0) {
+          var shelf_price = shelf_product_price_table[board_width_idx - 1] || 0;
+          if (shelf_price > 0 && shelf_num > 0) {
+            specList.push({
+              name: "선반 (" + width_names[board_width_idx] + " x " + shelf_num + "개)",
+              qty: total_multiplier,
+              unitPrice: shelf_price * shelf_num,
+              totalPrice: shelf_price * shelf_num * total_multiplier
+            });
+          }
+          
+          if (shelf_num > 0) {
+            var shelf_delivery = shelf_delivery_price_table[shelf_num - 1] || 0;
+            if (shelf_delivery > 0) {
+              specList.push({
+                name: "선반 배송비",
+                qty: total_multiplier,
+                unitPrice: shelf_delivery,
+                totalPrice: shelf_delivery * total_multiplier
+              });
+            }
+          }
+          
+          // 수직부재 높이 추가 비용
+          var heightExtra = prices && prices.shelf && prices.shelf.heightExtra ? 
+            prices.shelf.heightExtra : { "925": 11400, "1400": 16000, "1860": 21900 };
+          
+          if (vertical_length_idx == 2 && heightExtra["925"]) {
+            specList.push({
+              name: "수직부재 높이 추가 (925mm)",
+              qty: total_multiplier,
+              unitPrice: heightExtra["925"],
+              totalPrice: heightExtra["925"] * total_multiplier
+            });
+          } else if (vertical_length_idx == 3 && heightExtra["1400"]) {
+            specList.push({
+              name: "수직부재 높이 추가 (1400mm)",
+              qty: total_multiplier,
+              unitPrice: heightExtra["1400"],
+              totalPrice: heightExtra["1400"] * total_multiplier
+            });
+          } else if (vertical_length_idx == 4 && heightExtra["1860"]) {
+            specList.push({
+              name: "수직부재 높이 추가 (1860mm)",
+              qty: total_multiplier,
+              unitPrice: heightExtra["1860"],
+              totalPrice: heightExtra["1860"] * total_multiplier
+            });
+          }
+        }
+        
+        // ㄱ자 모듈
+        if (giyeok_position) {
+          var giyeok_price = prices && prices.giyeok && prices.giyeok.product ? 
+            prices.giyeok.product : 94500;
+          specList.push({
+            name: "ㄱ자 모듈",
+            qty: total_multiplier,
+            unitPrice: giyeok_price,
+            totalPrice: giyeok_price * total_multiplier
+          });
+        }
+        
+        // 데스크 매트
+        if (desk_mat_color) {
+          var deskMat_product = prices && prices.deskMat && prices.deskMat.product ? 
+            prices.deskMat.product : 65000;
+          var deskMat_delivery = prices && prices.deskMat && prices.deskMat.delivery ? 
+            prices.deskMat.delivery : 5000;
+          specList.push({
+            name: "데스크 매트",
+            qty: total_multiplier,
+            unitPrice: deskMat_product,
+            totalPrice: deskMat_product * total_multiplier
+          });
+          specList.push({
+            name: "데스크 매트 배송비",
+            qty: total_multiplier,
+            unitPrice: deskMat_delivery,
+            totalPrice: deskMat_delivery * total_multiplier
+          });
+        }
+        
+        // 미니서랍
+        if (drawer_color) {
+          var drawer_product = prices && prices.drawer && prices.drawer.product ? 
+            prices.drawer.product : 34400;
+          var drawer_delivery = prices && prices.drawer && prices.drawer.delivery ? 
+            prices.drawer.delivery : 3000;
+          specList.push({
+            name: "미니서랍",
+            qty: total_multiplier,
+            unitPrice: drawer_product,
+            totalPrice: drawer_product * total_multiplier
+          });
+          specList.push({
+            name: "미니서랍 배송비",
+            qty: total_multiplier,
+            unitPrice: drawer_delivery,
+            totalPrice: drawer_delivery * total_multiplier
+          });
+        }
+        
+        // 하부가림막
+        if (fence_color) {
+          var fence_price = fence_price_table[board_width_idx - 1] || 0;
+          if (fence_price > 0) {
+            specList.push({
+              name: "하부가림막 (" + width_names[board_width_idx] + ")",
+              qty: total_multiplier,
+              unitPrice: fence_price,
+              totalPrice: fence_price * total_multiplier
+            });
+          }
+          var fence_delivery = prices && prices.fence && prices.fence.delivery ? 
+            prices.fence.delivery : 19800;
+          specList.push({
+            name: "하부가림막 배송비",
+            qty: total_multiplier,
+            unitPrice: fence_delivery,
+            totalPrice: fence_delivery * total_multiplier
+          });
+        }
+        
+        // 2단 이동 서랍
+        if (moving2_color) {
+          var moving2_product = prices && prices.moving2 && prices.moving2.product ? 
+            prices.moving2.product : 88000;
+          var moving2_delivery = prices && prices.moving2 && prices.moving2.delivery ? 
+            prices.moving2.delivery : 19800;
+          specList.push({
+            name: "2단 이동 서랍",
+            qty: total_multiplier,
+            unitPrice: moving2_product,
+            totalPrice: moving2_product * total_multiplier
+          });
+          specList.push({
+            name: "2단 이동 서랍 배송비",
+            qty: total_multiplier,
+            unitPrice: moving2_delivery,
+            totalPrice: moving2_delivery * total_multiplier
+          });
+        }
+        
+        // 3단 이동 서랍
+        if (moving3_color) {
+          var moving3_product = prices && prices.moving3 && prices.moving3.product ? 
+            prices.moving3.product : 121000;
+          var moving3_delivery = prices && prices.moving3 && prices.moving3.delivery ? 
+            prices.moving3.delivery : 19800;
+          specList.push({
+            name: "3단 이동 서랍",
+            qty: total_multiplier,
+            unitPrice: moving3_product,
+            totalPrice: moving3_product * total_multiplier
+          });
+          specList.push({
+            name: "3단 이동 서랍 배송비",
+            qty: total_multiplier,
+            unitPrice: moving3_delivery,
+            totalPrice: moving3_delivery * total_multiplier
+          });
+        }
+        
+        return specList;
+      }
+      
+      // 옵션 명세 리스트 업데이트
+      function updateOptionSpecList() {
+        try {
+          var specList = generateOptionSpecList();
+          var specListContainer = document.getElementById('option_spec_list');
+          if (!specListContainer) return;
+        
+        specListContainer.innerHTML = '';
+        
+        // 헤더 추가
+        var header = document.createElement('div');
+        header.className = 'option_spec_item header';
+        header.innerHTML = '<div class="option_spec_name">옵션명</div><div class="option_spec_qty">수량</div><div class="option_spec_unit">단가</div><div class="option_spec_total">금액</div>';
+        specListContainer.appendChild(header);
+        
+        // 옵션 리스트 추가
+        var totalProductPrice = 0;
+        var totalDeliveryPrice = 0;
+        
+        specList.forEach(function(item) {
+          var row = document.createElement('div');
+          row.className = 'option_spec_item';
+          
+          var unitPriceStr = item.unitPrice.toLocaleString('ko-KR');
+          var totalPriceStr = item.totalPrice.toLocaleString('ko-KR');
+          
+          row.innerHTML = 
+            '<div class="option_spec_name">' + item.name + '</div>' +
+            '<div class="option_spec_qty">' + item.qty + '</div>' +
+            '<div class="option_spec_unit">' + unitPriceStr + '원</div>' +
+            '<div class="option_spec_total">' + totalPriceStr + '원</div>';
+          
+          specListContainer.appendChild(row);
+          
+          // 배송비와 상품가격 분리
+          if (item.name.indexOf('배송비') !== -1) {
+            totalDeliveryPrice += item.totalPrice;
+          } else {
+            totalProductPrice += item.totalPrice;
+          }
+        });
+        
+        // 합계 행 추가
+        var totalRow = document.createElement('div');
+        totalRow.className = 'option_spec_item header';
+        totalRow.style.marginTop = '10px';
+        totalRow.innerHTML = 
+          '<div class="option_spec_name">합계</div>' +
+          '<div class="option_spec_qty"></div>' +
+          '<div class="option_spec_unit">상품: ' + totalProductPrice.toLocaleString('ko-KR') + '원<br>배송: ' + totalDeliveryPrice.toLocaleString('ko-KR') + '원</div>' +
+          '<div class="option_spec_total">' + (totalProductPrice + totalDeliveryPrice).toLocaleString('ko-KR') + '원</div>';
+        specListContainer.appendChild(totalRow);
+        
+        // 가격 표시 업데이트
+        var priceArr = calculatePrice();
+        var totalPrice = priceArr[0] + priceArr[1];
+        var totalPriceDisplay = document.getElementById('total_price_display');
+        if (totalPriceDisplay) {
+          totalPriceDisplay.innerHTML = totalPrice.toLocaleString('ko-KR') + '<span>원</span>';
+        }
+        
+        // 배송조립비와 상품금액 업데이트
+        var deliveryPriceEl = document.querySelector('.delivery_box:has(.ft_title:contains("배송조립비")) .delivery_info.price');
+        var productPriceEl = document.querySelector('.delivery_box:has(.ft_title:contains("상품금액")) .delivery_info.price');
+        
+        // 더 정확한 선택자 사용
+        var deliveryBoxes = document.querySelectorAll('.delivery_box');
+        deliveryBoxes.forEach(function(box) {
+          var title = box.querySelector('.ft_title');
+          if (title && title.textContent === '배송조립비') {
+            var priceEl = box.querySelector('.delivery_info.price');
+            if (priceEl) {
+              priceEl.innerHTML = priceArr[0].toLocaleString('ko-KR') + ' <span>원</span>';
+            }
+          }
+          if (title && title.textContent === '상품금액') {
+            var priceEl = box.querySelector('.delivery_info.price');
+            if (priceEl) {
+              priceEl.innerHTML = priceArr[1].toLocaleString('ko-KR') + ' <span>원</span>';
+            }
+          }
+        });
+        } catch (error) {
+          console.error('옵션 명세 리스트 업데이트 오류:', error);
+        }
+      }
+      
+      // 옵션 명세 리스트 토글
+      function toggleOptionSpec() {
+        var listContainer = document.getElementById('option_spec_list');
+        var toggle = document.getElementById('option_spec_toggle');
+        if (!listContainer || !toggle) return;
+        
+        if (listContainer.classList.contains('hidden')) {
+          listContainer.classList.remove('hidden');
+          toggle.textContent = '▲ 접기';
+        } else {
+          listContainer.classList.add('hidden');
+          toggle.textContent = '▼ 펼치기';
+        }
       }
 
       // 상세 좌표축 생성 함수
@@ -4687,6 +5619,8 @@
             oppositeBottomOptionsGroup.scale.z = -1;
             // 그룹 위치 설정 (반대편 책상 위치 기준)
             oppositeBottomOptionsGroup.position.set(opposite_desk_offset_x, 0, opposite_desk_z);
+            // 익스포트에서 제외하기 위한 태그 추가
+            oppositeBottomOptionsGroup.userData = { isOppositeGroup: true };
             scene.add(oppositeBottomOptionsGroup);
             
             // 반대편 파티션 옵션 복사
@@ -4963,6 +5897,23 @@
         // move desk array to center
         desk.position.set(-(board_width + 10) * 0.5 * (num_desk - 1), 0, 0);
         scene.add(desk);
+        
+        // 상품코드 및 URL 업데이트 (skipURLUpdate 플래그 확인)
+        if (!skipURLUpdate) {
+          var codeInput = document.getElementById('product_code_input');
+          if (codeInput) {
+            var newCode = generateProductCode();
+            // 코드가 변경된 경우에만 입력 필드와 URL 업데이트
+            if (codeInput.value !== newCode) {
+              codeInput.value = newCode;
+            }
+          }
+          // URL 업데이트는 디바운싱이 적용된 updateURL()에서 처리
+          updateURL();
+        }
+        
+        // 옵션 명세 리스트 업데이트
+        updateOptionSpecList();
 
         // 모든 옵션들을 각 책상마다 복사
         // desk_offset_x는 책상이 중앙 정렬된 후의 실제 위치를 반영해야 함
@@ -6000,15 +6951,58 @@
         save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
       }
       
+      // 익스포트용 그룹 생성 (책상, 파티션, 하부옵션 모두 포함)
+      function createExportGroup() {
+        var exportGroup = new THREE.Group();
+        
+        // desk 그룹 추가
+        exportGroup.add(desk.clone());
+        
+        // 씬의 모든 객체를 순회하면서 파티션, 하부옵션, 수납옵션 등 추가
+        scene.traverse(function(child) {
+          // 평면은 제외
+          if (child === plane) {
+            return;
+          }
+          
+          // 반대편 그룹은 제외
+          if (child.userData && child.userData.isOppositeGroup) {
+            return;
+          }
+          
+          // 축 표시 그룹은 제외 (이름으로 확인)
+          if (child.name && child.name.indexOf('Axis') !== -1) {
+            return;
+          }
+          
+          // desk 그룹에 속하지 않은 메시 객체 추가
+          var isDeskChild = false;
+          desk.traverse(function(deskChild) {
+            if (deskChild === child) {
+              isDeskChild = true;
+            }
+          });
+          
+          if (!isDeskChild && child instanceof THREE.Mesh) {
+            // 파티션, 하부옵션, 수납옵션 등
+            exportGroup.add(child.clone());
+          }
+        });
+        
+        return exportGroup;
+      }
+
       function exportOBJ() {
         var exporter = new THREE.OBJExporter();
-        var result = exporter.parse(desk);
+        var exportGroup = createExportGroup();
+        var result = exporter.parse(exportGroup);
         saveString(result, "f1desk_" + product_code_string + ".obj");
       }
 
       function exportSTL() {
         var exporter = new THREE.STLExporter();
-        var result = exporter.parse(desk);
+        var exportGroup = createExportGroup();
+        var result = exporter.parse(exportGroup);
         saveString(result, "f1desk_" + product_code_string + ".stl");
       }
 
