@@ -1293,6 +1293,9 @@
         texture.magFilter = THREE.LinearFilter;
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
+        // 우드 텍스처를 더 크게 펼치기 위해 repeat 값 설정
+        // repeat 값이 클수록 텍스처가 더 크게 보임 (예: 2는 2배 크게)
+        texture.repeat.set(2, 2); // 가로 2배, 세로 2배로 펼침
         texture.flipY = false;
         texture.needsUpdate = true;
       }
