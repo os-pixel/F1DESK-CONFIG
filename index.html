@@ -5426,27 +5426,42 @@
             }
             
             // fence는 frame_back의 앞쪽에 위치해야 함
-            // frame_back의 Z 위치: -board_depth / 4
-            // fence의 깊이: 18mm
+            // frame_back의 중심 Z 위치: -board_depth / 4
             // frame_back의 깊이: frame_thickness_under_board (20mm)
+            // frame_back의 앞쪽 표면: -board_depth / 4 - frame_thickness_under_board / 2 = -board_depth / 4 - 10
+            // fence의 깊이: 18mm
             // fence가 frame_back의 앞쪽에 보이도록 Z 위치 조정
+            // fence의 중심이 frame_back의 앞쪽 표면보다 앞에 있어야 함
             geometry = new THREE.BoxBufferGeometry(board_width - 5, 200, 18);
+            
+            // frame_back의 앞쪽 표면보다 앞에 위치 (fence 깊이의 절반만큼 더 앞으로)
+            var fence_z_offset = - frame_thickness_under_board / 2 - 18 / 2 - 1; // -10 - 9 - 1 = -20
             
             // 첫 번째 fence (위쪽)
             fence = new THREE.Mesh(geometry, fence_material);
             fence.position.y = -100;
-            fence.position.z = - frame_thickness_under_board / 2 + 9; // fence 깊이의 절반을 더해서 앞쪽에 위치
+            fence.position.z = fence_z_offset;
             fence.castShadow = true;
             frame_back.add(fence);
-            console.log('✅ fence 1 생성:', { y: fence.position.y, z: fence.position.z });
+            console.log('✅ fence 1 생성:', { 
+              y: fence.position.y, 
+              z: fence.position.z,
+              frame_back_z: frame_back.position.z,
+              actual_z: frame_back.position.z + fence.position.z
+            });
 
             // 두 번째 fence (아래쪽)
             fence = new THREE.Mesh(geometry, fence_material);
             fence.position.y = -305;
-            fence.position.z = - frame_thickness_under_board / 2 + 9; // fence 깊이의 절반을 더해서 앞쪽에 위치
+            fence.position.z = fence_z_offset;
             fence.castShadow = true;
             frame_back.add(fence);
-            console.log('✅ fence 2 생성:', { y: fence.position.y, z: fence.position.z });
+            console.log('✅ fence 2 생성:', { 
+              y: fence.position.y, 
+              z: fence.position.z,
+              frame_back_z: frame_back.position.z,
+              actual_z: frame_back.position.z + fence.position.z
+            });
           } catch (error) {
             console.error('❌ fence 생성 에러:', error);
           }
