@@ -2807,17 +2807,31 @@
       }
 
       function setFence(c) {
-        fence_color = c;
-        if (fence_color) {
-          fence_material = getMaterial(c);
-        } else {
-          // fence_color가 0일 때 기본 material로 초기화
-          fence_material = new THREE.MeshPhongMaterial({ color: white_color });
-        }
+        try {
+          fence_color = c;
+          if (fence_color) {
+            fence_material = getMaterial(c);
+            if (!fence_material) {
+              console.error('❌ fence_material 생성 실패, 기본 material 사용');
+              fence_material = new THREE.MeshPhongMaterial({ color: white_color });
+            }
+          } else {
+            // fence_color가 0일 때 기본 material로 초기화
+            fence_material = new THREE.MeshPhongMaterial({ color: white_color });
+          }
 
-        if (!skipSceneUpdate) {
-          updateScene();
-          render();
+          if (!skipSceneUpdate) {
+            updateScene();
+            render();
+          }
+        } catch (error) {
+          console.error('❌ setFence 에러:', error);
+          // 에러 발생 시 기본 material로 복구
+          fence_material = new THREE.MeshPhongMaterial({ color: white_color });
+          if (!skipSceneUpdate) {
+            updateScene();
+            render();
+          }
         }
       }
 
