@@ -1912,9 +1912,21 @@
               // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
+              var size = box.getSize(new THREE.Vector3());
               gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
+              
+              // GLB 모델 크기 정보 저장 (분석용)
+              storage_sliding2_models[height].userData = {
+                boundingBox: {
+                  center: center,
+                  size: size,
+                  min: box.min,
+                  max: box.max
+                }
+              };
+              
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
                   child.castShadow = true;
@@ -6694,6 +6706,51 @@
               });
               storage_sliding2_glb.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_sliding2_glb);
+              
+              // 기본 박스와 GLB 모델 크기 비교 분석
+              if (storage_sliding2_models[model_height].userData && storage_sliding2_models[model_height].userData.boundingBox) {
+                var glbSize = storage_sliding2_models[model_height].userData.boundingBox.size;
+                var boxSize = {
+                  width: storage_sliding2_width,
+                  height: storage_sliding2_height,
+                  depth: storage_sliding2_depth
+                };
+                
+                var analysis = {
+                  '기본 박스 크기 (mm)': {
+                    '너비 (X)': boxSize.width.toFixed(2),
+                    '높이 (Y)': boxSize.height.toFixed(2),
+                    '깊이 (Z)': boxSize.depth.toFixed(2),
+                    '볼륨': (boxSize.width * boxSize.height * boxSize.depth / 1000000).toFixed(2) + ' m³'
+                  },
+                  'GLB 모델 크기 (mm)': {
+                    '너비 (X)': glbSize.x.toFixed(2),
+                    '높이 (Y)': glbSize.y.toFixed(2),
+                    '깊이 (Z)': glbSize.z.toFixed(2),
+                    '볼륨': (glbSize.x * glbSize.y * glbSize.z / 1000000).toFixed(2) + ' m³'
+                  },
+                  '차이 (mm)': {
+                    '너비 차이': (glbSize.x - boxSize.width).toFixed(2),
+                    '높이 차이': (glbSize.y - boxSize.height).toFixed(2),
+                    '깊이 차이': (glbSize.z - boxSize.depth).toFixed(2),
+                    '볼륨 차이': ((glbSize.x * glbSize.y * glbSize.z - boxSize.width * boxSize.height * boxSize.depth) / 1000000).toFixed(2) + ' m³'
+                  },
+                  '비율 (%)': {
+                    '너비 비율': ((glbSize.x / boxSize.width) * 100).toFixed(2) + '%',
+                    '높이 비율': ((glbSize.y / boxSize.height) * 100).toFixed(2) + '%',
+                    '깊이 비율': ((glbSize.z / boxSize.depth) * 100).toFixed(2) + '%',
+                    '볼륨 비율': (((glbSize.x * glbSize.y * glbSize.z) / (boxSize.width * boxSize.height * boxSize.depth)) * 100).toFixed(2) + '%'
+                  },
+                  '기준점': {
+                    '기본 박스': '중심 기준 (0, 0, 0)',
+                    'GLB 모델': '중심 기준 (원점 보정 적용)',
+                    '위치': '동일 위치 (' + desk_offset_x.toFixed(2) + ', ' + storage_center_y.toFixed(2) + ', ' + shelf_z_absolute.toFixed(2) + ')'
+                  }
+                };
+                
+                console.log('📊 슬라이드장 2단 크기 분석 (모델 높이: ' + model_height + 'mm)');
+                console.table(analysis);
+              }
             }
           }
 
