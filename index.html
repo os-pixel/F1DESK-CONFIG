@@ -1293,9 +1293,16 @@
         texture.magFilter = THREE.LinearFilter;
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
-        // 우드 텍스처를 더 크게 펼치기 위해 repeat 값 설정
-        // repeat 값이 클수록 텍스처가 더 크게 보임
-        texture.repeat.set(120000 * 100, 120000 * 100); // 가로/세로 12000000배로 펼침 (현재의 100배)
+        
+        // 제품 규격에 맞게 텍스처 맵핑 조정
+        // 텍스처를 200mm 단위로 가정하고, 제품 크기에 맞춰 반복
+        // repeat 값이 작을수록 텍스처가 크게 보임 (더 적게 반복)
+        // repeat 값이 클수록 텍스처가 작게 보임 (더 많이 반복)
+        var textureUnit = 200; // 텍스처 기본 단위 (mm)
+        var repeatX = board_width / textureUnit;
+        var repeatY = board_depth / textureUnit;
+        texture.repeat.set(repeatX, repeatY);
+        
         texture.flipY = false;
         texture.needsUpdate = true;
       }
