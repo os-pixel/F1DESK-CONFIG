@@ -6654,7 +6654,11 @@
           // 수납_슬라이딩도어 2단은 선반 3개와 대체
           // 1~6단 높이 모두 구성가능(최상단만 구성가능)
           // 규격: width=board_width - 80, depth=360, height=800
-          // 위치 규칙: X축 기준 수직부재의 중앙에 위치, Y축 기준위치(센터) 수직부재의 센터와 일치, 옵션모듈의 높이는 선택한 수직부재의 규격이 1400일 경우 1200 높이에 위치, 선택한 수직부재의 규격이 1860인 경우 1400 높이에 위치, 선반360 최상단 위치와 평면위치 동일
+          // 위치 규칙: 
+          //   - X축: 슬라이드장 2단의 중심이 책상의 중심 X축 위치(desk_offset_x)와 일치
+          //   - Y축: 수직부재 하단에서 지정된 높이에 위치, 도어 높이의 절반을 더하여 센터 위치 계산
+          //   - Z축: 선반360 최상단 위치와 평면위치 동일
+          // 옵션모듈의 높이는 선택한 수직부재의 규격이 1400일 경우 1200 높이에 위치, 선택한 수직부재의 규격이 1860인 경우 1400 높이에 위치
           if (storage_sliding2_color && vertical_length > 0) {
             var storage_sliding2_width = board_width - 80; // width=board_width - 80
             var storage_sliding2_depth = 360; // depth=360
@@ -6760,7 +6764,8 @@
               });
               
               // 기본 박스와 정확히 같은 위치에 배치 (동기화)
-              storage_sliding2_glb.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
+              // X축 위치: 슬라이드장 2단의 중심이 책상의 중심 X축 위치와 일치
+              storage_sliding2_glb.position.set(storage_sliding2_center_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_sliding2_glb);
             }
           }
