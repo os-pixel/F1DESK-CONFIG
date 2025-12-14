@@ -1309,15 +1309,15 @@
         texture.repeat.set(repeatX, repeatY);
         
         // 텍스처 방향 조정 (나무 결 무늬가 제품 방향과 일치하도록)
-        texture.rotation = 0; // 기본 회전 없음
+        texture.rotation = Math.PI / 2; // 기본 90도 회전 (면을 유지하면서 맵 축 회전)
         texture.offset.set(0, 0); // 기본 오프셋 없음
         
-        // 선반 방향이 안쪽(shelf_direction == 1)일 때 텍스처를 90도 회전
+        // 선반 방향이 안쪽(shelf_direction == 1)일 때 추가 90도 회전
         // (선반이 뒤집히는 것처럼 보이므로 텍스처도 함께 회전)
         if (depth === shelf_depth && width === (board_width - 52)) {
           // 선반 판재인 경우
           if (shelf_direction == 1) {
-            texture.rotation = Math.PI / 2; // 90도 회전
+            texture.rotation = Math.PI / 2 + Math.PI / 2; // 기본 90도 + 추가 90도 = 180도 회전
           }
         }
         
