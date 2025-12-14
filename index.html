@@ -5559,6 +5559,10 @@
               var storage_sliding1_height = 400;
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
               var vertical_bottom_y = vertical_y_current - vertical_length / 2;
+              // 두 수직부재의 중앙 X 좌표 계산
+              var left_vertical_x = - (board_width - frame_thickness) / 2;
+              var right_vertical_x = + (board_width - frame_thickness) / 2;
+              var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
               var storage_height_position = 0;
               if (vertical_length_idx == 3) {
                 storage_height_position = 1200;
@@ -5574,15 +5578,15 @@
               var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
-              // 기본 박스 항상 표시
+              // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
               geometry = new THREE.BoxBufferGeometry(storage_sliding1_width, storage_sliding1_height, storage_sliding1_depth);
               var storage_sliding1_opposite = new THREE.Mesh(geometry, storage_sliding1_material);
               // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-              storage_sliding1_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+              storage_sliding1_opposite.position.set(opposite_desk_offset_x + vertical_center_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
               storage_sliding1_opposite.castShadow = true;
               scene.add(storage_sliding1_opposite);
               
-              // GLB 모델이 로드된 경우 함께 표시
+              // GLB 모델이 로드된 경우 함께 표시 - 두 수직부재의 중앙
               var model_height_opposite = 1400;
               if (vertical_length_idx == 3) {
                 model_height_opposite = 1400;
@@ -5600,7 +5604,7 @@
                     child.receiveShadow = true;
                   }
                 });
-                storage_sliding1_opposite_glb.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                storage_sliding1_opposite_glb.position.set(opposite_desk_offset_x + vertical_center_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
                 scene.add(storage_sliding1_opposite_glb);
               }
             }
@@ -5612,6 +5616,10 @@
               var storage_sliding2_height = 800;
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
               var vertical_bottom_y = vertical_y_current - vertical_length / 2;
+              // 두 수직부재의 중앙 X 좌표 계산
+              var left_vertical_x = - (board_width - frame_thickness) / 2;
+              var right_vertical_x = + (board_width - frame_thickness) / 2;
+              var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
               var storage_height_position = 0;
               if (vertical_length_idx == 3) {
                 storage_height_position = 1200;
@@ -5629,15 +5637,15 @@
               var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
-              // 기본 박스 항상 표시
+              // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
               geometry = new THREE.BoxBufferGeometry(storage_sliding2_width, storage_sliding2_height, storage_sliding2_depth);
               var storage_sliding2_opposite = new THREE.Mesh(geometry, storage_sliding2_material);
               // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-              storage_sliding2_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+              storage_sliding2_opposite.position.set(opposite_desk_offset_x + vertical_center_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
               storage_sliding2_opposite.castShadow = true;
               scene.add(storage_sliding2_opposite);
               
-              // GLB 모델이 로드된 경우 함께 표시
+              // GLB 모델이 로드된 경우 함께 표시 - 두 수직부재의 중앙
               var model_height_opposite2 = 1400;
               if (vertical_length_idx == 3) {
                 model_height_opposite2 = 1400;
@@ -5655,7 +5663,7 @@
                     child.receiveShadow = true;
                   }
                 });
-                storage_sliding2_opposite_glb.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                storage_sliding2_opposite_glb.position.set(opposite_desk_offset_x + vertical_center_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
                 scene.add(storage_sliding2_opposite_glb);
               }
             }
@@ -5667,6 +5675,10 @@
               var storage_flap_height = 400;
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
               var vertical_bottom_y = vertical_y_current - vertical_length / 2;
+              // 두 수직부재의 중앙 X 좌표 계산
+              var left_vertical_x = - (board_width - frame_thickness) / 2;
+              var right_vertical_x = + (board_width - frame_thickness) / 2;
+              var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
               var storage_height_position = 0;
               var model_height = 1400; // 기본 모델 높이
               if (vertical_length_idx == 3) {
@@ -5689,15 +5701,15 @@
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
               
-              // 기본 박스 항상 표시
+              // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
               geometry = new THREE.BoxBufferGeometry(storage_flap_width, storage_flap_height, storage_flap_depth);
               var storage_flap_opposite = new THREE.Mesh(geometry, storage_flap_material);
               // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-              storage_flap_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+              storage_flap_opposite.position.set(opposite_desk_offset_x + vertical_center_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
               storage_flap_opposite.castShadow = true;
               scene.add(storage_flap_opposite);
               
-              // GLB 모델이 로드된 경우 함께 표시
+              // GLB 모델이 로드된 경우 함께 표시 - 두 수직부재의 중앙
               if (storage_flap_models[model_height]) {
                 var storage_flap_opposite_glb = storage_flap_models[model_height].clone();
                 storage_flap_opposite_glb.traverse(function(child) {
@@ -5707,7 +5719,7 @@
                     child.receiveShadow = true;
                   }
                 });
-                storage_flap_opposite_glb.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                storage_flap_opposite_glb.position.set(opposite_desk_offset_x + vertical_center_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
                 scene.add(storage_flap_opposite_glb);
               }
             }
