@@ -1294,8 +1294,9 @@
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
         // 우드 텍스처를 더 크게 펼치기 위해 repeat 값 설정
-        // repeat 값이 클수록 텍스처가 더 크게 보임 (예: 20은 20배 크게)
-        texture.repeat.set(20, 20); // 가로 20배, 세로 20배로 펼침 (10배 증가)
+        // repeat 값이 클수록 텍스처가 더 크게 보임
+        // 현재 값의 1/30: 20 / 30 = 0.666...
+        texture.repeat.set(20 / 30, 20 / 30); // 가로/세로 0.666... (현재의 1/30)
         texture.flipY = false;
         texture.needsUpdate = true;
       }
