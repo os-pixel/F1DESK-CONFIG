@@ -1809,45 +1809,6 @@
               console.error('Storage_FlapStay ' + height + '.glb 로드 실패:', error);
             });
           });
-          
-          // Storage Double sided_Flap 높이별 모델 로드 (양면 플랩 도어)
-          var double_sided_flap_heights = [1200, 1400, 1600, 1800, 2060];
-          double_sided_flap_heights.forEach(function(height) {
-            var modelKey = 'Storage Double sided_Flap ' + height;
-            gltfLoader.load(getResourcePath('glb/' + modelKey + '.glb'), function(gltf) {
-              if (!window.storage_double_sided_flap_models) {
-                window.storage_double_sided_flap_models = {};
-              }
-              window.storage_double_sided_flap_models[height] = gltf.scene;
-              gltf.scene.traverse(function(child) {
-                if (child instanceof THREE.Mesh) {
-                  child.castShadow = true;
-                  child.receiveShadow = true;
-                }
-              });
-              console.log('✅ ' + modelKey + '.glb 로드 완료');
-              updateScene();
-              render();
-            }, undefined, function(error) {
-              console.warn('⚠️ ' + modelKey + '.glb 로드 실패 (선택적 파일):', error);
-            });
-          });
-          
-          // UPPER_FLAP 모델 로드 (상부 플랩 옵션)
-          gltfLoader.load(getResourcePath('glb/UPPER_FLAP.glb'), function(gltf) {
-            window.upper_flap_model = gltf.scene;
-            gltf.scene.traverse(function(child) {
-              if (child instanceof THREE.Mesh) {
-                child.castShadow = true;
-                child.receiveShadow = true;
-              }
-            });
-            console.log('✅ UPPER_FLAP.glb 로드 완료');
-            updateScene();
-            render();
-          }, undefined, function(error) {
-            console.warn('⚠️ UPPER_FLAP.glb 로드 실패 (선택적 파일):', error);
-          });
         }
 
         updateScene();
@@ -3465,7 +3426,6 @@
         }
         
         var yPos = (drawerType == 4 || drawerType == 5) ? height / 2 : giyeokAttachTopY - height / 2;
-        yPos -= 240; // 하부옵션 Y축 -240 이동
         drawer.position.set(giyeokInnerX, yPos, giyeokInnerZ);
         drawer.rotation.y = rotationY;
         
@@ -3518,7 +3478,7 @@
           attach.castShadow = true;
         }
         
-        attach.position.set(deskOffsetX + legInnerX, attachTopY - height / 2 - 240, zPos); // 하부옵션 Y축 -240 이동
+        attach.position.set(deskOffsetX + legInnerX, attachTopY - height / 2, zPos);
         scene.add(attach);
         return attach;
       }
@@ -3585,7 +3545,7 @@
         }
         
         // 상대 위치로 설정 (그룹 내에서의 위치)
-        attach.position.set(leg_inner_x, attach_top_y - height / 2 - 240, attach_z); // 하부옵션 Y축 -240 이동
+        attach.position.set(leg_inner_x, attach_top_y - height / 2, attach_z);
         return attach;
       }
       
@@ -3640,7 +3600,7 @@
         }
         
         // 반대편 앞뒤 반전: Z 위치를 반대로 계산 (수직부재 쪽 기준)
-        attach.position.set(oppositeDeskOffsetX + leg_inner_x, attach_top_y - height / 2 - 240, oppositeDeskZ + (board_depth / 2 - 200)); // 하부옵션 Y축 -240 이동
+        attach.position.set(oppositeDeskOffsetX + leg_inner_x, attach_top_y - height / 2, oppositeDeskZ + (board_depth / 2 - 200));
         scene.add(attach);
         return attach;
       }
@@ -5068,13 +5028,13 @@
         if (fence_color) {
           geometry = new THREE.BoxBufferGeometry(board_width - 5, 200, 18);
           fence = new THREE.Mesh(geometry, fence_material);
-          fence.position.y = -100 - 240; // 하부옵션 Y축 -240 이동
+          fence.position.y = -100;
           fence.position.z = - frame_thickness_under_board;
           fence.castShadow = true;
           frame_back.add(fence);
 
           fence = new THREE.Mesh(geometry, fence_material);
-          fence.position.y = -305 - 240; // 하부옵션 Y축 -240 이동
+          fence.position.y = -305;
           fence.position.z = - frame_thickness_under_board;
           fence.castShadow = true;
           frame_back.add(fence);
@@ -5351,7 +5311,7 @@
               } else if (vertical_length_idx == 4) {
                 storage_height_position = 1400;
               }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding1_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+              var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding1_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -5381,7 +5341,7 @@
               } else if (vertical_length_idx == 4) {
                 storage_height_position = 1400;
               }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+              var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -5414,7 +5374,7 @@
                 storage_height_position = 1400;
                 model_height = 1800; // 1860에 가장 가까운 모델
               }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_flap_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+              var storage_center_y = vertical_bottom_y + storage_height_position + storage_flap_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -5459,7 +5419,7 @@
               } else if (vertical_length_idx == 4) {
                 storage_height_position = 1400;
               }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+              var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -5509,7 +5469,7 @@
             if (moving2_color) {
               geometry = new THREE.BoxBufferGeometry(300, 585, 400);
               var moving2_opposite = new THREE.Mesh(geometry, moving2_material);
-              moving2_opposite.position.y = 585 / 2 + 50 - 240; // 하부옵션 Y축 -240 이동
+              moving2_opposite.position.y = 585 / 2 + 50;
               
               // 원본과 동일한 X 위치 (좌우 반전 없음)
               var moving2_x;
@@ -5526,12 +5486,12 @@
               // drawer 1 and 2
               geometry = new THREE.BoxBufferGeometry(300, 275, 20);
               var drawer1_opposite = new THREE.Mesh(geometry, moving2_material);
-              drawer1_opposite.position.y = (585 - 275) / 2 - 240; // 하부옵션 Y축 -240 이동
+              drawer1_opposite.position.y = (585 - 275) / 2;
               drawer1_opposite.position.z = 220;
               moving2_opposite.add(drawer1_opposite);
               
               var drawer2_opposite = new THREE.Mesh(geometry, moving2_material);
-              drawer2_opposite.position.y = -(585 - 275) / 2 - 240; // 하부옵션 Y축 -240 이동
+              drawer2_opposite.position.y = -(585 - 275) / 2;
               drawer2_opposite.position.z = 220;
               moving2_opposite.add(drawer2_opposite);
               
@@ -5563,7 +5523,7 @@
             if (moving3_color) {
               geometry = new THREE.BoxBufferGeometry(400, 585, 580);
               var moving3_opposite = new THREE.Mesh(geometry, moving3_material);
-              moving3_opposite.position.y = 585 / 2 + 50 - 240; // 하부옵션 Y축 -240 이동
+              moving3_opposite.position.y = 585 / 2 + 50;
               
               // 원본과 동일한 X 위치 (좌우 반전 없음)
               var moving3_x;
@@ -5580,17 +5540,17 @@
               // drawer 1, 2, 3
               geometry = new THREE.BoxBufferGeometry(400, 190, 20);
               var drawer1_opposite = new THREE.Mesh(geometry, moving3_material);
-              drawer1_opposite.position.y = (585 - 190) / 2 - 240; // 하부옵션 Y축 -240 이동
+              drawer1_opposite.position.y = (585 - 190) / 2;
               drawer1_opposite.position.z = 310;
               moving3_opposite.add(drawer1_opposite);
               
               var drawer2_opposite = new THREE.Mesh(geometry, moving3_material);
-              drawer2_opposite.position.y = 0 - 240; // 하부옵션 Y축 -240 이동
+              drawer2_opposite.position.y = 0;
               drawer2_opposite.position.z = 310;
               moving3_opposite.add(drawer2_opposite);
               
               var drawer3_opposite = new THREE.Mesh(geometry, moving3_material);
-              drawer3_opposite.position.y = - (585 - 190) / 2 - 240; // 하부옵션 Y축 -240 이동
+              drawer3_opposite.position.y = - (585 - 190) / 2;
               drawer3_opposite.position.z = 310;
               moving3_opposite.add(drawer3_opposite);
               
@@ -5985,14 +5945,14 @@
                   child.receiveShadow = true;
                 }
               });
-              attach1_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 160 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach1_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               scene.add(attach1_left);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
               geometry = new THREE.BoxBufferGeometry(300, 160, 400);
               var attach1_left_material = getMaterial(attach1_left_color);
               var attach1_left = new THREE.Mesh(geometry, attach1_left_material);
-              attach1_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 160 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach1_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               attach1_left.castShadow = true;
               scene.add(attach1_left);
             }
@@ -6013,14 +5973,14 @@
                   child.receiveShadow = true;
                 }
               });
-              attach1_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 160 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach1_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               scene.add(attach1_right);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
               geometry = new THREE.BoxBufferGeometry(300, 160, 400);
               var attach1_right_material = getMaterial(attach1_right_color);
               var attach1_right = new THREE.Mesh(geometry, attach1_right_material);
-              attach1_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 160 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach1_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               attach1_right.castShadow = true;
               scene.add(attach1_right);
             }
@@ -6048,14 +6008,14 @@
                   child.receiveShadow = true;
                 }
               });
-              attach2_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach2_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach2_left);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
               geometry = new THREE.BoxBufferGeometry(300, 500, 400);
               var attach2_left_material = getMaterial(attach2_left_color);
               var attach2_left = new THREE.Mesh(geometry, attach2_left_material);
-              attach2_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach2_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               attach2_left.castShadow = true;
               scene.add(attach2_left);
             }
@@ -6076,14 +6036,14 @@
                   child.receiveShadow = true;
                 }
               });
-              attach2_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach2_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach2_right);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
               geometry = new THREE.BoxBufferGeometry(300, 500, 400);
               var attach2_right_material = getMaterial(attach2_right_color);
               var attach2_right = new THREE.Mesh(geometry, attach2_right_material);
-              attach2_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach2_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               attach2_right.castShadow = true;
               scene.add(attach2_right);
             }
@@ -6111,14 +6071,14 @@
                   child.receiveShadow = true;
                 }
               });
-              attach3_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach3_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach3_left);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
               geometry = new THREE.BoxBufferGeometry(300, 500, 400);
               var attach3_left_material = getMaterial(attach3_left_color);
               var attach3_left = new THREE.Mesh(geometry, attach3_left_material);
-              attach3_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach3_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               attach3_left.castShadow = true;
               scene.add(attach3_left);
             }
@@ -6139,14 +6099,14 @@
                   child.receiveShadow = true;
                 }
               });
-              attach3_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach3_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach3_right);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
               geometry = new THREE.BoxBufferGeometry(300, 500, 400);
               var attach3_right_material = getMaterial(attach3_right_color);
               var attach3_right = new THREE.Mesh(geometry, attach3_right_material);
-              attach3_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2 - 240, board_depth / 2 - 200); // 하부옵션 Y축 -240 이동
+              attach3_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               attach3_right.castShadow = true;
               scene.add(attach3_right);
             }
@@ -6157,7 +6117,7 @@
             geometry = new THREE.BoxBufferGeometry(300, 585, 400);
             var moving2_dup = new THREE.Mesh(geometry, moving2_material);
             // 이동서랍의 중심 Y 위치: 땅(y=0)에서 이동서랍 높이의 절반만큼 위 + 50
-            moving2_dup.position.y = 585 / 2 + 50 - 240; // 하부옵션 Y축 -240 이동
+            moving2_dup.position.y = 585 / 2 + 50;
             
             // 기존 위치 유지 (ㄱ자 선택과 관계없이 독립적으로 작동)
             var moving2_x;
@@ -6173,12 +6133,12 @@
             // drawer 1 and 2
             geometry = new THREE.BoxBufferGeometry(300, 275, 20);
             var drawer1_dup = new THREE.Mesh(geometry, moving2_material);
-            drawer1_dup.position.y = (585 - 275) / 2 - 240; // 하부옵션 Y축 -240 이동
+            drawer1_dup.position.y = (585 - 275) / 2;
             drawer1_dup.position.z = 220;
             moving2_dup.add(drawer1_dup);
 
             var drawer2_dup = new THREE.Mesh(geometry, moving2_material);
-            drawer2_dup.position.y = -(585 - 275) / 2 - 240; // 하부옵션 Y축 -240 이동
+            drawer2_dup.position.y = -(585 - 275) / 2;
             drawer2_dup.position.z = 220;
             moving2_dup.add(drawer2_dup);
 
@@ -6210,7 +6170,7 @@
             geometry = new THREE.BoxBufferGeometry(400, 585, 580);
             var moving3_dup = new THREE.Mesh(geometry, moving3_material);
             // 이동서랍의 중심 Y 위치: 땅(y=0)에서 이동서랍 높이의 절반만큼 위 + 50
-            moving3_dup.position.y = 585 / 2 + 50 - 240; // 하부옵션 Y축 -240 이동
+            moving3_dup.position.y = 585 / 2 + 50;
             
             // 기존 위치 유지 (ㄱ자 선택과 관계없이 독립적으로 작동)
             var moving3_x;
@@ -6226,17 +6186,17 @@
             // drawer 1, 2, 3
             geometry = new THREE.BoxBufferGeometry(400, 190, 20);
             var drawer1_dup = new THREE.Mesh(geometry, moving3_material);
-            drawer1_dup.position.y = (585 - 190) / 2 - 240; // 하부옵션 Y축 -240 이동
+            drawer1_dup.position.y = (585 - 190) / 2;
             drawer1_dup.position.z = 310;
             moving3_dup.add(drawer1_dup);
 
             var drawer2_dup = new THREE.Mesh(geometry, moving3_material);
-            drawer2_dup.position.y = 0 - 240; // 하부옵션 Y축 -240 이동
+            drawer2_dup.position.y = 0;
             drawer2_dup.position.z = 310;
             moving3_dup.add(drawer2_dup);
 
             var drawer3_dup = new THREE.Mesh(geometry, moving3_material);
-            drawer3_dup.position.y = - (585 - 190) / 2 - 240; // 하부옵션 Y축 -240 이동
+            drawer3_dup.position.y = - (585 - 190) / 2;
             drawer3_dup.position.z = 310;
             moving3_dup.add(drawer3_dup);
 
@@ -6346,7 +6306,7 @@
               model_height = 2060; // 1860에 가장 가까운 모델
             }
             // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding1_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+            var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding1_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
@@ -6403,7 +6363,7 @@
               model_height = 2060; // 1860에 가장 가까운 모델
             }
             // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+            var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
@@ -6460,7 +6420,7 @@
               model_height = 2060; // 1860에 가장 가까운 모델
             }
             // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_flap_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+            var storage_center_y = vertical_bottom_y + storage_height_position + storage_flap_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
@@ -6514,7 +6474,7 @@
               storage_height_position = 1400; // 높이 1400에 위치
             }
             // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5) - 240; // 하부옵션 Y축 -240 이동
+            var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
