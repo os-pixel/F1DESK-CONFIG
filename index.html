@@ -1287,7 +1287,7 @@
       var textureLoader = new THREE.TextureLoader();
       
       // 텍스처 설정 헬퍼 함수
-      function configureTexture(texture, width, depth) {
+      function configureTexture(texture, width, depth, rotation) {
         if (!texture) return;
         texture.minFilter = THREE.LinearFilter;
         texture.magFilter = THREE.LinearFilter;
@@ -1298,7 +1298,7 @@
         // 텍스처를 200mm 단위로 가정하고, 제품 크기에 맞춰 반복
         // repeat 값이 작을수록 텍스처가 크게 보임 (더 적게 반복)
         // repeat 값이 클수록 텍스처가 작게 보임 (더 많이 반복)
-        var textureUnit = 200 * 100 * 100; // 텍스처 기본 단위 (mm) - 10000배 확대 (100배 추가 확대)
+        var textureUnit = 200 * 100; // 텍스처 기본 단위 (mm) - 100배 확대 (100배 축소)
         
         // 크기가 지정되지 않으면 기본값(책상 상판) 사용
         var w = width || board_width;
@@ -1309,18 +1309,23 @@
         texture.repeat.set(repeatX, repeatY);
         
         // 텍스처 방향 조정 (나무 결 무늬가 제품 방향과 일치하도록)
-        texture.rotation = 0; // 기본 회전 없음
-        texture.offset.set(0, 0); // 기본 오프셋 없음
-        
-        // 선반 방향이 안쪽(shelf_direction == 1)일 때 텍스처를 90도 회전
-        // (선반이 뒤집히는 것처럼 보이므로 텍스처도 함께 회전)
-        if (depth === shelf_depth && width === (board_width - 52)) {
-          // 선반 판재인 경우
-          if (shelf_direction == 1) {
-            texture.rotation = Math.PI / 2; // 90도 회전
+        // rotation 파라미터가 있으면 사용, 없으면 자동 감지
+        if (rotation !== undefined) {
+          texture.rotation = rotation;
+        } else {
+          texture.rotation = 0; // 기본 회전 없음
+          
+          // 선반 방향이 안쪽(shelf_direction == 1)일 때 텍스처를 90도 회전
+          // (선반이 뒤집히는 것처럼 보이므로 텍스처도 함께 회전)
+          if (depth === shelf_depth && width === (board_width - 52)) {
+            // 선반 판재인 경우
+            if (shelf_direction == 1) {
+              texture.rotation = Math.PI / 2; // 90도 회전
+            }
           }
         }
         
+        texture.offset.set(0, 0); // 기본 오프셋 없음
         texture.flipY = false;
         texture.needsUpdate = true;
       }
