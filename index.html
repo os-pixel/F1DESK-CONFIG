@@ -6702,6 +6702,19 @@
             if (storage_sliding2_models[model_height]) {
               var storage_sliding2_glb = storage_sliding2_models[model_height].clone();
               
+              // Material을 먼저 적용 (스케일링 전)
+              storage_sliding2_glb.traverse(function(child) {
+                if (child instanceof THREE.Mesh) {
+                  child.material = storage_sliding2_material;
+                  child.castShadow = true;
+                  child.receiveShadow = true;
+                  // Material 업데이트
+                  if (child.material) {
+                    child.material.needsUpdate = true;
+                  }
+                }
+              });
+              
               // 기본 박스 크기에 맞춰 GLB 모델 스케일링
               if (storage_sliding2_models[model_height].userData && storage_sliding2_models[model_height].userData.boundingBox) {
                 var glbSize = storage_sliding2_models[model_height].userData.boundingBox.size;
@@ -6716,8 +6729,15 @@
                 var scaleY = boxSize.height / glbSize.y;
                 var scaleZ = boxSize.depth / glbSize.z;
                 
-                // GLB 모델을 기본 박스 크기에 맞춰 스케일링
+                // GLB 모델을 기본 박스 크기에 맞춰 스케일링 (material 적용 후)
                 storage_sliding2_glb.scale.set(scaleX, scaleY, scaleZ);
+                
+                // 스케일링 후 material 다시 업데이트
+                storage_sliding2_glb.traverse(function(child) {
+                  if (child instanceof THREE.Mesh && child.material) {
+                    child.material.needsUpdate = true;
+                  }
+                });
                 
                 // 기본 박스와 GLB 모델 크기 비교 분석
                 var analysis = {
@@ -6747,21 +6767,13 @@
                   '기준점': {
                     '기본 박스': '중심 기준',
                     'GLB 모델': '중심 기준 (스케일링 후)',
-                    '위치': '동일 위치 (' + desk_offset_x.toFixed(2) + ', ' + storage_center_y.toFixed(2) + ', ' + shelf_z_absolute.toFixed(2) + ')'
+                    '위치': '동일 위치 (' + storage_sliding2_center_x.toFixed(2) + ', ' + storage_center_y.toFixed(2) + ', ' + shelf_z_absolute.toFixed(2) + ')'
                   }
                 };
                 
                 console.log('📊 슬라이드장 2단 크기 분석 및 동기화 (모델 높이: ' + model_height + 'mm)');
                 console.table(analysis);
               }
-              
-              storage_sliding2_glb.traverse(function(child) {
-                if (child instanceof THREE.Mesh) {
-                  child.material = storage_sliding2_material;
-                  child.castShadow = true;
-                  child.receiveShadow = true;
-                }
-              });
               
               // 기본 박스와 정확히 같은 위치에 배치 (동기화)
               // X축 위치: 슬라이드장 2단의 중심이 책상의 중심 X축 위치와 일치
