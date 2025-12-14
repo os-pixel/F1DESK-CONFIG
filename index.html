@@ -1875,7 +1875,7 @@
           // Storage_Sliding1 높이별 모델 로드
           var sliding1_heights = [1200, 1400, 1600, 1800, 2060];
           sliding1_heights.forEach(function(height) {
-            gltfLoader.load(getResourcePath('glb/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
+            gltfLoader.load(getResourcePath('glb/상부옵션/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
               storage_sliding1_models[height] = gltf.scene;
               // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
               // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
@@ -1934,7 +1934,7 @@
           // Storage_Sliding2 높이별 모델 로드
           var sliding2_heights = [1200, 1400, 1600, 1800, 2060];
           sliding2_heights.forEach(function(height) {
-            var glbPath = getResourcePath('glb/Storage_Sliding2 ' + height + '.glb');
+            var glbPath = getResourcePath('glb/상부옵션/Storage_Sliding2 ' + height + '.glb');
             // 캐시 무시를 위해 타임스탬프 추가
             var cacheBuster = '?t=' + Date.now();
             var fullPath = glbPath + cacheBuster;
@@ -2017,7 +2017,7 @@
           // Storage_Flap 높이별 모델 로드
           var flap_heights = [1200, 1400, 1600, 1800, 2060];
           flap_heights.forEach(function(height) {
-            gltfLoader.load(getResourcePath('glb/Storage_Flap ' + height + '.glb'), function(gltf) {
+            gltfLoader.load(getResourcePath('glb/상부옵션/Storage_Flap ' + height + '.glb'), function(gltf) {
               storage_flap_models[height] = gltf.scene;
               // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
               // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
@@ -2076,7 +2076,7 @@
           // Storage_FlapStay 높이별 모델 로드
           var flapstay_heights = [1200, 1400, 1600, 1800, 2060];
           flapstay_heights.forEach(function(height) {
-            gltfLoader.load(getResourcePath('glb/Storage_FlapStay ' + height + '.glb'), function(gltf) {
+            gltfLoader.load(getResourcePath('glb/상부옵션/Storage_FlapStay ' + height + '.glb'), function(gltf) {
               storage_flapstay_models[height] = gltf.scene;
               // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
               // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
