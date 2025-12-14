@@ -1299,7 +1299,7 @@
         // 나무 결 무늬는 보통 200-250mm 정도가 자연스러움
         // repeat 값이 작을수록 텍스처가 크게 보임 (더 적게 반복)
         // repeat 값이 클수록 텍스처가 작게 보임 (더 많이 반복)
-        var textureUnit = 0.25; // 텍스처 기본 단위 (mm) - 현재의 1/10로 축소 (2.5 / 10)
+        var textureUnit = 250; // 텍스처 기본 단위 (mm) - 자연스러운 나무 결 무늬 크기
         
         // 크기가 지정되지 않으면 기본값(책상 상판) 사용
         var w = width || board_width;
@@ -1307,6 +1307,7 @@
         
         // 제품 크기에 맞춰 텍스처가 적절히 반복되도록 계산
         // 예: 1200mm 너비 → 1200/250 = 4.8번 반복 (자연스러운 스케일)
+        // 예: 500mm 깊이 → 500/250 = 2.0번 반복 (보기 좋은 스케일)
         var repeatX = w / textureUnit;
         var repeatY = d / textureUnit;
         texture.repeat.set(repeatX, repeatY);
