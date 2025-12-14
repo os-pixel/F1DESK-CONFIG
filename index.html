@@ -5418,18 +5418,28 @@
 
         // fence
         if (fence_color) {
-          geometry = new THREE.BoxBufferGeometry(board_width - 5, 200, 18);
-          fence = new THREE.Mesh(geometry, fence_material);
-          fence.position.y = -100;
-          fence.position.z = - frame_thickness_under_board;
-          fence.castShadow = true;
-          frame_back.add(fence);
+          try {
+            // fence_material이 없으면 기본 material 사용
+            if (!fence_material) {
+              console.warn('⚠️ fence_material이 없어 기본 material 사용');
+              fence_material = new THREE.MeshPhongMaterial({ color: white_color });
+            }
+            
+            geometry = new THREE.BoxBufferGeometry(board_width - 5, 200, 18);
+            fence = new THREE.Mesh(geometry, fence_material);
+            fence.position.y = -100;
+            fence.position.z = - frame_thickness_under_board;
+            fence.castShadow = true;
+            frame_back.add(fence);
 
-          fence = new THREE.Mesh(geometry, fence_material);
-          fence.position.y = -305;
-          fence.position.z = - frame_thickness_under_board;
-          fence.castShadow = true;
-          frame_back.add(fence);
+            fence = new THREE.Mesh(geometry, fence_material);
+            fence.position.y = -305;
+            fence.position.z = - frame_thickness_under_board;
+            fence.castShadow = true;
+            frame_back.add(fence);
+          } catch (error) {
+            console.error('❌ fence 생성 에러:', error);
+          }
         }
 
         // vertical
