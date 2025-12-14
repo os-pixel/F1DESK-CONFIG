@@ -1877,11 +1877,10 @@
           sliding1_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
               storage_sliding1_models[height] = gltf.scene;
-              // GLB 모델의 원점 보정
+              // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
-              var size = box.getSize(new THREE.Vector3());
-              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
@@ -1910,11 +1909,10 @@
           sliding2_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Sliding2 ' + height + '.glb'), function(gltf) {
               storage_sliding2_models[height] = gltf.scene;
-              // GLB 모델의 원점 보정
+              // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
-              var size = box.getSize(new THREE.Vector3());
-              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
@@ -1943,11 +1941,10 @@
           flap_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Flap ' + height + '.glb'), function(gltf) {
               storage_flap_models[height] = gltf.scene;
-              // GLB 모델의 원점 보정
+              // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
-              var size = box.getSize(new THREE.Vector3());
-              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
@@ -1976,11 +1973,10 @@
           flapstay_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_FlapStay ' + height + '.glb'), function(gltf) {
               storage_flapstay_models[height] = gltf.scene;
-              // GLB 모델의 원점 보정
+              // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
-              var size = box.getSize(new THREE.Vector3());
-              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
@@ -5575,14 +5571,16 @@
               scene.add(storage_sliding1_opposite);
               
               // GLB 모델이 로드된 경우 함께 표시
-              var model_height = 1400;
+              var model_height_opposite = 1400;
               if (vertical_length_idx == 3) {
-                model_height = 1400;
+                model_height_opposite = 1400;
               } else if (vertical_length_idx == 4) {
-                model_height = 2060;
+                model_height_opposite = 2060;
+              } else if (vertical_length == 1600) {
+                model_height_opposite = 1600;
               }
-              if (storage_sliding1_models[model_height]) {
-                var storage_sliding1_opposite_glb = storage_sliding1_models[model_height].clone();
+              if (storage_sliding1_models[model_height_opposite]) {
+                var storage_sliding1_opposite_glb = storage_sliding1_models[model_height_opposite].clone();
                 storage_sliding1_opposite_glb.traverse(function(child) {
                   if (child instanceof THREE.Mesh) {
                     child.material = storage_sliding1_material;
@@ -5607,6 +5605,8 @@
                 storage_height_position = 1200;
               } else if (vertical_length_idx == 4) {
                 storage_height_position = 1400;
+              } else if (vertical_length == 1600) {
+                storage_height_position = 1200;
               }
               var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
@@ -6617,7 +6617,7 @@
             storage_sliding1_dup.castShadow = true;
             scene.add(storage_sliding1_dup);
             
-            // GLB 모델이 로드된 경우 함께 표시
+            // GLB 모델이 로드된 경우 함께 표시 (기본 박스와 정확히 같은 위치)
             if (storage_sliding1_models[model_height]) {
               var storage_sliding1_glb = storage_sliding1_models[model_height].clone();
               storage_sliding1_glb.traverse(function(child) {
@@ -6627,6 +6627,7 @@
                   child.receiveShadow = true;
                 }
               });
+              // 기본 박스와 정확히 같은 위치 (원점 보정이 이미 적용된 모델이므로 그대로 사용)
               storage_sliding1_glb.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_sliding1_glb);
             }
@@ -6655,6 +6656,9 @@
             } else if (vertical_length_idx == 4) { // 1860
               storage_height_position = 1400; // 높이 1400에 위치
               model_height = 2060; // 1860에 가장 가까운 모델
+            } else if (vertical_length == 1600) { // 1600
+              storage_height_position = 1200; // 높이 1200에 위치
+              model_height = 1600; // 1600 규격에 맞는 모델
             }
             // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
             var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5);
@@ -6713,6 +6717,9 @@
             } else if (vertical_length_idx == 4) { // 1860
               storage_height_position = 1400; // 높이 1400에 위치
               model_height = 2060; // 1860에 가장 가까운 모델
+            } else if (vertical_length == 1600) { // 1600
+              storage_height_position = 1200; // 높이 1200에 위치
+              model_height = 1600; // 1600 규격에 맞는 모델
             }
             // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
             var storage_center_y = vertical_bottom_y + storage_height_position + storage_flap_height / 2 + (storage_y_offset * 93.5);
@@ -6764,10 +6771,16 @@
             var vertical_bottom_y = vertical_y_current - vertical_length / 2; // 수직부재 하단
             // 옵션모듈의 높이 위치 계산: 수직부재 하단에서 지정된 높이에 위치
             var storage_height_position = 0;
+            var model_height = 1400; // 기본 모델 높이
             if (vertical_length_idx == 3) { // 1400
               storage_height_position = 1200; // 높이 1200에 위치
+              model_height = 1400;
             } else if (vertical_length_idx == 4) { // 1860
               storage_height_position = 1400; // 높이 1400에 위치
+              model_height = 2060; // 1860에 가장 가까운 모델
+            } else if (vertical_length == 1600) { // 1600
+              storage_height_position = 1200; // 높이 1200에 위치
+              model_height = 1600; // 1600 규격에 맞는 모델
             }
             // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
             var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5);
@@ -6780,14 +6793,6 @@
             var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
             var vertical_z = - (board_depth + frame_thickness + 5) / 2;
             var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
-            
-            // 모델 높이 결정
-            var model_height = 1400; // 기본 모델 높이
-            if (vertical_length_idx == 3) { // 1400
-              model_height = 1400;
-            } else if (vertical_length_idx == 4) { // 1860
-              model_height = 2060; // 1860에 가장 가까운 모델
-            }
             
             // 기본 박스 항상 표시
             geometry = new THREE.BoxBufferGeometry(storage_flapstay_width, storage_flapstay_height, storage_flapstay_depth);
