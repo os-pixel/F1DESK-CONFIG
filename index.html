@@ -5566,12 +5566,33 @@
               var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
+              // 기본 박스 항상 표시
               geometry = new THREE.BoxBufferGeometry(storage_sliding1_width, storage_sliding1_height, storage_sliding1_depth);
               var storage_sliding1_opposite = new THREE.Mesh(geometry, storage_sliding1_material);
               // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
               storage_sliding1_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
               storage_sliding1_opposite.castShadow = true;
               scene.add(storage_sliding1_opposite);
+              
+              // GLB 모델이 로드된 경우 함께 표시
+              var model_height = 1400;
+              if (vertical_length_idx == 3) {
+                model_height = 1400;
+              } else if (vertical_length_idx == 4) {
+                model_height = 2060;
+              }
+              if (storage_sliding1_models[model_height]) {
+                var storage_sliding1_opposite_glb = storage_sliding1_models[model_height].clone();
+                storage_sliding1_opposite_glb.traverse(function(child) {
+                  if (child instanceof THREE.Mesh) {
+                    child.material = storage_sliding1_material;
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                  }
+                });
+                storage_sliding1_opposite_glb.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                scene.add(storage_sliding1_opposite_glb);
+              }
             }
             
             // 반대편 수납 슬라이딩도어 2단
@@ -5596,12 +5617,33 @@
               var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
+              // 기본 박스 항상 표시
               geometry = new THREE.BoxBufferGeometry(storage_sliding2_width, storage_sliding2_height, storage_sliding2_depth);
               var storage_sliding2_opposite = new THREE.Mesh(geometry, storage_sliding2_material);
               // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
               storage_sliding2_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
               storage_sliding2_opposite.castShadow = true;
               scene.add(storage_sliding2_opposite);
+              
+              // GLB 모델이 로드된 경우 함께 표시
+              var model_height = 1400;
+              if (vertical_length_idx == 3) {
+                model_height = 1400;
+              } else if (vertical_length_idx == 4) {
+                model_height = 2060;
+              }
+              if (storage_sliding2_models[model_height]) {
+                var storage_sliding2_opposite_glb = storage_sliding2_models[model_height].clone();
+                storage_sliding2_opposite_glb.traverse(function(child) {
+                  if (child instanceof THREE.Mesh) {
+                    child.material = storage_sliding2_material;
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                  }
+                });
+                storage_sliding2_opposite_glb.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                scene.add(storage_sliding2_opposite_glb);
+              }
             }
             
             // 반대편 수납 플랩도어
@@ -5630,25 +5672,26 @@
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
               
+              // 기본 박스 항상 표시
+              geometry = new THREE.BoxBufferGeometry(storage_flap_width, storage_flap_height, storage_flap_depth);
+              var storage_flap_opposite = new THREE.Mesh(geometry, storage_flap_material);
+              // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
+              storage_flap_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+              storage_flap_opposite.castShadow = true;
+              scene.add(storage_flap_opposite);
+              
+              // GLB 모델이 로드된 경우 함께 표시
               if (storage_flap_models[model_height]) {
-                var storage_flap_opposite = storage_flap_models[model_height].clone();
-                storage_flap_opposite.traverse(function(child) {
+                var storage_flap_opposite_glb = storage_flap_models[model_height].clone();
+                storage_flap_opposite_glb.traverse(function(child) {
                   if (child instanceof THREE.Mesh) {
                     child.material = storage_flap_material;
                     child.castShadow = true;
                     child.receiveShadow = true;
                   }
                 });
-                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-                storage_flap_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-                scene.add(storage_flap_opposite);
-              } else {
-                geometry = new THREE.BoxBufferGeometry(storage_flap_width, storage_flap_height, storage_flap_depth);
-                var storage_flap_opposite = new THREE.Mesh(geometry, storage_flap_material);
-                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-                storage_flap_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-                storage_flap_opposite.castShadow = true;
-                scene.add(storage_flap_opposite);
+                storage_flap_opposite_glb.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                scene.add(storage_flap_opposite_glb);
               }
             }
             
@@ -5683,26 +5726,26 @@
                 model_height = 2060; // 1860에 가장 가까운 모델
               }
               
+              // 기본 박스 항상 표시
+              geometry = new THREE.BoxBufferGeometry(storage_flapstay_width, storage_flapstay_height, storage_flapstay_depth);
+              var storage_flapstay_opposite = new THREE.Mesh(geometry, storage_flapstay_material);
+              // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
+              storage_flapstay_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+              storage_flapstay_opposite.castShadow = true;
+              scene.add(storage_flapstay_opposite);
+              
+              // GLB 모델이 로드된 경우 함께 표시
               if (storage_flapstay_models[model_height]) {
-                var storage_flapstay_opposite = storage_flapstay_models[model_height].clone();
-                storage_flapstay_opposite.traverse(function(child) {
+                var storage_flapstay_opposite_glb = storage_flapstay_models[model_height].clone();
+                storage_flapstay_opposite_glb.traverse(function(child) {
                   if (child instanceof THREE.Mesh) {
                     child.material = storage_flapstay_material;
                     child.castShadow = true;
                     child.receiveShadow = true;
                   }
                 });
-                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-                storage_flapstay_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-                scene.add(storage_flapstay_opposite);
-              } else {
-                // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-                geometry = new THREE.BoxBufferGeometry(storage_flapstay_width, storage_flapstay_height, storage_flapstay_depth);
-                var storage_flapstay_opposite = new THREE.Mesh(geometry, storage_flapstay_material);
-                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-                storage_flapstay_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-                storage_flapstay_opposite.castShadow = true;
-                scene.add(storage_flapstay_opposite);
+                storage_flapstay_opposite_glb.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                scene.add(storage_flapstay_opposite_glb);
               }
             }
             
