@@ -1877,12 +1877,39 @@
           sliding1_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
               storage_sliding1_models[height] = gltf.scene;
-              // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
+              // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
+              // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
+              var size = box.getSize(new THREE.Vector3());
+              var min = box.min.clone();
+              var max = box.max.clone();
+              
+              // 원본 모델의 원점 정보 저장 (보정 전)
+              var originalOrigin = {
+                center: center.clone(),
+                min: min.clone(),
+                max: max.clone(),
+                size: size.clone()
+              };
+              
+              // 중심이 원점에 오도록 보정 (기본 박스와 동일한 기준점)
               gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
+              
+              // 보정 후 바운딩 박스 재계산
+              box.setFromObject(gltf.scene);
+              var correctedCenter = box.getCenter(new THREE.Vector3());
+              
+              // 디버깅: 원점 보정 정보 출력
+              console.log('📐 Storage_Sliding1 ' + height + ' 원점 보정:');
+              console.log('  원본 중심:', originalOrigin.center);
+              console.log('  원본 최소:', originalOrigin.min);
+              console.log('  원본 최대:', originalOrigin.max);
+              console.log('  보정 후 중심:', correctedCenter);
+              console.log('  보정 후 최소:', box.min);
+              console.log('  보정 후 최대:', box.max);
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
                   child.castShadow = true;
@@ -1909,23 +1936,52 @@
           sliding2_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Sliding2 ' + height + '.glb'), function(gltf) {
               storage_sliding2_models[height] = gltf.scene;
-              // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
+              // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
+              // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
               var size = box.getSize(new THREE.Vector3());
+              var min = box.min.clone();
+              var max = box.max.clone();
+              
+              // 원본 모델의 원점 정보 저장 (보정 전)
+              var originalOrigin = {
+                center: center.clone(),
+                min: min.clone(),
+                max: max.clone(),
+                size: size.clone()
+              };
+              
+              // 중심이 원점에 오도록 보정 (기본 박스와 동일한 기준점)
               gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
               
+              // 보정 후 바운딩 박스 재계산
+              box.setFromObject(gltf.scene);
+              var correctedCenter = box.getCenter(new THREE.Vector3());
+              var correctedSize = box.getSize(new THREE.Vector3());
+              
               // GLB 모델 크기 정보 저장 (분석용)
               storage_sliding2_models[height].userData = {
                 boundingBox: {
-                  center: center,
-                  size: size,
+                  center: correctedCenter,
+                  size: correctedSize,
                   min: box.min,
                   max: box.max
-                }
+                },
+                originalOrigin: originalOrigin,
+                corrected: true
               };
+              
+              // 디버깅: 원점 보정 정보 출력
+              console.log('📐 Storage_Sliding2 ' + height + ' 원점 보정:');
+              console.log('  원본 중심:', originalOrigin.center);
+              console.log('  원본 최소:', originalOrigin.min);
+              console.log('  원본 최대:', originalOrigin.max);
+              console.log('  보정 후 중심:', correctedCenter);
+              console.log('  보정 후 최소:', box.min);
+              console.log('  보정 후 최대:', box.max);
               
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
@@ -1953,12 +2009,39 @@
           flap_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Flap ' + height + '.glb'), function(gltf) {
               storage_flap_models[height] = gltf.scene;
-              // GLB 모델의 원점 보정: 중심이 원점에 오도록 (기본 박스와 일치)
+              // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
+              // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
               var box = new THREE.Box3().setFromObject(gltf.scene);
               var center = box.getCenter(new THREE.Vector3());
+              var size = box.getSize(new THREE.Vector3());
+              var min = box.min.clone();
+              var max = box.max.clone();
+              
+              // 원본 모델의 원점 정보 저장 (보정 전)
+              var originalOrigin = {
+                center: center.clone(),
+                min: min.clone(),
+                max: max.clone(),
+                size: size.clone()
+              };
+              
+              // 중심이 원점에 오도록 보정 (기본 박스와 동일한 기준점)
               gltf.scene.position.y = -center.y;
               gltf.scene.position.x = -center.x;
               gltf.scene.position.z = -center.z;
+              
+              // 보정 후 바운딩 박스 재계산
+              box.setFromObject(gltf.scene);
+              var correctedCenter = box.getCenter(new THREE.Vector3());
+              
+              // 디버깅: 원점 보정 정보 출력
+              console.log('📐 Storage_Flap ' + height + ' 원점 보정:');
+              console.log('  원본 중심:', originalOrigin.center);
+              console.log('  원본 최소:', originalOrigin.min);
+              console.log('  원본 최대:', originalOrigin.max);
+              console.log('  보정 후 중심:', correctedCenter);
+              console.log('  보정 후 최소:', box.min);
+              console.log('  보정 후 최대:', box.max);
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
                   child.castShadow = true;
