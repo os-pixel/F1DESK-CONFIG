@@ -1694,10 +1694,23 @@
         var gltfLoader = null;
         var glbLoadTimer = null; // 디바운싱 타이머
         var pendingSceneUpdate = false; // 씬 업데이트 대기 중인지
+        var glbLoadCount = 0; // 로드된 GLB 파일 수
+        var totalGlbFiles = 3 + (5 * 4); // attach1-3 + Storage 파일들 (5개 높이 * 4종류)
+        var initialLoadComplete = false; // 초기 로드 완료 여부
         
-        // 디바운싱된 씬 업데이트 함수
-        function debouncedSceneUpdate() {
+        // 디바운싱된 씬 업데이트 함수 (모바일에서 더 긴 대기 시간)
+        var debounceTime = isMobile ? 800 : 300; // 모바일: 800ms, 데스크톱: 300ms (더 길게 조정)
+        
+        function debouncedSceneUpdate(skipDebounce) {
+          // 초기 로드 완료 전에는 렌더링하지 않음 (깜빡임 방지)
+          if (!initialLoadComplete && !skipDebounce) {
+            pendingSceneUpdate = true;
+            return; // 초기 로드 완료 전에는 업데이트하지 않음
+          }
+          
           pendingSceneUpdate = true;
+          
+          // 초기 로드 완료 후에는 디바운싱 적용
           if (glbLoadTimer) {
             clearTimeout(glbLoadTimer);
           }
@@ -1707,7 +1720,7 @@
               render();
               pendingSceneUpdate = false;
             }
-          }, 100); // 100ms 디바운싱
+          }, debounceTime);
         }
         
         if (typeof THREE.GLTFLoader !== 'undefined') {
@@ -1725,12 +1738,22 @@
               }
             });
             console.log('✅ attach1.glb 로드 성공');
-            debouncedSceneUpdate();
+            glbLoadCount++;
+            // 초기 로드 중에는 디바운싱, 이후에는 즉시 업데이트
+            debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+            if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+              initialLoadComplete = true;
+              console.log('✅ 모든 GLB 파일 초기 로드 완료');
+            }
           }, undefined, function(error) {
             console.error('❌ attach1.glb 로드 실패:', error);
             console.error('   경로:', attach1Path);
             console.error('   Base Path:', basePath);
-            debouncedSceneUpdate();
+            glbLoadCount++;
+            debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+            if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+              initialLoadComplete = true;
+            }
           });
           
           var attach2Path = getResourcePath('glb/attach2.glb');
@@ -1744,11 +1767,20 @@
               }
             });
             console.log('✅ attach2.glb 로드 성공');
-            debouncedSceneUpdate();
+            glbLoadCount++;
+            debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+            if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+              initialLoadComplete = true;
+              console.log('✅ 모든 GLB 파일 초기 로드 완료');
+            }
           }, undefined, function(error) {
             console.error('❌ attach2.glb 로드 실패:', error);
             console.error('   경로:', attach2Path);
-            debouncedSceneUpdate();
+            glbLoadCount++;
+            debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+            if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+              initialLoadComplete = true;
+            }
           });
           
           var attach3Path = getResourcePath('glb/attach3.glb');
@@ -1762,11 +1794,20 @@
               }
             });
             console.log('✅ attach3.glb 로드 성공');
-            debouncedSceneUpdate();
+            glbLoadCount++;
+            debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+            if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+              initialLoadComplete = true;
+              console.log('✅ 모든 GLB 파일 초기 로드 완료');
+            }
           }, undefined, function(error) {
             console.error('❌ attach3.glb 로드 실패:', error);
             console.error('   경로:', attach3Path);
-            debouncedSceneUpdate();
+            glbLoadCount++;
+            debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+            if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+              initialLoadComplete = true;
+            }
           });
           
           // Storage_Sliding1 높이별 모델 로드
@@ -1780,9 +1821,18 @@
                   child.receiveShadow = true;
                 }
               });
-              debouncedSceneUpdate();
+              glbLoadCount++;
+              debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+                console.log('✅ 모든 GLB 파일 초기 로드 완료');
+              }
             }, undefined, function(error) {
               console.error('Storage_Sliding1 ' + height + '.glb 로드 실패:', error);
+              glbLoadCount++;
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+              }
             });
           });
           
@@ -1797,9 +1847,18 @@
                   child.receiveShadow = true;
                 }
               });
-              debouncedSceneUpdate();
+              glbLoadCount++;
+              debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+                console.log('✅ 모든 GLB 파일 초기 로드 완료');
+              }
             }, undefined, function(error) {
               console.error('Storage_Sliding2 ' + height + '.glb 로드 실패:', error);
+              glbLoadCount++;
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+              }
             });
           });
           
@@ -1814,9 +1873,18 @@
                   child.receiveShadow = true;
                 }
               });
-              debouncedSceneUpdate();
+              glbLoadCount++;
+              debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+                console.log('✅ 모든 GLB 파일 초기 로드 완료');
+              }
             }, undefined, function(error) {
               console.error('Storage_Flap ' + height + '.glb 로드 실패:', error);
+              glbLoadCount++;
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+              }
             });
           });
           
@@ -1831,14 +1899,43 @@
                   child.receiveShadow = true;
                 }
               });
-              debouncedSceneUpdate();
+              glbLoadCount++;
+              debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+                console.log('✅ 모든 GLB 파일 초기 로드 완료');
+              }
             }, undefined, function(error) {
               console.error('Storage_FlapStay ' + height + '.glb 로드 실패:', error);
+              glbLoadCount++;
+              if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
+                initialLoadComplete = true;
+              }
             });
           });
         }
 
-        updateScene();
+        // 초기 씬 업데이트는 GLB 파일 로드 시작 후 약간 지연 (모바일에서 더 길게)
+        // 모든 GLB 파일이 로드될 때까지 기다리지 않고, 일정 시간 후 초기 렌더링
+        var initialRenderTimer = setTimeout(function() {
+          if (!initialLoadComplete) {
+            // 초기 로드가 완료되지 않았어도 기본 씬은 표시
+            updateScene();
+            render();
+          }
+        }, isMobile ? 2000 : 1000); // 모바일: 2초, 데스크톱: 1초 대기
+        
+        // 모든 GLB 파일 로드 완료 시 초기 렌더링 타이머 취소하고 최종 렌더링
+        var checkInitialLoad = setInterval(function() {
+          if (initialLoadComplete) {
+            clearTimeout(initialRenderTimer);
+            clearInterval(checkInitialLoad);
+            // 최종 렌더링 (한 번만)
+            updateScene();
+            render();
+            console.log('🎨 최종 씬 렌더링 완료');
+          }
+        }, 100);
         
         // 선반 방향 UI 초기화
         updateShelfDirectionUI();
