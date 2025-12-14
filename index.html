@@ -5708,10 +5708,16 @@
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
               var vertical_bottom_y = vertical_y_current - vertical_length / 2;
               var storage_height_position = 0;
+              var model_height_opposite_flapstay = 1400;
               if (vertical_length_idx == 3) {
                 storage_height_position = 1200;
+                model_height_opposite_flapstay = 1400;
               } else if (vertical_length_idx == 4) {
                 storage_height_position = 1400;
+                model_height_opposite_flapstay = 2060;
+              } else if (vertical_length == 1600) {
+                storage_height_position = 1200;
+                model_height_opposite_flapstay = 1600;
               }
               var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
@@ -5722,14 +5728,6 @@
               var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
-              
-              // 모델 높이 결정
-              var model_height = 1400; // 기본 모델 높이
-              if (vertical_length_idx == 3) {
-                model_height = 1400;
-              } else if (vertical_length_idx == 4) {
-                model_height = 2060; // 1860에 가장 가까운 모델
-              }
               
               // 기본 박스 항상 표시
               geometry = new THREE.BoxBufferGeometry(storage_flapstay_width, storage_flapstay_height, storage_flapstay_depth);
