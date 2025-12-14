@@ -1287,7 +1287,7 @@
       var textureLoader = new THREE.TextureLoader();
       
       // 텍스처 설정 헬퍼 함수
-      function configureTexture(texture) {
+      function configureTexture(texture, width, depth) {
         if (!texture) return;
         texture.minFilter = THREE.LinearFilter;
         texture.magFilter = THREE.LinearFilter;
@@ -1299,9 +1299,27 @@
         // repeat 값이 작을수록 텍스처가 크게 보임 (더 적게 반복)
         // repeat 값이 클수록 텍스처가 작게 보임 (더 많이 반복)
         var textureUnit = 200; // 텍스처 기본 단위 (mm)
-        var repeatX = board_width / textureUnit;
-        var repeatY = board_depth / textureUnit;
+        
+        // 크기가 지정되지 않으면 기본값(책상 상판) 사용
+        var w = width || board_width;
+        var d = depth || board_depth;
+        
+        var repeatX = w / textureUnit;
+        var repeatY = d / textureUnit;
         texture.repeat.set(repeatX, repeatY);
+        
+        // 텍스처 방향 조정 (나무 결 무늬가 제품 방향과 일치하도록)
+        texture.rotation = 0; // 기본 회전 없음
+        texture.offset.set(0, 0); // 기본 오프셋 없음
+        
+        // 선반 방향이 안쪽(shelf_direction == 1)일 때 텍스처를 90도 회전
+        // (선반이 뒤집히는 것처럼 보이므로 텍스처도 함께 회전)
+        if (depth === shelf_depth && width === (board_width - 52)) {
+          // 선반 판재인 경우
+          if (shelf_direction == 1) {
+            texture.rotation = Math.PI / 2; // 90도 회전
+          }
+        }
         
         texture.flipY = false;
         texture.needsUpdate = true;
@@ -2148,7 +2166,7 @@
         render();
       }
 
-      function getMaterial(color_code) {
+      function getMaterial(color_code, width, depth) {
         var material;
 
         switch (color_code) {
@@ -2165,7 +2183,7 @@
           case 9: // W2: 중간밝기 우드 (natural)
             // 텍스처가 로드되었는지 확인
             if (texture_natural && texture_natural.image && texture_natural.image.complete && texture_natural.image.width > 0) {
-              configureTexture(texture_natural);
+              configureTexture(texture_natural, width, depth);
             material = new THREE.MeshPhongMaterial({ map: texture_natural });
             } else {
               // 텍스처가 아직 로드되지 않았으면 임시로 색상 사용
@@ -2174,7 +2192,7 @@
             return material;
           case 5: // 파인
             if (texture_pine && texture_pine.image && texture_pine.image.complete && texture_pine.image.width > 0) {
-              configureTexture(texture_pine);
+              configureTexture(texture_pine, width, depth);
             material = new THREE.MeshPhongMaterial({ map: texture_pine });
             } else {
               material = new THREE.MeshPhongMaterial({ color: beige_color });
@@ -2182,7 +2200,7 @@
             return material;
           case 6: // 콘크리트
             if (texture_concrete && texture_concrete.image && texture_concrete.image.complete && texture_concrete.image.width > 0) {
-              configureTexture(texture_concrete);
+              configureTexture(texture_concrete, width, depth);
             material = new THREE.MeshPhongMaterial({ map: texture_concrete });
             } else {
               material = new THREE.MeshPhongMaterial({ color: gray_color });
@@ -2190,7 +2208,7 @@
             return material;
           case 7: // 레드파인
             if (texture_redpine && texture_redpine.image && texture_redpine.image.complete && texture_redpine.image.width > 0) {
-              configureTexture(texture_redpine);
+              configureTexture(texture_redpine, width, depth);
             material = new THREE.MeshPhongMaterial({ map: texture_redpine });
             } else {
               material = new THREE.MeshPhongMaterial({ color: brown_color });
@@ -2198,7 +2216,7 @@
             return material;
           case 8: // W1: 밝은 우드 (maple)
             if (texture_maple && texture_maple.image && texture_maple.image.complete && texture_maple.image.width > 0) {
-              configureTexture(texture_maple);
+              configureTexture(texture_maple, width, depth);
               material = new THREE.MeshPhongMaterial({ map: texture_maple });
             } else {
               material = new THREE.MeshPhongMaterial({ color: beige_color });
@@ -2206,7 +2224,7 @@
             return material;
           case 10: // W3: 월넛 우드 (walnut)
             if (texture_walnut && texture_walnut.image && texture_walnut.image.complete && texture_walnut.image.width > 0) {
-              configureTexture(texture_walnut);
+              configureTexture(texture_walnut, width, depth);
               material = new THREE.MeshPhongMaterial({ map: texture_walnut });
             } else {
               material = new THREE.MeshPhongMaterial({ color: brown_color });
@@ -2326,7 +2344,10 @@
 
       function setShelfBoardColor(c) {
         shelf_board_color = c;
-        shelf_board_material = getMaterial(c);
+        // 선반 크기에 맞게 텍스처 설정 (선반 방향 고려)
+        var shelf_width = board_width - 52; // 선반 너비
+        var shelf_d = shelf_depth; // 선반 깊이
+        shelf_board_material = getMaterial(c, shelf_width, shelf_d);
         if (!skipSceneUpdate) {
           updateScene();
           render();
