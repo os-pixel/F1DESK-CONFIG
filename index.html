@@ -1692,11 +1692,31 @@
 
         // GLTFLoader 초기화
         var gltfLoader = null;
+        var glbLoadTimer = null; // 디바운싱 타이머
+        var pendingSceneUpdate = false; // 씬 업데이트 대기 중인지
+        
+        // 디바운싱된 씬 업데이트 함수
+        function debouncedSceneUpdate() {
+          pendingSceneUpdate = true;
+          if (glbLoadTimer) {
+            clearTimeout(glbLoadTimer);
+          }
+          glbLoadTimer = setTimeout(function() {
+            if (pendingSceneUpdate) {
+              updateScene();
+              render();
+              pendingSceneUpdate = false;
+            }
+          }, 100); // 100ms 디바운싱
+        }
+        
         if (typeof THREE.GLTFLoader !== 'undefined') {
           gltfLoader = new THREE.GLTFLoader();
           
           // attach1, attach2, attach3 GLB 모델 로드
-          gltfLoader.load(getResourcePath('glb/attach1.glb'), function(gltf) {
+          var attach1Path = getResourcePath('glb/attach1.glb');
+          console.log('📦 attach1.glb 로드 시도:', attach1Path);
+          gltfLoader.load(attach1Path, function(gltf) {
             attach1_model = gltf.scene;
             attach1_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
@@ -1704,13 +1724,18 @@
                 child.receiveShadow = true;
               }
             });
-        updateScene();
-            render();
+            console.log('✅ attach1.glb 로드 성공');
+            debouncedSceneUpdate();
           }, undefined, function(error) {
-            console.error('attach1.glb 로드 실패:', error);
+            console.error('❌ attach1.glb 로드 실패:', error);
+            console.error('   경로:', attach1Path);
+            console.error('   Base Path:', basePath);
+            debouncedSceneUpdate();
           });
           
-          gltfLoader.load(getResourcePath('glb/attach2.glb'), function(gltf) {
+          var attach2Path = getResourcePath('glb/attach2.glb');
+          console.log('📦 attach2.glb 로드 시도:', attach2Path);
+          gltfLoader.load(attach2Path, function(gltf) {
             attach2_model = gltf.scene;
             attach2_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
@@ -1718,13 +1743,17 @@
                 child.receiveShadow = true;
               }
             });
-            updateScene();
-            render();
+            console.log('✅ attach2.glb 로드 성공');
+            debouncedSceneUpdate();
           }, undefined, function(error) {
-            console.error('attach2.glb 로드 실패:', error);
+            console.error('❌ attach2.glb 로드 실패:', error);
+            console.error('   경로:', attach2Path);
+            debouncedSceneUpdate();
           });
           
-          gltfLoader.load(getResourcePath('glb/attach3.glb'), function(gltf) {
+          var attach3Path = getResourcePath('glb/attach3.glb');
+          console.log('📦 attach3.glb 로드 시도:', attach3Path);
+          gltfLoader.load(attach3Path, function(gltf) {
             attach3_model = gltf.scene;
             attach3_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
@@ -1732,10 +1761,12 @@
                 child.receiveShadow = true;
               }
             });
-            updateScene();
-            render();
+            console.log('✅ attach3.glb 로드 성공');
+            debouncedSceneUpdate();
           }, undefined, function(error) {
-            console.error('attach3.glb 로드 실패:', error);
+            console.error('❌ attach3.glb 로드 실패:', error);
+            console.error('   경로:', attach3Path);
+            debouncedSceneUpdate();
           });
           
           // Storage_Sliding1 높이별 모델 로드
@@ -1749,8 +1780,7 @@
                   child.receiveShadow = true;
                 }
               });
-              updateScene();
-              render();
+              debouncedSceneUpdate();
             }, undefined, function(error) {
               console.error('Storage_Sliding1 ' + height + '.glb 로드 실패:', error);
             });
@@ -1767,8 +1797,7 @@
                   child.receiveShadow = true;
                 }
               });
-              updateScene();
-              render();
+              debouncedSceneUpdate();
             }, undefined, function(error) {
               console.error('Storage_Sliding2 ' + height + '.glb 로드 실패:', error);
             });
@@ -1785,8 +1814,7 @@
                   child.receiveShadow = true;
                 }
               });
-              updateScene();
-              render();
+              debouncedSceneUpdate();
             }, undefined, function(error) {
               console.error('Storage_Flap ' + height + '.glb 로드 실패:', error);
             });
@@ -1803,8 +1831,7 @@
                   child.receiveShadow = true;
                 }
               });
-              updateScene();
-              render();
+              debouncedSceneUpdate();
             }, undefined, function(error) {
               console.error('Storage_FlapStay ' + height + '.glb 로드 실패:', error);
             });
@@ -1817,22 +1844,51 @@
         updateShelfDirectionUI();
 
         // renderer
-        renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        // 모바일 감지
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+        var isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+        
+        // 모바일 최적화 설정
+        var pixelRatio = isMobile ? Math.min(window.devicePixelRatio, 1.5) : window.devicePixelRatio; // 모바일에서 픽셀 비율 제한
+        var antialias = !isMobile; // 모바일에서 안티앨리어싱 비활성화
+        
+        renderer = new THREE.WebGLRenderer({ antialias: antialias });
+        renderer.shadowMap.enabled = !isLowEndDevice; // 저사양 기기에서 그림자 비활성화
+        renderer.shadowMap.type = isMobile ? THREE.BasicShadowMap : THREE.PCFSoftShadowMap; // 모바일에서 기본 그림자 사용
         renderer.setClearColor(white_color);
-        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setPixelRatio(pixelRatio);
         renderer.setSize(width, height);
+        
+        console.log('📱 디바이스 정보:', {
+          '모바일': isMobile,
+          '저사양': isLowEndDevice,
+          '픽셀 비율': pixelRatio,
+          '안티앨리어싱': antialias,
+          '그림자': renderer.shadowMap.enabled
+        });
 
         container.appendChild(renderer.domElement);
 
         controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.autoRotate = false; // 기본적으로 멈춰있게 설정
         controls.autoRotateSpeed *= 2.0;
-        controls.rotateSpeed = 5.0;
-        controls.zoomSpeed = 1.2;
-        controls.panSpeed = 1.8;
+        // 모바일에서 컨트롤 속도 조정
+        controls.rotateSpeed = isMobile ? 2.5 : 5.0;
+        controls.zoomSpeed = isMobile ? 0.8 : 1.2;
+        controls.panSpeed = isMobile ? 1.0 : 1.8;
+        controls.enableDamping = isMobile; // 모바일에서 댐핑 활성화 (부드러운 움직임)
+        if (isMobile) {
+          controls.dampingFactor = 0.05;
+        }
         controls.target = new THREE.Vector3(0, 500, 0);
+
+        // 모바일에서 터치 이벤트 최적화
+        if (isMobile && controls.touches) {
+          controls.touches = {
+            ONE: THREE.TOUCH.ROTATE,
+            TWO: THREE.TOUCH.DOLLY_PAN
+          };
+        }
 
         controls.addEventListener('change', render);
         
@@ -5945,10 +6001,12 @@
                   child.receiveShadow = true;
                 }
               });
+              // GLB 모델의 원점을 중심으로 조정 (모델이 이미 올바른 원점을 가지고 있다고 가정)
               attach1_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               scene.add(attach1_left);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
+              console.warn('⚠️ attach1_model이 로드되지 않아 기본 박스를 사용합니다.');
               geometry = new THREE.BoxBufferGeometry(300, 160, 400);
               var attach1_left_material = getMaterial(attach1_left_color);
               var attach1_left = new THREE.Mesh(geometry, attach1_left_material);
@@ -5973,10 +6031,12 @@
                   child.receiveShadow = true;
                 }
               });
+              // GLB 모델의 원점을 중심으로 조정
               attach1_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               scene.add(attach1_right);
             } else {
               // GLB 모델이 로드되지 않은 경우 기본 박스 사용
+              console.warn('⚠️ attach1_model이 로드되지 않아 기본 박스를 사용합니다.');
               geometry = new THREE.BoxBufferGeometry(300, 160, 400);
               var attach1_right_material = getMaterial(attach1_right_color);
               var attach1_right = new THREE.Mesh(geometry, attach1_right_material);
@@ -6907,9 +6967,14 @@
         render();
       }
 
+      // 모바일 감지 (전역 변수로 사용)
+      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+      
       function animate() {
         requestAnimationFrame(animate);
-        controls.update();
+        if (controls) {
+          controls.update();
+        }
         render();
       }
 
