@@ -5566,12 +5566,30 @@
               var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
-              geometry = new THREE.BoxBufferGeometry(storage_sliding1_width, storage_sliding1_height, storage_sliding1_depth);
-              var storage_sliding1_opposite = new THREE.Mesh(geometry, storage_sliding1_material);
-              // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-              storage_sliding1_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-              storage_sliding1_opposite.castShadow = true;
-              scene.add(storage_sliding1_opposite);
+              
+              // 모델 높이 결정
+              var model_height = 1400;
+              if (vertical_length_idx == 3) {
+                model_height = 1400;
+              } else if (vertical_length_idx == 4) {
+                model_height = 2060;
+              }
+              
+              if (storage_sliding1_models[model_height]) {
+                var storage_sliding1_opposite = storage_sliding1_models[model_height].clone();
+                storage_sliding1_opposite.traverse(function(child) {
+                  if (child instanceof THREE.Mesh) {
+                    child.material = storage_sliding1_material;
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                  }
+                });
+                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
+                storage_sliding1_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                scene.add(storage_sliding1_opposite);
+              } else {
+                console.warn('⚠️ 반대편 storage_sliding1 모델이 로드되지 않아 표시하지 않습니다.');
+              }
             }
             
             // 반대편 수납 슬라이딩도어 2단
@@ -5596,12 +5614,30 @@
               var shelf_z_relative = shelf_direction == 0 ? - (shelf_depth - frame_thickness + 2) / 2 : (shelf_depth - frame_thickness + 2) / 2;
               var vertical_z = - (board_depth + frame_thickness + 5) / 2;
               var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
-              geometry = new THREE.BoxBufferGeometry(storage_sliding2_width, storage_sliding2_height, storage_sliding2_depth);
-              var storage_sliding2_opposite = new THREE.Mesh(geometry, storage_sliding2_material);
-              // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-              storage_sliding2_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-              storage_sliding2_opposite.castShadow = true;
-              scene.add(storage_sliding2_opposite);
+              
+              // 모델 높이 결정
+              var model_height = 1400;
+              if (vertical_length_idx == 3) {
+                model_height = 1400;
+              } else if (vertical_length_idx == 4) {
+                model_height = 2060;
+              }
+              
+              if (storage_sliding2_models[model_height]) {
+                var storage_sliding2_opposite = storage_sliding2_models[model_height].clone();
+                storage_sliding2_opposite.traverse(function(child) {
+                  if (child instanceof THREE.Mesh) {
+                    child.material = storage_sliding2_material;
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                  }
+                });
+                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
+                storage_sliding2_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
+                scene.add(storage_sliding2_opposite);
+              } else {
+                console.warn('⚠️ 반대편 storage_sliding2 모델이 로드되지 않아 표시하지 않습니다.');
+              }
             }
             
             // 반대편 수납 플랩도어
@@ -5643,12 +5679,7 @@
                 storage_flap_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
                 scene.add(storage_flap_opposite);
               } else {
-                geometry = new THREE.BoxBufferGeometry(storage_flap_width, storage_flap_height, storage_flap_depth);
-                var storage_flap_opposite = new THREE.Mesh(geometry, storage_flap_material);
-                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-                storage_flap_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-                storage_flap_opposite.castShadow = true;
-                scene.add(storage_flap_opposite);
+                console.warn('⚠️ 반대편 storage_flap 모델이 로드되지 않아 표시하지 않습니다.');
               }
             }
             
@@ -5696,13 +5727,7 @@
                 storage_flapstay_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
                 scene.add(storage_flapstay_opposite);
               } else {
-                // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-                geometry = new THREE.BoxBufferGeometry(storage_flapstay_width, storage_flapstay_height, storage_flapstay_depth);
-                var storage_flapstay_opposite = new THREE.Mesh(geometry, storage_flapstay_material);
-                // 반대편 앞뒤 반전: 수직부재는 반대편 책상의 앞쪽에 위치하므로 Z 좌표 반전
-                storage_flapstay_opposite.position.set(opposite_desk_offset_x, storage_center_y, opposite_desk_z - shelf_z_absolute);
-                storage_flapstay_opposite.castShadow = true;
-                scene.add(storage_flapstay_opposite);
+                console.warn('⚠️ 반대편 storage_flapstay 모델이 로드되지 않아 표시하지 않습니다.');
               }
             }
             
@@ -6195,14 +6220,8 @@
               attach1_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               scene.add(attach1_left);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              console.warn('⚠️ attach1_model이 로드되지 않아 기본 박스를 사용합니다.');
-              geometry = new THREE.BoxBufferGeometry(300, 160, 400);
-              var attach1_left_material = getMaterial(attach1_left_color);
-              var attach1_left = new THREE.Mesh(geometry, attach1_left_material);
-              attach1_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
-              attach1_left.castShadow = true;
-              scene.add(attach1_left);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ attach1_model이 로드되지 않아 표시하지 않습니다.');
             }
           }
           // 우측 1개만 가능
@@ -6225,14 +6244,8 @@
               attach1_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
               scene.add(attach1_right);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              console.warn('⚠️ attach1_model이 로드되지 않아 기본 박스를 사용합니다.');
-              geometry = new THREE.BoxBufferGeometry(300, 160, 400);
-              var attach1_right_material = getMaterial(attach1_right_color);
-              var attach1_right = new THREE.Mesh(geometry, attach1_right_material);
-              attach1_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 160 / 2, board_depth / 2 - 200);
-              attach1_right.castShadow = true;
-              scene.add(attach1_right);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ attach1_model이 로드되지 않아 표시하지 않습니다.');
             }
           }
 
@@ -6261,13 +6274,8 @@
               attach2_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach2_left);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(300, 500, 400);
-              var attach2_left_material = getMaterial(attach2_left_color);
-              var attach2_left = new THREE.Mesh(geometry, attach2_left_material);
-              attach2_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
-              attach2_left.castShadow = true;
-              scene.add(attach2_left);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ attach2_model이 로드되지 않아 표시하지 않습니다.');
             }
           }
           // 우측 1개만 가능
@@ -6289,13 +6297,8 @@
               attach2_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach2_right);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(300, 500, 400);
-              var attach2_right_material = getMaterial(attach2_right_color);
-              var attach2_right = new THREE.Mesh(geometry, attach2_right_material);
-              attach2_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
-              attach2_right.castShadow = true;
-              scene.add(attach2_right);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ attach2_model이 로드되지 않아 표시하지 않습니다.');
             }
           }
 
@@ -6324,13 +6327,8 @@
               attach3_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach3_left);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(300, 500, 400);
-              var attach3_left_material = getMaterial(attach3_left_color);
-              var attach3_left = new THREE.Mesh(geometry, attach3_left_material);
-              attach3_left.position.set(desk_offset_x + left_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
-              attach3_left.castShadow = true;
-              scene.add(attach3_left);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ attach3_model이 로드되지 않아 표시하지 않습니다.');
             }
           }
           // 우측 1개만 가능
@@ -6352,13 +6350,8 @@
               attach3_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
               scene.add(attach3_right);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(300, 500, 400);
-              var attach3_right_material = getMaterial(attach3_right_color);
-              var attach3_right = new THREE.Mesh(geometry, attach3_right_material);
-              attach3_right.position.set(desk_offset_x + right_leg_inner_x, attach_top_y - 500 / 2, board_depth / 2 - 200);
-              attach3_right.castShadow = true;
-              scene.add(attach3_right);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ attach3_model이 로드되지 않아 표시하지 않습니다.');
             }
           }
 
@@ -6579,12 +6572,8 @@
               storage_sliding1_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_sliding1_dup);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(storage_sliding1_width, storage_sliding1_height, storage_sliding1_depth);
-              var storage_sliding1_dup = new THREE.Mesh(geometry, storage_sliding1_material);
-              storage_sliding1_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
-              storage_sliding1_dup.castShadow = true;
-              scene.add(storage_sliding1_dup);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ storage_sliding1 모델이 로드되지 않아 표시하지 않습니다.');
             }
           }
 
@@ -6636,12 +6625,8 @@
               storage_sliding2_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_sliding2_dup);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(storage_sliding2_width, storage_sliding2_height, storage_sliding2_depth);
-              var storage_sliding2_dup = new THREE.Mesh(geometry, storage_sliding2_material);
-              storage_sliding2_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
-              storage_sliding2_dup.castShadow = true;
-              scene.add(storage_sliding2_dup);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ storage_sliding2 모델이 로드되지 않아 표시하지 않습니다.');
             }
           }
 
@@ -6693,12 +6678,8 @@
               storage_flap_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_flap_dup);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(storage_flap_width, storage_flap_height, storage_flap_depth);
-              var storage_flap_dup = new THREE.Mesh(geometry, storage_flap_material);
-              storage_flap_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
-              storage_flap_dup.castShadow = true;
-              scene.add(storage_flap_dup);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ storage_flap 모델이 로드되지 않아 표시하지 않습니다.');
             }
           }
 
@@ -6755,12 +6736,8 @@
               storage_flapstay_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_flapstay_dup);
             } else {
-              // GLB 모델이 로드되지 않은 경우 기본 박스 사용
-              geometry = new THREE.BoxBufferGeometry(storage_flapstay_width, storage_flapstay_height, storage_flapstay_depth);
-              var storage_flapstay_dup = new THREE.Mesh(geometry, storage_flapstay_material);
-              storage_flapstay_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
-              storage_flapstay_dup.castShadow = true;
-              scene.add(storage_flapstay_dup);
+              // GLB 모델이 로드되지 않은 경우 표시하지 않음
+              console.warn('⚠️ storage_flapstay 모델이 로드되지 않아 표시하지 않습니다.');
             }
           }
 
