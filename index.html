@@ -6646,9 +6646,10 @@
             var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
             
             // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
+            // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0이므로)
             geometry = new THREE.BoxBufferGeometry(storage_sliding1_width, storage_sliding1_height, storage_sliding1_depth);
             var storage_sliding1_dup = new THREE.Mesh(geometry, storage_sliding1_material);
-            storage_sliding1_dup.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+            storage_sliding1_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
             storage_sliding1_dup.castShadow = true;
             scene.add(storage_sliding1_dup);
             
@@ -6663,7 +6664,8 @@
                 }
               });
               // 기본 박스와 정확히 같은 위치 (원점 보정이 이미 적용된 모델이므로 그대로 사용)
-              storage_sliding1_glb.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+              // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0)
+              storage_sliding1_glb.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_sliding1_glb);
             }
           }
@@ -6712,9 +6714,10 @@
             var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
             
             // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
+            // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0이므로)
             geometry = new THREE.BoxBufferGeometry(storage_sliding2_width, storage_sliding2_height, storage_sliding2_depth);
             var storage_sliding2_dup = new THREE.Mesh(geometry, storage_sliding2_material);
-            storage_sliding2_dup.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+            storage_sliding2_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
             storage_sliding2_dup.castShadow = true;
             scene.add(storage_sliding2_dup);
             
@@ -6784,7 +6787,8 @@
               });
               
               // 기본 박스와 정확히 같은 위치에 배치 (동기화) - 두 수직부재의 중앙
-              storage_sliding2_glb.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+              // vertical_center_x는 항상 0이므로 desk_offset_x만 사용 (책상 중심 = 수직부재 중앙)
+              storage_sliding2_glb.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_sliding2_glb);
             }
           }
@@ -6833,9 +6837,10 @@
             var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
             
             // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
+            // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0이므로)
             geometry = new THREE.BoxBufferGeometry(storage_flap_width, storage_flap_height, storage_flap_depth);
             var storage_flap_dup = new THREE.Mesh(geometry, storage_flap_material);
-            storage_flap_dup.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+            storage_flap_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
             storage_flap_dup.castShadow = true;
             scene.add(storage_flap_dup);
             
@@ -6849,7 +6854,8 @@
                   child.receiveShadow = true;
                 }
               });
-              storage_flap_glb.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+              // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0)
+              storage_flap_glb.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_flap_glb);
             }
           }
@@ -6898,9 +6904,10 @@
             var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
             
             // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
+            // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0이므로)
             geometry = new THREE.BoxBufferGeometry(storage_flapstay_width, storage_flapstay_height, storage_flapstay_depth);
             var storage_flapstay_dup = new THREE.Mesh(geometry, storage_flapstay_material);
-            storage_flapstay_dup.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+            storage_flapstay_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
             storage_flapstay_dup.castShadow = true;
             scene.add(storage_flapstay_dup);
             
@@ -6914,7 +6921,8 @@
                   child.receiveShadow = true;
                 }
               });
-              storage_flapstay_glb.position.set(desk_offset_x + vertical_center_x, storage_center_y, shelf_z_absolute);
+              // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0)
+              storage_flapstay_glb.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
               scene.add(storage_flapstay_glb);
             }
           }
