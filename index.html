@@ -1768,6 +1768,14 @@
           console.log('📦 attach1.glb 로드 시도:', attach1Path);
           gltfLoader.load(attach1Path, function(gltf) {
             attach1_model = gltf.scene;
+            // GLB 모델의 원점 보정: 바운딩 박스 계산하여 바닥면이 원점에 오도록 조정
+            var box = new THREE.Box3().setFromObject(attach1_model);
+            var center = box.getCenter(new THREE.Vector3());
+            var size = box.getSize(new THREE.Vector3());
+            // 모델의 바닥면이 원점에 오도록 Y축 오프셋 적용
+            attach1_model.position.y = -center.y + size.y / 2;
+            attach1_model.position.x = -center.x;
+            attach1_model.position.z = -center.z;
             attach1_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
                 child.castShadow = true;
@@ -1775,6 +1783,7 @@
               }
             });
             console.log('✅ attach1.glb 로드 성공');
+            console.log('   바운딩 박스:', { center: center, size: size });
             glbLoadCount++;
             // 초기 로드 중에는 디바운싱, 이후에는 즉시 업데이트
             debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
@@ -1797,6 +1806,13 @@
           console.log('📦 attach2.glb 로드 시도:', attach2Path);
           gltfLoader.load(attach2Path, function(gltf) {
             attach2_model = gltf.scene;
+            // GLB 모델의 원점 보정: 바운딩 박스 계산하여 바닥면이 원점에 오도록 조정
+            var box = new THREE.Box3().setFromObject(attach2_model);
+            var center = box.getCenter(new THREE.Vector3());
+            var size = box.getSize(new THREE.Vector3());
+            attach2_model.position.y = -center.y + size.y / 2;
+            attach2_model.position.x = -center.x;
+            attach2_model.position.z = -center.z;
             attach2_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
                 child.castShadow = true;
@@ -1804,6 +1820,7 @@
               }
             });
             console.log('✅ attach2.glb 로드 성공');
+            console.log('   바운딩 박스:', { center: center, size: size });
             glbLoadCount++;
             debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
             if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
@@ -1824,6 +1841,13 @@
           console.log('📦 attach3.glb 로드 시도:', attach3Path);
           gltfLoader.load(attach3Path, function(gltf) {
             attach3_model = gltf.scene;
+            // GLB 모델의 원점 보정: 바운딩 박스 계산하여 바닥면이 원점에 오도록 조정
+            var box = new THREE.Box3().setFromObject(attach3_model);
+            var center = box.getCenter(new THREE.Vector3());
+            var size = box.getSize(new THREE.Vector3());
+            attach3_model.position.y = -center.y + size.y / 2;
+            attach3_model.position.x = -center.x;
+            attach3_model.position.z = -center.z;
             attach3_model.traverse(function(child) {
               if (child instanceof THREE.Mesh) {
                 child.castShadow = true;
@@ -1831,6 +1855,7 @@
               }
             });
             console.log('✅ attach3.glb 로드 성공');
+            console.log('   바운딩 박스:', { center: center, size: size });
             glbLoadCount++;
             debouncedSceneUpdate(glbLoadCount >= totalGlbFiles);
             if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
@@ -1852,6 +1877,13 @@
           sliding1_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
               storage_sliding1_models[height] = gltf.scene;
+              // GLB 모델의 원점 보정
+              var box = new THREE.Box3().setFromObject(gltf.scene);
+              var center = box.getCenter(new THREE.Vector3());
+              var size = box.getSize(new THREE.Vector3());
+              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.x = -center.x;
+              gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
                   child.castShadow = true;
@@ -1878,6 +1910,13 @@
           sliding2_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Sliding2 ' + height + '.glb'), function(gltf) {
               storage_sliding2_models[height] = gltf.scene;
+              // GLB 모델의 원점 보정
+              var box = new THREE.Box3().setFromObject(gltf.scene);
+              var center = box.getCenter(new THREE.Vector3());
+              var size = box.getSize(new THREE.Vector3());
+              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.x = -center.x;
+              gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
                   child.castShadow = true;
@@ -1904,6 +1943,13 @@
           flap_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_Flap ' + height + '.glb'), function(gltf) {
               storage_flap_models[height] = gltf.scene;
+              // GLB 모델의 원점 보정
+              var box = new THREE.Box3().setFromObject(gltf.scene);
+              var center = box.getCenter(new THREE.Vector3());
+              var size = box.getSize(new THREE.Vector3());
+              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.x = -center.x;
+              gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
                   child.castShadow = true;
@@ -1930,6 +1976,13 @@
           flapstay_heights.forEach(function(height) {
             gltfLoader.load(getResourcePath('glb/Storage_FlapStay ' + height + '.glb'), function(gltf) {
               storage_flapstay_models[height] = gltf.scene;
+              // GLB 모델의 원점 보정
+              var box = new THREE.Box3().setFromObject(gltf.scene);
+              var center = box.getCenter(new THREE.Vector3());
+              var size = box.getSize(new THREE.Vector3());
+              gltf.scene.position.y = -center.y + size.y / 2;
+              gltf.scene.position.x = -center.x;
+              gltf.scene.position.z = -center.z;
               gltf.scene.traverse(function(child) {
                 if (child instanceof THREE.Mesh) {
                   child.castShadow = true;
