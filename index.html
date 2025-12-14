@@ -1934,7 +1934,16 @@
           // Storage_Sliding2 높이별 모델 로드
           var sliding2_heights = [1200, 1400, 1600, 1800, 2060];
           sliding2_heights.forEach(function(height) {
-            gltfLoader.load(getResourcePath('glb/Storage_Sliding2 ' + height + '.glb'), function(gltf) {
+            var glbPath = getResourcePath('glb/Storage_Sliding2 ' + height + '.glb');
+            // 캐시 무시를 위해 타임스탬프 추가
+            var cacheBuster = '?t=' + Date.now();
+            var fullPath = glbPath + cacheBuster;
+            
+            console.log('🔄 Storage_Sliding2 ' + height + '.glb 로드 시작:', fullPath);
+            
+            gltfLoader.load(fullPath, function(gltf) {
+              console.log('✅ Storage_Sliding2 ' + height + '.glb 로드 성공');
+              
               storage_sliding2_models[height] = gltf.scene;
               // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
               // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
@@ -1996,7 +2005,8 @@
                 console.log('✅ 모든 GLB 파일 초기 로드 완료');
               }
             }, undefined, function(error) {
-              console.error('Storage_Sliding2 ' + height + '.glb 로드 실패:', error);
+              console.error('❌ Storage_Sliding2 ' + height + '.glb 로드 실패:', error);
+              console.error('   경로:', fullPath);
               glbLoadCount++;
               if (glbLoadCount >= totalGlbFiles && !initialLoadComplete) {
                 initialLoadComplete = true;
