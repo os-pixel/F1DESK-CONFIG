@@ -5425,18 +5425,28 @@
               fence_material = new THREE.MeshPhongMaterial({ color: white_color });
             }
             
+            // fence는 frame_back의 앞쪽에 위치해야 함
+            // frame_back의 Z 위치: -board_depth / 4
+            // fence의 깊이: 18mm
+            // frame_back의 깊이: frame_thickness_under_board (20mm)
+            // fence가 frame_back의 앞쪽에 보이도록 Z 위치 조정
             geometry = new THREE.BoxBufferGeometry(board_width - 5, 200, 18);
+            
+            // 첫 번째 fence (위쪽)
             fence = new THREE.Mesh(geometry, fence_material);
             fence.position.y = -100;
-            fence.position.z = - frame_thickness_under_board;
+            fence.position.z = - frame_thickness_under_board / 2 + 9; // fence 깊이의 절반을 더해서 앞쪽에 위치
             fence.castShadow = true;
             frame_back.add(fence);
+            console.log('✅ fence 1 생성:', { y: fence.position.y, z: fence.position.z });
 
+            // 두 번째 fence (아래쪽)
             fence = new THREE.Mesh(geometry, fence_material);
             fence.position.y = -305;
-            fence.position.z = - frame_thickness_under_board;
+            fence.position.z = - frame_thickness_under_board / 2 + 9; // fence 깊이의 절반을 더해서 앞쪽에 위치
             fence.castShadow = true;
             frame_back.add(fence);
+            console.log('✅ fence 2 생성:', { y: fence.position.y, z: fence.position.z });
           } catch (error) {
             console.error('❌ fence 생성 에러:', error);
           }
