@@ -121,19 +121,38 @@
           e.stopPropagation();
           
           var $this = $(this);
+          
           if (e.type === 'touchstart') {
             $this.one('touchend', function(e2) {
               e2.preventDefault();
-              var seltextIdx = $this.parents(".menu_all_list").index();
+              // 선택된 버튼 표시
+              $this.siblings().removeClass("sel");
+              $this.addClass("sel");
+              
+              // 메뉴 텍스트 업데이트
               var seltext = $this.html();
-              $(".sidebar .swiper-slide:eq("+ seltextIdx +") .menu_sel_text").html(seltext);
+              var $swiperSlide = $this.closest(".swiper-slide");
+              if ($swiperSlide.length > 0) {
+                $swiperSlide.find(".menu_sel_text").html(seltext);
+              }
+              
+              // 메뉴 리스트 닫기
+              $this.closest(".menu_all_list").fadeOut();
             });
             return false;
           }
           
-          var seltextIdx = $this.parents(".menu_all_list").index();
+          // 클릭 이벤트 처리
+          $this.siblings().removeClass("sel");
+          $this.addClass("sel");
+          
           var seltext = $this.html();
-          $(".sidebar .swiper-slide:eq("+ seltextIdx +") .menu_sel_text").html(seltext);
+          var $swiperSlide = $this.closest(".swiper-slide");
+          if ($swiperSlide.length > 0) {
+            $swiperSlide.find(".menu_sel_text").html(seltext);
+          }
+          
+          $this.closest(".menu_all_list").fadeOut();
         });
 
       } else {
