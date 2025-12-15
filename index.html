@@ -359,7 +359,7 @@
           <div class="swiper-slide">
             <div class="menu_box" style=" border-top: 0;">
               <p class="menu_sel_text">기본형</p>
-              <div class="menu_title">스타일</div>
+              <div class="menu_title">책상다리</div>
             </div>
             <div class="menu_all_list" style="width: 100px;">
               <div class="mal_buttons">
@@ -403,7 +403,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title">수직부재</div>
+              <div class="menu_title">선반 수직부재</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -418,7 +418,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">위</p>
-              <div class="menu_title">수직부재<br>위치조정</div>
+              <div class="menu_title">수직부재<br>이동</div>
             </div>
             <div class="menu_all_list" style="width: 100px;">
               <div class="mal_buttons">
@@ -651,41 +651,96 @@
               </div>
             </div>
           </div>
+          <!-- 하부 옵션 통합 메뉴 (새 구조) -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">이동서랍<br>2단</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션<br>(좌)</div>
             </div>
             <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setMoving2(0)">없음</div>
-                <div onclick="setMoving2(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setMoving2(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setMoving2(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setMoving2(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setMoving2(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setMoving2(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setMoving2(14)"><span>오렌지</span></div>
-                <div onclick="setMoving2(16)"><span>레몬</span></div>
+              <div class="mal_buttons" id="lower-option-type-left">
+                <div onclick="setLowerOptionTypeLeft(0)">없음</div>
+                <div onclick="setLowerOptionTypeLeft(1)">부착서랍1단</div>
+                <div onclick="setLowerOptionTypeLeft(2)">부착서랍2단</div>
+                <div onclick="setLowerOptionTypeLeft(3)">본체함</div>
+                <div onclick="setLowerOptionTypeLeft(4)">이동서랍2단</div>
+                <div onclick="setLowerOptionTypeLeft(5)">이동서랍3단</div>
+              </div>
+              <div class="mal_buttons" id="lower-option-color-left" style="display: none;">
+                <div onclick="setLowerOptionColorLeft(0)">없음</div>
+                <div onclick="setLowerOptionColorLeft(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setLowerOptionColorLeft(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setLowerOptionColorLeft(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setLowerOptionColorLeft(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
+                <div onclick="setLowerOptionColorLeft(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
+                <div onclick="setLowerOptionColorLeft(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+                <div onclick="setLowerOptionColorLeft(14)"><span>오렌지</span></div>
+                <div onclick="setLowerOptionColorLeft(16)"><span>레몬</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">이동서랍<br>3단</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션색<br>(좌)</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setMoving3(0)">없음</div>
-                <div onclick="setMoving3(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setMoving3(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setMoving3(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setMoving3(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setMoving3(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setMoving3(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setMoving3(14)"><span>오렌지</span></div>
-                <div onclick="setMoving3(16)"><span>레몬</span></div>
+                <div onclick="setLowerOptionColorLeft(0)">없음</div>
+                <div onclick="setLowerOptionColorLeft(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setLowerOptionColorLeft(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setLowerOptionColorLeft(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setLowerOptionColorLeft(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
+                <div onclick="setLowerOptionColorLeft(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
+                <div onclick="setLowerOptionColorLeft(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+                <div onclick="setLowerOptionColorLeft(14)"><span>오렌지</span></div>
+                <div onclick="setLowerOptionColorLeft(16)"><span>레몬</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션<br>(우)</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons" id="lower-option-type-right">
+                <div onclick="setLowerOptionTypeRight(0)">없음</div>
+                <div onclick="setLowerOptionTypeRight(1)">부착서랍1단</div>
+                <div onclick="setLowerOptionTypeRight(2)">부착서랍2단</div>
+                <div onclick="setLowerOptionTypeRight(3)">본체함</div>
+                <div onclick="setLowerOptionTypeRight(4)">이동서랍2단</div>
+                <div onclick="setLowerOptionTypeRight(5)">이동서랍3단</div>
+              </div>
+              <div class="mal_buttons" id="lower-option-color-right" style="display: none;">
+                <div onclick="setLowerOptionColorRight(0)">없음</div>
+                <div onclick="setLowerOptionColorRight(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setLowerOptionColorRight(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setLowerOptionColorRight(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setLowerOptionColorRight(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
+                <div onclick="setLowerOptionColorRight(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
+                <div onclick="setLowerOptionColorRight(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+                <div onclick="setLowerOptionColorRight(14)"><span>오렌지</span></div>
+                <div onclick="setLowerOptionColorRight(16)"><span>레몬</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션색<br>(우)</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons">
+                <div onclick="setLowerOptionColorRight(0)">없음</div>
+                <div onclick="setLowerOptionColorRight(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setLowerOptionColorRight(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setLowerOptionColorRight(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setLowerOptionColorRight(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
+                <div onclick="setLowerOptionColorRight(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
+                <div onclick="setLowerOptionColorRight(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+                <div onclick="setLowerOptionColorRight(14)"><span>오렌지</span></div>
+                <div onclick="setLowerOptionColorRight(16)"><span>레몬</span></div>
               </div>
             </div>
           </div>
@@ -701,167 +756,57 @@
               </div>
             </div>
           </div>
+          <!-- 상부 수납 통합 메뉴 (새 구조) -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">부착형서랍<br>1단</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">상부수납</div>
             </div>
             <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setAttach1Left(0)">없음</div>
-                <div onclick="setAttach1Left(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setAttach1Left(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setAttach1Left(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setAttach1Left(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setAttach1Left(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setAttach1Left(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setAttach1Left(14)"><span>오렌지</span></div>
-                <div onclick="setAttach1Left(16)"><span>레몬</span></div>
-                <div onclick="setAttach1Right(0)">없음</div>
-                <div onclick="setAttach1Right(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setAttach1Right(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setAttach1Right(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setAttach1Right(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setAttach1Right(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setAttach1Right(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setAttach1Right(14)"><span>오렌지</span></div>
-                <div onclick="setAttach1Right(16)"><span>레몬</span></div>
+              <div class="mal_buttons" id="upper-storage-type">
+                <div onclick="setUpperStorageType(0)">없음</div>
+                <div onclick="setUpperStorageType(1)">슬라이딩1단</div>
+                <div onclick="setUpperStorageType(2)">슬라이딩2단</div>
+                <div onclick="setUpperStorageType(3)">플랩</div>
+                <div onclick="setUpperStorageType(4)">플랩스테이</div>
+              </div>
+              <div class="mal_buttons" id="upper-storage-color" style="display: none;">
+                <div onclick="setUpperStorageColor(0)">없음</div>
+                <div onclick="setUpperStorageColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setUpperStorageColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setUpperStorageColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setUpperStorageColor(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
+                <div onclick="setUpperStorageColor(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
+                <div onclick="setUpperStorageColor(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">부착형서랍<br>2단</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">상부수납색</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setAttach2Left(0)">없음</div>
-                <div onclick="setAttach2Left(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setAttach2Left(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setAttach2Left(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setAttach2Left(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setAttach2Left(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setAttach2Left(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setAttach2Left(14)"><span>오렌지</span></div>
-                <div onclick="setAttach2Left(16)"><span>레몬</span></div>
-                <div onclick="setAttach2Right(0)">없음</div>
-                <div onclick="setAttach2Right(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setAttach2Right(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setAttach2Right(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setAttach2Right(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setAttach2Right(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setAttach2Right(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setAttach2Right(14)"><span>오렌지</span></div>
-                <div onclick="setAttach2Right(16)"><span>레몬</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title">본체함</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setAttach3Left(0)">없음</div>
-                <div onclick="setAttach3Left(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setAttach3Left(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setAttach3Left(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setAttach3Left(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setAttach3Left(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setAttach3Left(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setAttach3Left(14)"><span>오렌지</span></div>
-                <div onclick="setAttach3Left(16)"><span>레몬</span></div>
-                <div onclick="setAttach3Right(0)">없음</div>
-                <div onclick="setAttach3Right(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setAttach3Right(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setAttach3Right(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setAttach3Right(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setAttach3Right(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setAttach3Right(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setAttach3Right(14)"><span>오렌지</span></div>
-                <div onclick="setAttach3Right(16)"><span>레몬</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">슬라이딩도어<br>1단</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setStorageSliding1(0)">없음</div>
-                <div onclick="setStorageSliding1(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setStorageSliding1(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setStorageSliding1(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setStorageSliding1(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setStorageSliding1(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setStorageSliding1(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">슬라이딩도어<br>2단</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setStorageSliding2(0)">없음</div>
-                <div onclick="setStorageSliding2(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setStorageSliding2(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setStorageSliding2(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setStorageSliding2(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setStorageSliding2(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setStorageSliding2(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title">플랩도어</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setStorageFlap(0)">없음</div>
-                <div onclick="setStorageFlap(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setStorageFlap(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setStorageFlap(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setStorageFlap(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setStorageFlap(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setStorageFlap(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">플랩스테이<br>도어</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setStorageFlapStay(0)">없음</div>
-                <div onclick="setStorageFlapStay(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setStorageFlapStay(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setStorageFlapStay(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setStorageFlapStay(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setStorageFlapStay(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setStorageFlapStay(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+                <div onclick="setUpperStorageColor(0)">없음</div>
+                <div onclick="setUpperStorageColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setUpperStorageColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setUpperStorageColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setUpperStorageColor(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
+                <div onclick="setUpperStorageColor(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
+                <div onclick="setUpperStorageColor(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">위</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">수납도어<br>위치조정</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">상부수납<br>이동</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="moveStorageUp()">위</div>
-                <div onclick="moveStorageDown()">아래</div>
+                <div onclick="setUpperStorageMove('up')">위</div>
+                <div onclick="setUpperStorageMove('down')">아래</div>
               </div>
             </div>
           </div>
@@ -1714,6 +1659,19 @@
       // ㄱ자 하부 서랍 타입 선택 변수 (1: 부착서랍1단, 2: 부착서랍2단, 3: 본체함, 4: 이동서랍2단, 5: 이동서랍3단)
       var giyeok_drawer_type_left = 0;
       var giyeok_drawer_type_right = 0;
+
+      // 하부 옵션 통합 변수 (새 구조)
+      // 하부옵션_좌: 타입 (0=없음, 1=부착1단, 2=부착2단, 3=본체함, 4=이동2단, 5=이동3단)
+      var lower_option_type_left = 0;
+      var lower_option_color_left = 0;
+      // 하부옵션_우
+      var lower_option_type_right = 0;
+      var lower_option_color_right = 0;
+
+      // 상부 수납 통합 변수 (새 구조)
+      // 상부수납: 타입 (0=없음, 1=슬라이딩1단, 2=슬라이딩2단, 3=플랩, 4=플랩스테이)
+      var upper_storage_type = 0;
+      var upper_storage_color = 0;
 
       // [24] 파티션옵션 - 파티션_ver_L 높이
       var parti_ver_L_height = 0;
@@ -3560,8 +3518,10 @@
 
       function moveStorageUp() {
         // 수납 도어가 선택되어 있고, 수직부재가 1400 또는 1860이어야 함
-        if ((storage_sliding1_color == 0 && storage_sliding2_color == 0 && storage_flap_color == 0 && storage_flapstay_color == 0) || 
-            (vertical_length_idx != 3 && vertical_length_idx != 4)) {
+        // 새 통합 변수 또는 기존 변수 확인
+        var hasStorage = (upper_storage_type > 0 && upper_storage_color > 0) ||
+                         (storage_sliding1_color > 0 || storage_sliding2_color > 0 || storage_flap_color > 0 || storage_flapstay_color > 0);
+        if (!hasStorage || (vertical_length_idx != 3 && vertical_length_idx != 4)) {
           return;
         }
         
@@ -3591,8 +3551,10 @@
 
       function moveStorageDown() {
         // 수납 도어가 선택되어 있고, 수직부재가 1400 또는 1860이어야 함
-        if ((storage_sliding1_color == 0 && storage_sliding2_color == 0 && storage_flap_color == 0 && storage_flapstay_color == 0) || 
-            (vertical_length_idx != 3 && vertical_length_idx != 4)) {
+        // 새 통합 변수 또는 기존 변수 확인
+        var hasStorage = (upper_storage_type > 0 && upper_storage_color > 0) ||
+                         (storage_sliding1_color > 0 || storage_sliding2_color > 0 || storage_flap_color > 0 || storage_flapstay_color > 0);
+        if (!hasStorage || (vertical_length_idx != 3 && vertical_length_idx != 4)) {
           return;
         }
         
@@ -3617,6 +3579,171 @@
           storage_y_offset--;
           updateScene();
           render();
+        }
+      }
+
+      // ===== 하부 옵션 통합 함수 (새 구조) =====
+      // 하부옵션_좌: 타입 선택 (0=없음, 1=부착1단, 2=부착2단, 3=본체함, 4=이동2단, 5=이동3단)
+      function setLowerOptionTypeLeft(type) {
+        lower_option_type_left = type;
+        
+        // 기존 변수들 초기화
+        attach1_left_color = 0;
+        attach2_left_color = 0;
+        attach3_left_color = 0;
+        if (moving2_position == 1) moving2_color = 0;
+        if (moving3_position == 1) moving3_color = 0;
+        
+        if (type == 0) {
+          lower_option_color_left = 0;
+          // 색상 선택 메뉴 숨기기
+          $("#lower-option-color-left").hide();
+          // 메뉴 텍스트 업데이트
+          $(".swiper-slide").has("#lower-option-type-left").find(".menu_sel_text").text("없음");
+        } else {
+          // 색상 선택 메뉴 표시
+          $("#lower-option-color-left").show();
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 하부옵션_좌: 색상 선택
+      function setLowerOptionColorLeft(color) {
+        lower_option_color_left = color;
+        
+        // 타입에 따라 기존 함수 호출
+        if (lower_option_type_left == 1) {
+          setAttach1Left(color);
+        } else if (lower_option_type_left == 2) {
+          setAttach2Left(color);
+        } else if (lower_option_type_left == 3) {
+          setAttach3Left(color);
+        } else if (lower_option_type_left == 4) {
+          moving2_position = 1;
+          setMoving2(color);
+        } else if (lower_option_type_left == 5) {
+          moving3_position = 1;
+          setMoving3(color);
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 하부옵션_우: 타입 선택
+      function setLowerOptionTypeRight(type) {
+        lower_option_type_right = type;
+        
+        // 기존 변수들 초기화
+        attach1_right_color = 0;
+        attach2_right_color = 0;
+        attach3_right_color = 0;
+        if (moving2_position == 2) moving2_color = 0;
+        if (moving3_position == 2) moving3_color = 0;
+        
+        if (type == 0) {
+          lower_option_color_right = 0;
+          // 색상 선택 메뉴 숨기기
+          $("#lower-option-color-right").hide();
+          // 메뉴 텍스트 업데이트
+          $(".swiper-slide").has("#lower-option-type-right").find(".menu_sel_text").text("없음");
+        } else {
+          // 색상 선택 메뉴 표시
+          $("#lower-option-color-right").show();
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 하부옵션_우: 색상 선택
+      function setLowerOptionColorRight(color) {
+        lower_option_color_right = color;
+        
+        // 타입에 따라 기존 함수 호출
+        if (lower_option_type_right == 1) {
+          setAttach1Right(color);
+        } else if (lower_option_type_right == 2) {
+          setAttach2Right(color);
+        } else if (lower_option_type_right == 3) {
+          setAttach3Right(color);
+        } else if (lower_option_type_right == 4) {
+          moving2_position = 2;
+          setMoving2(color);
+        } else if (lower_option_type_right == 5) {
+          moving3_position = 2;
+          setMoving3(color);
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // ===== 상부 수납 통합 함수 (새 구조) =====
+      // 상부수납: 타입 선택 (0=없음, 1=슬라이딩1단, 2=슬라이딩2단, 3=플랩, 4=플랩스테이)
+      function setUpperStorageType(type) {
+        upper_storage_type = type;
+        
+        // 기존 변수들 초기화
+        storage_sliding1_color = 0;
+        storage_sliding2_color = 0;
+        storage_flap_color = 0;
+        storage_flapstay_color = 0;
+        
+        if (type == 0) {
+          upper_storage_color = 0;
+          // 색상 선택 메뉴 숨기기
+          $("#upper-storage-color").hide();
+          // 메뉴 텍스트 업데이트
+          $(".swiper-slide").has("#upper-storage-type").find(".menu_sel_text").text("없음");
+        } else {
+          // 색상 선택 메뉴 표시
+          $("#upper-storage-color").show();
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 상부수납: 색상 선택
+      function setUpperStorageColor(color) {
+        upper_storage_color = color;
+        
+        // 타입에 따라 기존 함수 호출
+        if (upper_storage_type == 1) {
+          setStorageSliding1(color);
+        } else if (upper_storage_type == 2) {
+          setStorageSliding2(color);
+        } else if (upper_storage_type == 3) {
+          setStorageFlap(color);
+        } else if (upper_storage_type == 4) {
+          setStorageFlapStay(color);
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 상부수납이동: 위/아래 (기존 함수 그대로 사용)
+      function setUpperStorageMove(direction) {
+        if (direction == 'up') {
+          moveStorageUp();
+        } else if (direction == 'down') {
+          moveStorageDown();
         }
       }
 
