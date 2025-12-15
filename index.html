@@ -356,10 +356,11 @@
     <div class="sidebar">
       <div class="swiper-container">
         <div class="swiper-wrapper">
+          <!-- 1. 책상 카테고리 -->
           <div class="swiper-slide">
             <div class="menu_box" style=" border-top: 0;">
               <p class="menu_sel_text">기본형</p>
-              <div class="menu_title">책상다리</div>
+              <div class="menu_title">1. 책상다리</div>
             </div>
             <div class="menu_all_list" style="width: 100px;">
               <div class="mal_buttons">
@@ -371,7 +372,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">1200</p>
-              <div class="menu_title">폭(W)</div>
+              <div class="menu_title">2. 폭(W)</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -387,7 +388,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">500</p>
-              <div class="menu_title">깊이(D)</div>
+              <div class="menu_title">3. 깊이(D)</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -402,8 +403,303 @@
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
+              <p class="menu_sel_text">화이트</p>
+              <div class="menu_title">4. 상판색상</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons">
+                <!-- 색상M 세트: 1~9 (우드/메인) -->
+                <div onclick="setBoardColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setBoardColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setBoardColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setBoardColor(4)"><img src="texture/natural.jpg"><span>메이플</span></div>
+                <div onclick="setBoardColor(5)"><img src="texture/acasia.jpg"><span>아카시아</span></div>
+                <div onclick="setBoardColor(6)"><img src="texture/walnut.jpg"><span>월넛</span></div>
+                <div onclick="setBoardColor(7)"><img src="texture/steel.jpg"><span>스틸</span></div>
+                <div onclick="setBoardColor(8)"><img src="texture/bronzit.jpg"><span>브론지트</span></div>
+                <div onclick="setBoardColor(9)"><img src="texture/terazzo.jpg"><span>테라조</span></div>
+                <!-- 색상M 세트: 10~14 (무텍스처 포인트 컬러) -->
+                <div onclick="setBoardColor(10)"><span>라이트그레이</span></div>
+                <div onclick="setBoardColor(11)"><span>라임</span></div>
+                <div onclick="setBoardColor(12)"><span>오렌지</span></div>
+                <div onclick="setBoardColor(13)"><span>스카이블루</span></div>
+                <div onclick="setBoardColor(14)"><span>베이지</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">화이트</p>
+              <div class="menu_title" >5. 프레임색상</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons">
+                <div onclick="setFrameColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setFrameColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setFrameColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title">선반 수직부재</div>
+              <div class="menu_title">6. 하부가림판</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons">
+                <div onclick="setFence(0)">없음</div>
+                <div onclick="setFence(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setFence(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setFence(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setFence(4)"><img src="texture/natural.jpg"><span>메이플</span></div>
+                <div onclick="setFence(5)"><img src="texture/acasia.jpg"><span>아카시아</span></div>
+                <div onclick="setFence(6)"><img src="texture/walnut.jpg"><span>월넛</span></div>
+                <div onclick="setFence(7)"><img src="texture/steel.jpg"><span>스틸</span></div>
+                <div onclick="setFence(8)"><img src="texture/bronzit.jpg"><span>브론지트</span></div>
+                <div onclick="setFence(9)"><img src="texture/terazzo.jpg"><span>테라조</span></div>
+                <div onclick="setFence(10)"><span>라이트그레이</span></div>
+                <div onclick="setFence(11)"><span>라임</span></div>
+                <div onclick="setFence(12)"><span>오렌지</span></div>
+                <div onclick="setFence(13)"><span>스카이블루</span></div>
+                <div onclick="setFence(14)"><span>베이지</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title">7. ㄱ자 모듈</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons">
+                <div onclick="setGiyeok(0)">없음</div>
+                <div onclick="setGiyeok(1)">왼쪽</div>
+                <div onclick="setGiyeok(2)">오른쪽</div>
+                <div onclick="setGiyeok(3)">중앙</div>
+                <div onclick="setGiyeok(4)">양쪽</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. 하부 카테고리 -->
+          <!-- 하부옵션_좌 -->
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">8. 하부옵션<br>(좌)</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons" id="lower-option-left">
+                <div onclick="setLowerOptionLeft(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setLowerOptionLeft(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(1, 4)"><img src="texture/natural.jpg"><span>부착서랍1단 메이플</span></div>
+                <div onclick="setLowerOptionLeft(1, 5)"><img src="texture/acasia.jpg"><span>부착서랍1단 아카시아</span></div>
+                <div onclick="setLowerOptionLeft(1, 6)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛</span></div>
+                <div onclick="setLowerOptionLeft(1, 14)"><span>부착서랍1단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(1, 16)"><span>부착서랍1단 레몬</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setLowerOptionLeft(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(2, 4)"><img src="texture/natural.jpg"><span>부착서랍2단 메이플</span></div>
+                <div onclick="setLowerOptionLeft(2, 5)"><img src="texture/acasia.jpg"><span>부착서랍2단 아카시아</span></div>
+                <div onclick="setLowerOptionLeft(2, 6)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛</span></div>
+                <div onclick="setLowerOptionLeft(2, 14)"><span>부착서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(2, 16)"><span>부착서랍2단 레몬</span></div>
+                <!-- 본체함 -->
+                <div onclick="setLowerOptionLeft(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setLowerOptionLeft(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setLowerOptionLeft(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setLowerOptionLeft(3, 4)"><img src="texture/natural.jpg"><span>본체함 메이플</span></div>
+                <div onclick="setLowerOptionLeft(3, 5)"><img src="texture/acasia.jpg"><span>본체함 아카시아</span></div>
+                <div onclick="setLowerOptionLeft(3, 6)"><img src="texture/walnut.jpg"><span>본체함 월넛</span></div>
+                <div onclick="setLowerOptionLeft(3, 14)"><span>본체함 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(3, 16)"><span>본체함 레몬</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setLowerOptionLeft(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(4, 4)"><img src="texture/natural.jpg"><span>이동서랍2단 메이플</span></div>
+                <div onclick="setLowerOptionLeft(4, 5)"><img src="texture/acasia.jpg"><span>이동서랍2단 아카시아</span></div>
+                <div onclick="setLowerOptionLeft(4, 6)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛</span></div>
+                <div onclick="setLowerOptionLeft(4, 14)"><span>이동서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(4, 16)"><span>이동서랍2단 레몬</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setLowerOptionLeft(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(5, 4)"><img src="texture/natural.jpg"><span>이동서랍3단 메이플</span></div>
+                <div onclick="setLowerOptionLeft(5, 5)"><img src="texture/acasia.jpg"><span>이동서랍3단 아카시아</span></div>
+                <div onclick="setLowerOptionLeft(5, 6)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛</span></div>
+                <div onclick="setLowerOptionLeft(5, 14)"><span>이동서랍3단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(5, 16)"><span>이동서랍3단 레몬</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 하부옵션_우 -->
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">9. 하부옵션<br>(우)</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons" id="lower-option-right">
+                <div onclick="setLowerOptionRight(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setLowerOptionRight(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setLowerOptionRight(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setLowerOptionRight(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setLowerOptionRight(1, 4)"><img src="texture/natural.jpg"><span>부착서랍1단 메이플</span></div>
+                <div onclick="setLowerOptionRight(1, 5)"><img src="texture/acasia.jpg"><span>부착서랍1단 아카시아</span></div>
+                <div onclick="setLowerOptionRight(1, 6)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛</span></div>
+                <div onclick="setLowerOptionRight(1, 14)"><span>부착서랍1단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(1, 16)"><span>부착서랍1단 레몬</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setLowerOptionRight(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionRight(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionRight(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionRight(2, 4)"><img src="texture/natural.jpg"><span>부착서랍2단 메이플</span></div>
+                <div onclick="setLowerOptionRight(2, 5)"><img src="texture/acasia.jpg"><span>부착서랍2단 아카시아</span></div>
+                <div onclick="setLowerOptionRight(2, 6)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛</span></div>
+                <div onclick="setLowerOptionRight(2, 14)"><span>부착서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(2, 16)"><span>부착서랍2단 레몬</span></div>
+                <!-- 본체함 -->
+                <div onclick="setLowerOptionRight(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setLowerOptionRight(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setLowerOptionRight(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setLowerOptionRight(3, 4)"><img src="texture/natural.jpg"><span>본체함 메이플</span></div>
+                <div onclick="setLowerOptionRight(3, 5)"><img src="texture/acasia.jpg"><span>본체함 아카시아</span></div>
+                <div onclick="setLowerOptionRight(3, 6)"><img src="texture/walnut.jpg"><span>본체함 월넛</span></div>
+                <div onclick="setLowerOptionRight(3, 14)"><span>본체함 오렌지</span></div>
+                <div onclick="setLowerOptionRight(3, 16)"><span>본체함 레몬</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setLowerOptionRight(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionRight(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionRight(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionRight(4, 4)"><img src="texture/natural.jpg"><span>이동서랍2단 메이플</span></div>
+                <div onclick="setLowerOptionRight(4, 5)"><img src="texture/acasia.jpg"><span>이동서랍2단 아카시아</span></div>
+                <div onclick="setLowerOptionRight(4, 6)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛</span></div>
+                <div onclick="setLowerOptionRight(4, 14)"><span>이동서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(4, 16)"><span>이동서랍2단 레몬</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setLowerOptionRight(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setLowerOptionRight(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setLowerOptionRight(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setLowerOptionRight(5, 4)"><img src="texture/natural.jpg"><span>이동서랍3단 메이플</span></div>
+                <div onclick="setLowerOptionRight(5, 5)"><img src="texture/acasia.jpg"><span>이동서랍3단 아카시아</span></div>
+                <div onclick="setLowerOptionRight(5, 6)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛</span></div>
+                <div onclick="setLowerOptionRight(5, 14)"><span>이동서랍3단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(5, 16)"><span>이동서랍3단 레몬</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ㄱ자옵션_좌 -->
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">10. ㄱ자옵션<br>(좌)</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons" id="giyeok-option-left">
+                <div onclick="setGiyeokOptionLeft(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setGiyeokOptionLeft(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 4)"><img src="texture/natural.jpg"><span>부착서랍1단 메이플</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 5)"><img src="texture/acasia.jpg"><span>부착서랍1단 아카시아</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 6)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setGiyeokOptionLeft(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 4)"><img src="texture/natural.jpg"><span>부착서랍2단 메이플</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 5)"><img src="texture/acasia.jpg"><span>부착서랍2단 아카시아</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 6)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛</span></div>
+                <!-- 본체함 -->
+                <div onclick="setGiyeokOptionLeft(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 4)"><img src="texture/natural.jpg"><span>본체함 메이플</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 5)"><img src="texture/acasia.jpg"><span>본체함 아카시아</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 6)"><img src="texture/walnut.jpg"><span>본체함 월넛</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setGiyeokOptionLeft(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 4)"><img src="texture/natural.jpg"><span>이동서랍2단 메이플</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 5)"><img src="texture/acasia.jpg"><span>이동서랍2단 아카시아</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 6)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setGiyeokOptionLeft(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 4)"><img src="texture/natural.jpg"><span>이동서랍3단 메이플</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 5)"><img src="texture/acasia.jpg"><span>이동서랍3단 아카시아</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 6)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ㄱ자옵션_우 -->
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">11. ㄱ자옵션<br>(우)</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons" id="giyeok-option-right">
+                <div onclick="setGiyeokOptionRight(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setGiyeokOptionRight(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(1, 4)"><img src="texture/natural.jpg"><span>부착서랍1단 메이플</span></div>
+                <div onclick="setGiyeokOptionRight(1, 5)"><img src="texture/acasia.jpg"><span>부착서랍1단 아카시아</span></div>
+                <div onclick="setGiyeokOptionRight(1, 6)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setGiyeokOptionRight(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(2, 4)"><img src="texture/natural.jpg"><span>부착서랍2단 메이플</span></div>
+                <div onclick="setGiyeokOptionRight(2, 5)"><img src="texture/acasia.jpg"><span>부착서랍2단 아카시아</span></div>
+                <div onclick="setGiyeokOptionRight(2, 6)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛</span></div>
+                <!-- 본체함 -->
+                <div onclick="setGiyeokOptionRight(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(3, 4)"><img src="texture/natural.jpg"><span>본체함 메이플</span></div>
+                <div onclick="setGiyeokOptionRight(3, 5)"><img src="texture/acasia.jpg"><span>본체함 아카시아</span></div>
+                <div onclick="setGiyeokOptionRight(3, 6)"><img src="texture/walnut.jpg"><span>본체함 월넛</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setGiyeokOptionRight(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(4, 4)"><img src="texture/natural.jpg"><span>이동서랍2단 메이플</span></div>
+                <div onclick="setGiyeokOptionRight(4, 5)"><img src="texture/acasia.jpg"><span>이동서랍2단 아카시아</span></div>
+                <div onclick="setGiyeokOptionRight(4, 6)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setGiyeokOptionRight(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(5, 4)"><img src="texture/natural.jpg"><span>이동서랍3단 메이플</span></div>
+                <div onclick="setGiyeokOptionRight(5, 5)"><img src="texture/acasia.jpg"><span>이동서랍3단 아카시아</span></div>
+                <div onclick="setGiyeokOptionRight(5, 6)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 선반 카테고리 -->
+          <!-- 수직부재 -->
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title">12. 수직부재</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -415,22 +711,12 @@
               </div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">위</p>
-              <div class="menu_title">수직부재<br>이동</div>
-            </div>
-            <div class="menu_all_list" style="width: 100px;">
-              <div class="mal_buttons">
-                <div onclick="moveVerticalUp()">위</div>
-                <div onclick="moveVerticalDown()">아래</div>
-              </div>
-            </div>
-          </div>
+
+          <!-- 선반갯수 -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">1</p>
-              <div class="menu_title">선반갯수</div>
+              <div class="menu_title">13. 선반갯수</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -444,10 +730,12 @@
               </div>
             </div>
           </div>
+
+          <!-- 선반방향규격 -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">바깥쪽</p>
-              <div class="menu_title">선반방향</div>
+              <div class="menu_title">14. 선반방향규격</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -456,43 +744,12 @@
               </div>
             </div>
           </div>
+
+          <!-- 수직프레임색 -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">화이트</p>
-              <div class="menu_title">상판색상</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setBoardColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setBoardColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setBoardColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setBoardColor(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setBoardColor(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setBoardColor(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setBoardColor(4)"><img src="texture/natural.jpg"><span>내추럴</span></div>
-                <div onclick="setBoardColor(5)"><img src="texture/pine.jpg"><span>파인</span></div>
-                <div onclick="setBoardColor(6)"><img src="texture/concrete.jpg"><span>콘크리트</span></div>
-                <div onclick="setBoardColor(7)"><img src="texture/redpine.jpg"><span>레드파인</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">화이트</p>
-              <div class="menu_title" >프레임색상</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setFrameColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setFrameColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setFrameColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">화이트</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">수직프레임<br>색상</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">15. 수직프레임<br>색상</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -502,30 +759,39 @@
               </div>
             </div>
           </div>
+
+          <!-- 선반색 -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">화이트</p>
-              <div class="menu_title">선반색상</div>
+              <div class="menu_title">16. 선반색상</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
+                <!-- 색상M 세트 동일 적용 -->
                 <div onclick="setShelfBoardColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setShelfBoardColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
                 <div onclick="setShelfBoardColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setShelfBoardColor(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setShelfBoardColor(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setShelfBoardColor(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setShelfBoardColor(4)"><img src="texture/natural.jpg"><span>내추럴</span></div>
-                <div onclick="setShelfBoardColor(5)"><img src="texture/pine.jpg"><span>파인</span></div>
-                <div onclick="setShelfBoardColor(6)"><img src="texture/concrete.jpg"><span>콘크리트</span></div>
-                <div onclick="setShelfBoardColor(7)"><img src="texture/redpine.jpg"><span>레드파인</span></div>
+                <div onclick="setShelfBoardColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setShelfBoardColor(4)"><img src="texture/natural.jpg"><span>메이플</span></div>
+                <div onclick="setShelfBoardColor(5)"><img src="texture/acasia.jpg"><span>아카시아</span></div>
+                <div onclick="setShelfBoardColor(6)"><img src="texture/walnut.jpg"><span>월넛</span></div>
+                <div onclick="setShelfBoardColor(7)"><img src="texture/steel.jpg"><span>스틸</span></div>
+                <div onclick="setShelfBoardColor(8)"><img src="texture/bronzit.jpg"><span>브론지트</span></div>
+                <div onclick="setShelfBoardColor(9)"><img src="texture/terazzo.jpg"><span>테라조</span></div>
+                <div onclick="setShelfBoardColor(10)"><span>라이트그레이</span></div>
+                <div onclick="setShelfBoardColor(11)"><span>라임</span></div>
+                <div onclick="setShelfBoardColor(12)"><span>오렌지</span></div>
+                <div onclick="setShelfBoardColor(13)"><span>스카이블루</span></div>
+                <div onclick="setShelfBoardColor(14)"><span>베이지</span></div>
               </div>
             </div>
           </div>
+
+          <!-- 선반프레임색 -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">화이트</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">선반프레임<br>색상</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">17. 선반프레임<br>색상</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -535,282 +801,27 @@
               </div>
             </div>
           </div>
+
+          <!-- 수직부재이동 -->
           <div class="swiper-slide">
             <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title">ㄱ자 모듈</div>
+              <p class="menu_sel_text">위</p>
+              <div class="menu_title">18. 수직부재<br>이동</div>
             </div>
-            <div class="menu_all_list">
+            <div class="menu_all_list" style="width: 100px;">
               <div class="mal_buttons">
-                <div onclick="setGiyeok(0)">없음</div>
-                <div onclick="setGiyeok(1)">왼쪽</div>
-                <div onclick="setGiyeok(2)">오른쪽</div>
-                <div onclick="setGiyeok(3)">중앙</div>
-                <div onclick="setGiyeok(4)">양쪽</div>
+                <div onclick="moveVerticalUp()">위</div>
+                <div onclick="moveVerticalDown()">아래</div>
               </div>
             </div>
           </div>
+
           <!-- ㄱ자 옵션 통합 메뉴 (타입+색상 통합) -->
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">ㄱ자옵션<br>(좌)</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons" id="giyeok-option-left">
-                <div onclick="setGiyeokOptionLeft(0, 0)">없음</div>
-                <!-- 부착서랍1단 -->
-                <div onclick="setGiyeokOptionLeft(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
-                <div onclick="setGiyeokOptionLeft(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
-                <div onclick="setGiyeokOptionLeft(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
-                <div onclick="setGiyeokOptionLeft(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionLeft(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
-                <div onclick="setGiyeokOptionLeft(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
-                <!-- 부착서랍2단 -->
-                <div onclick="setGiyeokOptionLeft(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
-                <div onclick="setGiyeokOptionLeft(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
-                <div onclick="setGiyeokOptionLeft(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
-                <div onclick="setGiyeokOptionLeft(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionLeft(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
-                <div onclick="setGiyeokOptionLeft(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
-                <!-- 본체함 -->
-                <div onclick="setGiyeokOptionLeft(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
-                <div onclick="setGiyeokOptionLeft(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
-                <div onclick="setGiyeokOptionLeft(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
-                <div onclick="setGiyeokOptionLeft(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
-                <div onclick="setGiyeokOptionLeft(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
-                <div onclick="setGiyeokOptionLeft(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
-                <!-- 이동서랍2단 -->
-                <div onclick="setGiyeokOptionLeft(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
-                <div onclick="setGiyeokOptionLeft(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
-                <div onclick="setGiyeokOptionLeft(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
-                <div onclick="setGiyeokOptionLeft(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionLeft(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
-                <div onclick="setGiyeokOptionLeft(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
-                <!-- 이동서랍3단 -->
-                <div onclick="setGiyeokOptionLeft(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
-                <div onclick="setGiyeokOptionLeft(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
-                <div onclick="setGiyeokOptionLeft(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
-                <div onclick="setGiyeokOptionLeft(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionLeft(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
-                <div onclick="setGiyeokOptionLeft(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">ㄱ자옵션<br>(우)</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons" id="giyeok-option-right">
-                <div onclick="setGiyeokOptionRight(0, 0)">없음</div>
-                <!-- 부착서랍1단 -->
-                <div onclick="setGiyeokOptionRight(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
-                <div onclick="setGiyeokOptionRight(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
-                <div onclick="setGiyeokOptionRight(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
-                <div onclick="setGiyeokOptionRight(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionRight(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
-                <div onclick="setGiyeokOptionRight(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
-                <!-- 부착서랍2단 -->
-                <div onclick="setGiyeokOptionRight(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
-                <div onclick="setGiyeokOptionRight(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
-                <div onclick="setGiyeokOptionRight(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
-                <div onclick="setGiyeokOptionRight(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionRight(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
-                <div onclick="setGiyeokOptionRight(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
-                <!-- 본체함 -->
-                <div onclick="setGiyeokOptionRight(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
-                <div onclick="setGiyeokOptionRight(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
-                <div onclick="setGiyeokOptionRight(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
-                <div onclick="setGiyeokOptionRight(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
-                <div onclick="setGiyeokOptionRight(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
-                <div onclick="setGiyeokOptionRight(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
-                <!-- 이동서랍2단 -->
-                <div onclick="setGiyeokOptionRight(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
-                <div onclick="setGiyeokOptionRight(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
-                <div onclick="setGiyeokOptionRight(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
-                <div onclick="setGiyeokOptionRight(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionRight(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
-                <div onclick="setGiyeokOptionRight(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
-                <!-- 이동서랍3단 -->
-                <div onclick="setGiyeokOptionRight(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
-                <div onclick="setGiyeokOptionRight(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
-                <div onclick="setGiyeokOptionRight(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
-                <div onclick="setGiyeokOptionRight(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
-                <div onclick="setGiyeokOptionRight(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
-                <div onclick="setGiyeokOptionRight(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title">데스크매트</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setDeskMat(0)">없음</div>
-                <div onclick="setDeskMat(1)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setDeskMat(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setDeskMat(3)"><span>라이트그레이</span></div>
-                <div onclick="setDeskMat(4)"><span>베이지</span></div>
-                <div onclick="setDeskMat(5)"><span>브라운</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title">미니서랍</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setDrawerColor(0)">없음</div>
-                <div onclick="setDrawerColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setDrawerColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setDrawerColor(3)"><span>오렌지</span></div>
-                <div onclick="setDrawerColor(4)"><span>오렌지투명</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title">하부가림판</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setFence(0)">없음</div>
-                <div onclick="setFence(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setFence(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setFence(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setFence(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setFence(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setFence(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setFence(4)"><img src="texture/natural.jpg"><span>내추럴</span></div>
-                <div onclick="setFence(5)"><img src="texture/pine.jpg"><span>파인</span></div>
-                <div onclick="setFence(6)"><img src="texture/concrete.jpg"><span>콘크리트</span></div>
-              </div>
-            </div>
-          </div>
-          <!-- 하부 옵션 통합 메뉴 (타입+색상 통합) -->
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션<br>(좌)</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons" id="lower-option-left">
-                <div onclick="setLowerOptionLeft(0, 0)">없음</div>
-                <!-- 부착서랍1단 -->
-                <div onclick="setLowerOptionLeft(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
-                <div onclick="setLowerOptionLeft(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
-                <div onclick="setLowerOptionLeft(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
-                <div onclick="setLowerOptionLeft(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
-                <div onclick="setLowerOptionLeft(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
-                <div onclick="setLowerOptionLeft(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
-                <div onclick="setLowerOptionLeft(1, 14)"><span>부착서랍1단 오렌지</span></div>
-                <div onclick="setLowerOptionLeft(1, 16)"><span>부착서랍1단 레몬</span></div>
-                <!-- 부착서랍2단 -->
-                <div onclick="setLowerOptionLeft(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
-                <div onclick="setLowerOptionLeft(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
-                <div onclick="setLowerOptionLeft(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
-                <div onclick="setLowerOptionLeft(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
-                <div onclick="setLowerOptionLeft(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
-                <div onclick="setLowerOptionLeft(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
-                <div onclick="setLowerOptionLeft(2, 14)"><span>부착서랍2단 오렌지</span></div>
-                <div onclick="setLowerOptionLeft(2, 16)"><span>부착서랍2단 레몬</span></div>
-                <!-- 본체함 -->
-                <div onclick="setLowerOptionLeft(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
-                <div onclick="setLowerOptionLeft(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
-                <div onclick="setLowerOptionLeft(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
-                <div onclick="setLowerOptionLeft(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
-                <div onclick="setLowerOptionLeft(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
-                <div onclick="setLowerOptionLeft(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
-                <div onclick="setLowerOptionLeft(3, 14)"><span>본체함 오렌지</span></div>
-                <div onclick="setLowerOptionLeft(3, 16)"><span>본체함 레몬</span></div>
-                <!-- 이동서랍2단 -->
-                <div onclick="setLowerOptionLeft(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
-                <div onclick="setLowerOptionLeft(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
-                <div onclick="setLowerOptionLeft(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
-                <div onclick="setLowerOptionLeft(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
-                <div onclick="setLowerOptionLeft(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
-                <div onclick="setLowerOptionLeft(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
-                <div onclick="setLowerOptionLeft(4, 14)"><span>이동서랍2단 오렌지</span></div>
-                <div onclick="setLowerOptionLeft(4, 16)"><span>이동서랍2단 레몬</span></div>
-                <!-- 이동서랍3단 -->
-                <div onclick="setLowerOptionLeft(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
-                <div onclick="setLowerOptionLeft(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
-                <div onclick="setLowerOptionLeft(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
-                <div onclick="setLowerOptionLeft(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
-                <div onclick="setLowerOptionLeft(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
-                <div onclick="setLowerOptionLeft(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
-                <div onclick="setLowerOptionLeft(5, 14)"><span>이동서랍3단 오렌지</span></div>
-                <div onclick="setLowerOptionLeft(5, 16)"><span>이동서랍3단 레몬</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션<br>(우)</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons" id="lower-option-right">
-                <div onclick="setLowerOptionRight(0, 0)">없음</div>
-                <!-- 부착서랍1단 -->
-                <div onclick="setLowerOptionRight(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
-                <div onclick="setLowerOptionRight(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
-                <div onclick="setLowerOptionRight(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
-                <div onclick="setLowerOptionRight(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
-                <div onclick="setLowerOptionRight(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
-                <div onclick="setLowerOptionRight(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
-                <div onclick="setLowerOptionRight(1, 14)"><span>부착서랍1단 오렌지</span></div>
-                <div onclick="setLowerOptionRight(1, 16)"><span>부착서랍1단 레몬</span></div>
-                <!-- 부착서랍2단 -->
-                <div onclick="setLowerOptionRight(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
-                <div onclick="setLowerOptionRight(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
-                <div onclick="setLowerOptionRight(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
-                <div onclick="setLowerOptionRight(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
-                <div onclick="setLowerOptionRight(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
-                <div onclick="setLowerOptionRight(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
-                <div onclick="setLowerOptionRight(2, 14)"><span>부착서랍2단 오렌지</span></div>
-                <div onclick="setLowerOptionRight(2, 16)"><span>부착서랍2단 레몬</span></div>
-                <!-- 본체함 -->
-                <div onclick="setLowerOptionRight(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
-                <div onclick="setLowerOptionRight(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
-                <div onclick="setLowerOptionRight(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
-                <div onclick="setLowerOptionRight(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
-                <div onclick="setLowerOptionRight(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
-                <div onclick="setLowerOptionRight(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
-                <div onclick="setLowerOptionRight(3, 14)"><span>본체함 오렌지</span></div>
-                <div onclick="setLowerOptionRight(3, 16)"><span>본체함 레몬</span></div>
-                <!-- 이동서랍2단 -->
-                <div onclick="setLowerOptionRight(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
-                <div onclick="setLowerOptionRight(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
-                <div onclick="setLowerOptionRight(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
-                <div onclick="setLowerOptionRight(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
-                <div onclick="setLowerOptionRight(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
-                <div onclick="setLowerOptionRight(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
-                <div onclick="setLowerOptionRight(4, 14)"><span>이동서랍2단 오렌지</span></div>
-                <div onclick="setLowerOptionRight(4, 16)"><span>이동서랍2단 레몬</span></div>
-                <!-- 이동서랍3단 -->
-                <div onclick="setLowerOptionRight(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
-                <div onclick="setLowerOptionRight(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
-                <div onclick="setLowerOptionRight(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
-                <div onclick="setLowerOptionRight(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
-                <div onclick="setLowerOptionRight(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
-                <div onclick="setLowerOptionRight(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
-                <div onclick="setLowerOptionRight(5, 14)"><span>이동서랍3단 오렌지</span></div>
-                <div onclick="setLowerOptionRight(5, 16)"><span>이동서랍3단 레몬</span></div>
-              </div>
-            </div>
-          </div>
+          <!-- (하부 카테고리용 ㄱ자옵션/하부옵션은 위쪽 하부 블록으로 이동됨) -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">200</p>
-              <div class="menu_title">선반깊이</div>
+              <div class="menu_title">19. 선반깊이</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -823,7 +834,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">상부수납</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">20. 상부수납</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons" id="upper-storage">
@@ -862,7 +873,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">위</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">상부수납<br>이동</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">21. 상부수납<br>이동</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -874,7 +885,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>왼쪽높이</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">22. 파티션_좌</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -891,23 +902,26 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">그레이</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>왼쪽색상</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">23. 파티션색_좌</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setPartiVerLColor(3)"><span>그레이</span></div>
-                <div onclick="setPartiVerLColor(12)"><span>베이지</span></div>
-                <div onclick="setPartiVerLColor(2)"><span>블랙</span></div>
-                <div onclick="setPartiVerLColor(17)"><span>그린</span></div>
-                <div onclick="setPartiVerLColor(14)"><span>오렌지</span></div>
-                <div onclick="setPartiVerLColor(11)"><span>라이트그레이</span></div>
+                <div onclick="setPartiVerLColor(10)"><span>라이트그레이</span></div>
+                <div onclick="setPartiVerLColor(11)"><span>라임</span></div>
+                <div onclick="setPartiVerLColor(12)"><span>오렌지</span></div>
+                <div onclick="setPartiVerLColor(13)"><span>스카이블루</span></div>
+                <div onclick="setPartiVerLColor(14)"><span>베이지</span></div>
+                <div onclick="setPartiVerLColor(15)"><span>그린</span></div>
+                <div onclick="setPartiVerLColor(17)"><span>브라운</span></div>
+                <div onclick="setPartiVerLColor(18)"><span>다크초콜릿</span></div>
+                <div onclick="setPartiVerLColor(19)"><span>민트</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>오른쪽높이</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">24. 파티션_우</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -924,23 +938,26 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">그레이</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>오른쪽색상</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">25. 파티션색_우</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setPartiVerRColor(3)"><span>그레이</span></div>
-                <div onclick="setPartiVerRColor(12)"><span>베이지</span></div>
-                <div onclick="setPartiVerRColor(2)"><span>블랙</span></div>
-                <div onclick="setPartiVerRColor(17)"><span>그린</span></div>
-                <div onclick="setPartiVerRColor(14)"><span>오렌지</span></div>
-                <div onclick="setPartiVerRColor(11)"><span>라이트그레이</span></div>
+                <div onclick="setPartiVerRColor(10)"><span>라이트그레이</span></div>
+                <div onclick="setPartiVerRColor(11)"><span>라임</span></div>
+                <div onclick="setPartiVerRColor(12)"><span>오렌지</span></div>
+                <div onclick="setPartiVerRColor(13)"><span>스카이블루</span></div>
+                <div onclick="setPartiVerRColor(14)"><span>베이지</span></div>
+                <div onclick="setPartiVerRColor(15)"><span>그린</span></div>
+                <div onclick="setPartiVerRColor(17)"><span>브라운</span></div>
+                <div onclick="setPartiVerRColor(18)"><span>다크초콜릿</span></div>
+                <div onclick="setPartiVerRColor(19)"><span>민트</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>홀B넓이</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">26. 파티션_전면</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -955,23 +972,26 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">그레이</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>홀B색상</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">27. 파티션색_전면</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setPartiHolBColor(3)"><span>그레이</span></div>
-                <div onclick="setPartiHolBColor(12)"><span>베이지</span></div>
-                <div onclick="setPartiHolBColor(2)"><span>블랙</span></div>
-                <div onclick="setPartiHolBColor(17)"><span>그린</span></div>
-                <div onclick="setPartiHolBColor(14)"><span>오렌지</span></div>
-                <div onclick="setPartiHolBColor(11)"><span>라이트그레이</span></div>
+                <div onclick="setPartiHolBColor(10)"><span>라이트그레이</span></div>
+                <div onclick="setPartiHolBColor(11)"><span>라임</span></div>
+                <div onclick="setPartiHolBColor(12)"><span>오렌지</span></div>
+                <div onclick="setPartiHolBColor(13)"><span>스카이블루</span></div>
+                <div onclick="setPartiHolBColor(14)"><span>베이지</span></div>
+                <div onclick="setPartiHolBColor(15)"><span>그린</span></div>
+                <div onclick="setPartiHolBColor(17)"><span>브라운</span></div>
+                <div onclick="setPartiHolBColor(18)"><span>다크초콜릿</span></div>
+                <div onclick="setPartiHolBColor(19)"><span>민트</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>중첩위치높이</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">28. 파티션_중첩</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -988,7 +1008,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>중첩위치색상</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">29. 파티션색_중첩</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1005,10 +1025,10 @@
               </div>
             </div>
           </div>
-          <div class="swiper-slide" id="parti-z-align-menu" style="visibility: hidden; height: 0; overflow: hidden;">
+          <div class="swiper-slide" id="parti-z-align-menu">
             <div class="menu_box">
-              <p class="menu_sel_text">기본 위치</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">파티션<br>Z축 위치</div>
+              <p class="menu_sel_text">기본위치</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">30. 파티션Z<br>이동</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1017,10 +1037,45 @@
               </div>
             </div>
           </div>
+
+          <!-- 4. 악세서리 카테고리 -->
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title">31. 데스크매트</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons">
+                <div onclick="setDeskMat(0)">없음</div>
+                <div onclick="setDeskMat(1)"><img src="texture/gray.jpg"><span>그레이</span></div>
+                <div onclick="setDeskMat(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setDeskMat(3)"><span>라이트그레이</span></div>
+                <div onclick="setDeskMat(4)"><span>베이지</span></div>
+                <div onclick="setDeskMat(5)"><span>브라운</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="menu_box">
+              <p class="menu_sel_text">없음</p>
+              <div class="menu_title">32. 미니서랍</div>
+            </div>
+            <div class="menu_all_list">
+              <div class="mal_buttons">
+                <div onclick="setDrawerColor(0)">없음</div>
+                <div onclick="setDrawerColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
+                <div onclick="setDrawerColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
+                <div onclick="setDrawerColor(3)"><span>오렌지</span></div>
+                <div onclick="setDrawerColor(4)"><span>오렌지투명</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 세트 카테고리 -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">1</p>
-              <div class="menu_title">책상 배열</div>
+              <div class="menu_title">33. 배열</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1034,7 +1089,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">복사 안함</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">책상<br>맞은편 배열</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">34. 맞은편<br>복제</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1048,7 +1103,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">유지</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">반대편<br>좌우설정</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">35. 맞은편<br>좌우</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1059,8 +1114,8 @@
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
-                <p class="menu_sel_text">Export</p>
-              <div class="menu_title">3D 파일</div>
+            <p class="menu_sel_text">Export</p>
+              <div class="menu_title">36. 3D저장</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1865,9 +1920,17 @@
         height = window.innerHeight;
 
         camera = new THREE.PerspectiveCamera(20, width / height, 100, 50000);
-        camera.position.x = 1000 * 2;
-        camera.position.y = 1500 * 2;
-        camera.position.z = 5000 * 2;
+        
+        // 45도 버드아이 엑소노메트릭 뷰 설정
+        // 씬 중앙을 향하도록 카메라 위치 설정
+        var distance = 32000; // 카메라 거리 (1배 더 멀리서 보기)
+        var angleX = Math.PI / 4; // 45도 (X축 회전)
+        var angleY = Math.PI / 3.5; // 약 51도 (Y축 회전, 더 위에서 내려다보기)
+        
+        // 엑소노메트릭 뷰 계산
+        camera.position.x = distance * Math.cos(angleY) * Math.cos(angleX);
+        camera.position.y = distance * Math.sin(angleY);
+        camera.position.z = distance * Math.cos(angleY) * Math.sin(angleX);
 
         // GLTFLoader 초기화
         var gltfLoader = null;
@@ -2342,7 +2405,11 @@
         if (isMobile) {
           controls.dampingFactor = 0.05;
         }
-        controls.target = new THREE.Vector3(0, 500, 0);
+        // 제품 구성 중심을 타겟으로 설정 (엑소노메트릭 뷰)
+        // 책상 상판 높이를 기준으로 제품 중심 계산
+        var product_center_y = frame_length + board_thickness + 2000; // 책상 상판 높이 + 2000 (제품을 많이 위로 올림)
+        controls.target = new THREE.Vector3(0, product_center_y, 0);
+        controls.update(); // 카메라 위치와 타겟을 즉시 적용
 
         // 모바일에서 터치 이벤트 최적화
         if (isMobile && controls.touches) {
@@ -2361,13 +2428,9 @@
         opposite_desk_distance = 0;
         // UI 초기화는 updateScene()에서 처리됨
         
-        // 파티션 Z축 위치 메뉴 초기화
+        // 파티션 Z축 위치 메뉴 초기화 (항상 표시)
         parti_z_align_front = 0;
-        if (board_depth >= 1000) {
-          $("#parti-z-align-menu").css({"visibility": "visible", "height": "auto", "overflow": "visible"});
-        } else {
-          $("#parti-z-align-menu").css({"visibility": "hidden", "height": "0", "overflow": "hidden"});
-        }
+        $("#parti-z-align-menu").css({"visibility": "visible", "height": "auto", "overflow": "visible"});
         
         // Swiper 업데이트 (슬라이드 개수 재계산)
         setTimeout(function() {
@@ -2483,13 +2546,8 @@
           board_depth_idx = 0;
         }
         
-        // 파티션 Z축 위치 메뉴 표시/숨김 (책상 깊이 1000 이상일 때만 표시)
-        if (board_depth >= 1000) {
-          $("#parti-z-align-menu").css({"visibility": "visible", "height": "auto", "overflow": "visible"});
-        } else {
-          $("#parti-z-align-menu").css({"visibility": "hidden", "height": "0", "overflow": "hidden"});
-          parti_z_align_front = 0; // 깊이가 1000 미만이면 기본 위치로 리셋
-        }
+        // 파티션 Z축 위치 메뉴는 항상 표시 (깊이에 관계없이)
+        $("#parti-z-align-menu").css({"visibility": "visible", "height": "auto", "overflow": "visible"});
         
         // Swiper 업데이트 (슬라이드 개수 재계산)
         setTimeout(function() {
@@ -2507,59 +2565,32 @@
         var material;
 
         switch (color_code) {
-          case 1: // W: 화이트
+          case 1: // 화이트
             material = new THREE.MeshPhongMaterial({ color: white_color });
             return material;
-          case 2: // B: 블랙
+          case 2: // 블랙
             material = new THREE.MeshPhongMaterial({ color: black_color });
             return material;
-          case 3: // G: 그레이
+          case 3: // 그레이
             material = new THREE.MeshPhongMaterial({ color: gray_color });
             return material;
-          case 4: // 내추럴 (W2로도 사용 가능)
-          case 9: // W2: 중간밝기 우드 (natural)
-            // 텍스처가 로드되었는지 확인
+          case 4: // 메이플 (밝은 우드)
             if (texture_natural && texture_natural.image && texture_natural.image.complete && texture_natural.image.width > 0) {
               configureTexture(texture_natural, width, depth);
-            material = new THREE.MeshPhongMaterial({ map: texture_natural });
-            } else {
-              // 텍스처가 아직 로드되지 않았으면 임시로 색상 사용
-              material = new THREE.MeshPhongMaterial({ color: beige_color });
-            }
-            return material;
-          case 5: // 파인
-            if (texture_pine && texture_pine.image && texture_pine.image.complete && texture_pine.image.width > 0) {
-              configureTexture(texture_pine, width, depth);
-            material = new THREE.MeshPhongMaterial({ map: texture_pine });
+              material = new THREE.MeshPhongMaterial({ map: texture_natural });
             } else {
               material = new THREE.MeshPhongMaterial({ color: beige_color });
             }
             return material;
-          case 6: // 콘크리트
-            if (texture_concrete && texture_concrete.image && texture_concrete.image.complete && texture_concrete.image.width > 0) {
-              configureTexture(texture_concrete, width, depth);
-            material = new THREE.MeshPhongMaterial({ map: texture_concrete });
-            } else {
-              material = new THREE.MeshPhongMaterial({ color: gray_color });
-            }
-            return material;
-          case 7: // 레드파인
-            if (texture_redpine && texture_redpine.image && texture_redpine.image.complete && texture_redpine.image.width > 0) {
-              configureTexture(texture_redpine, width, depth);
-            material = new THREE.MeshPhongMaterial({ map: texture_redpine });
-            } else {
-              material = new THREE.MeshPhongMaterial({ color: brown_color });
-            }
-            return material;
-          case 8: // W1: 밝은 우드 (maple)
-            if (texture_maple && texture_maple.image && texture_maple.image.complete && texture_maple.image.width > 0) {
-              configureTexture(texture_maple, width, depth);
-              material = new THREE.MeshPhongMaterial({ map: texture_maple });
+          case 5: // 아카시아 (중간 우드)
+            if (texture_acasia && texture_acasia.image && texture_acasia.image.complete && texture_acasia.image.width > 0) {
+              configureTexture(texture_acasia, width, depth);
+              material = new THREE.MeshPhongMaterial({ map: texture_acasia });
             } else {
               material = new THREE.MeshPhongMaterial({ color: beige_color });
             }
             return material;
-          case 10: // W3: 월넛 우드 (walnut)
+          case 6: // 월넛 (어두운 우드)
             if (texture_walnut && texture_walnut.image && texture_walnut.image.complete && texture_walnut.image.width > 0) {
               configureTexture(texture_walnut, width, depth);
               material = new THREE.MeshPhongMaterial({ map: texture_walnut });
@@ -2567,26 +2598,59 @@
               material = new THREE.MeshPhongMaterial({ color: brown_color });
             }
             return material;
-          case 11: // LG: light grey
+          case 7: // 스틸
+            if (texture_steel && texture_steel.image && texture_steel.image.complete && texture_steel.image.width > 0) {
+              configureTexture(texture_steel, width, depth);
+              material = new THREE.MeshPhongMaterial({ map: texture_steel });
+            } else {
+              material = new THREE.MeshPhongMaterial({ color: gray_color });
+            }
+            return material;
+          case 8: // 브론지트
+            if (texture_bronzit && texture_bronzit.image && texture_bronzit.image.complete && texture_bronzit.image.width > 0) {
+              configureTexture(texture_bronzit, width, depth);
+              material = new THREE.MeshPhongMaterial({ map: texture_bronzit });
+            } else {
+              material = new THREE.MeshPhongMaterial({ color: brown_color });
+            }
+            return material;
+          case 9: // 테라조
+            if (texture_terazzo && texture_terazzo.image && texture_terazzo.image.complete && texture_terazzo.image.width > 0) {
+              configureTexture(texture_terazzo, width, depth);
+              material = new THREE.MeshPhongMaterial({ map: texture_terazzo });
+            } else {
+              material = new THREE.MeshPhongMaterial({ color: gray_color });
+            }
+            return material;
+          case 10: // 라이트그레이
             material = new THREE.MeshPhongMaterial({ color: light_gray_color });
             return material;
-          case 12: // BE: beige
-            material = new THREE.MeshPhongMaterial({ color: beige_color });
+          case 11: // 라임
+            material = new THREE.MeshPhongMaterial({ color: 0xc0ff00 });
             return material;
-          case 13: // BR: brown
-            material = new THREE.MeshPhongMaterial({ color: brown_color });
-            return material;
-          case 14: // O: orange
+          case 12: // 오렌지
             material = new THREE.MeshPhongMaterial({ color: orange_color });
             return material;
-          case 15: // OT: orange transparent (반투명)
-            material = new THREE.MeshPhongMaterial({ color: orange_color, transparent: true, opacity: 0.7 });
+          case 13: // 스카이블루
+            material = new THREE.MeshPhongMaterial({ color: 0x87ceeb });
             return material;
-          case 16: // L: lemon
+          case 14: // 베이지
+            material = new THREE.MeshPhongMaterial({ color: beige_color });
+            return material;
+          case 15: // 그린
+            material = new THREE.MeshPhongMaterial({ color: green_color });
+            return material;
+          case 16: // 레몬
             material = new THREE.MeshPhongMaterial({ color: lemon_color });
             return material;
-          case 17: // GN: green
-            material = new THREE.MeshPhongMaterial({ color: green_color });
+          case 17: // 브라운
+            material = new THREE.MeshPhongMaterial({ color: brown_color });
+            return material;
+          case 18: // 다크초콜릿
+            material = new THREE.MeshPhongMaterial({ color: 0x4b2e2e });
+            return material;
+          case 19: // 민트
+            material = new THREE.MeshPhongMaterial({ color: 0x98ff98 });
             return material;
           default:
             material = new THREE.MeshPhongMaterial({ color: white_color });
@@ -2597,23 +2661,23 @@
       function setBoardColor(c) {
         board_color = c;
         
-        // 텍스처가 필요한 색상인지 확인
-        var needsTexture = (c == 4 || c == 5 || c == 6 || c == 7 || c == 8 || c == 9 || c == 10);
+        // 텍스처가 필요한 색상인지 확인 (색상M: 4~9)
+        var needsTexture = (c >= 4 && c <= 9);
         var texture = null;
         var textureLoaded = false;
         
-        if (c == 4 || c == 9) {
-          texture = texture_natural;
+        if (c == 4) {
+          texture = texture_natural; // 메이플
         } else if (c == 5) {
-          texture = texture_pine;
+          texture = texture_acasia;  // 아카시아
         } else if (c == 6) {
-          texture = texture_concrete;
+          texture = texture_walnut;  // 월넛
         } else if (c == 7) {
-          texture = texture_redpine;
+          texture = texture_steel;   // 스틸
         } else if (c == 8) {
-          texture = texture_maple;
-        } else if (c == 10) {
-          texture = texture_walnut;
+          texture = texture_bronzit; // 브론지트
+        } else if (c == 9) {
+          texture = texture_terazzo; // 테라조
         }
         
         // 텍스처 로드 상태 확인
@@ -2889,6 +2953,26 @@
         }
 
         // d: 0=없음, 1=L, 2=R, 3=C, 4=L+R
+        // ㄱ자 책상 옵션이 없어지면 하위 옵션들도 모두 제거
+        if (d === 0) {
+          giyeok_drawer_type_left = 0;
+          giyeok_drawer_type_right = 0;
+          // 관련된 모든 색상 변수 초기화
+          giyeok_attach1_left_color = 0;
+          giyeok_attach2_left_color = 0;
+          giyeok_attach3_left_color = 0;
+          giyeok_moving2_left_color = 0;
+          giyeok_moving3_left_color = 0;
+          giyeok_attach1_right_color = 0;
+          giyeok_attach2_right_color = 0;
+          giyeok_attach3_right_color = 0;
+          giyeok_moving2_right_color = 0;
+          giyeok_moving3_right_color = 0;
+          // 메뉴 텍스트 업데이트
+          $(".swiper-slide").has("#giyeok-option-left").find(".menu_sel_text").text("없음");
+          $(".swiper-slide").has("#giyeok-option-right").find(".menu_sel_text").text("없음");
+        }
+
         if (!skipSceneUpdate) {
           updateScene();
           render();
@@ -2985,10 +3069,14 @@
       function setMoving2(c) {
         moving2_color = c;
         if (moving2_color) {
-          if (moving3_color && moving3_position == 1)
-            moving2_position = 2;
-          else
-            moving2_position = 1;
+          // moving2_position이 이미 설정되어 있지 않으면 자동으로 결정
+          // (setLowerOptionLeft/Right에서 이미 설정한 경우는 유지)
+          if (moving2_position == 0 || moving2_position == undefined) {
+            if (moving3_color && moving3_position == 1)
+              moving2_position = 2;
+            else
+              moving2_position = 1;
+          }
 
           moving2_material = getMaterial(c);
           
@@ -3021,10 +3109,14 @@
         }
 
         if (moving3_color) {
-          if (moving2_color && moving2_position == 1)
-            moving3_position = 2;
-          else
-            moving3_position = 1;
+          // moving3_position이 이미 설정되어 있지 않으면 자동으로 결정
+          // (setLowerOptionLeft/Right에서 이미 설정한 경우는 유지)
+          if (moving3_position == 0 || moving3_position == undefined) {
+            if (moving2_color && moving2_position == 1)
+              moving3_position = 2;
+            else
+              moving3_position = 1;
+          }
 
           moving3_material = getMaterial(c);
           
@@ -3803,6 +3895,29 @@
 
       // 하부옵션_좌: 타입과 색상을 함께 설정 (통합 메뉴용)
       function setLowerOptionLeft(type, color) {
+        // 이전 옵션 완전히 제거
+        var prev_type = lower_option_type_left;
+        if (prev_type > 0) {
+          // 이전 타입에 따라 해당 변수들 초기화
+          if (prev_type == 1) {
+            attach1_left_color = 0;
+          } else if (prev_type == 2) {
+            attach2_left_color = 0;
+          } else if (prev_type == 3) {
+            attach3_left_color = 0;
+          } else if (prev_type == 4) {
+            if (moving2_position == 1) {
+              moving2_color = 0;
+              moving2_position = 0; // 위치도 초기화
+            }
+          } else if (prev_type == 5) {
+            if (moving3_position == 1) {
+              moving3_color = 0;
+              moving3_position = 0; // 위치도 초기화
+            }
+          }
+        }
+        
         lower_option_type_left = type;
         lower_option_color_left = color;
         
@@ -3810,10 +3925,18 @@
         attach1_left_color = 0;
         attach2_left_color = 0;
         attach3_left_color = 0;
-        if (moving2_position == 1) moving2_color = 0;
-        if (moving3_position == 1) moving3_color = 0;
+        if (moving2_position == 1) {
+          moving2_color = 0;
+          moving2_position = 0;
+        }
+        if (moving3_position == 1) {
+          moving3_color = 0;
+          moving3_position = 0;
+        }
         
         if (type == 0 || color == 0) {
+          lower_option_type_left = 0;
+          lower_option_color_left = 0;
           // 메뉴 텍스트 업데이트
           $(".swiper-slide").has("#lower-option-left").find(".menu_sel_text").text("없음");
         } else {
@@ -3902,6 +4025,29 @@
 
       // 하부옵션_우: 타입과 색상을 함께 설정 (통합 메뉴용)
       function setLowerOptionRight(type, color) {
+        // 이전 옵션 완전히 제거
+        var prev_type = lower_option_type_right;
+        if (prev_type > 0) {
+          // 이전 타입에 따라 해당 변수들 초기화
+          if (prev_type == 1) {
+            attach1_right_color = 0;
+          } else if (prev_type == 2) {
+            attach2_right_color = 0;
+          } else if (prev_type == 3) {
+            attach3_right_color = 0;
+          } else if (prev_type == 4) {
+            if (moving2_position == 2) {
+              moving2_color = 0;
+              moving2_position = 0; // 위치도 초기화
+            }
+          } else if (prev_type == 5) {
+            if (moving3_position == 2) {
+              moving3_color = 0;
+              moving3_position = 0; // 위치도 초기화
+            }
+          }
+        }
+        
         lower_option_type_right = type;
         lower_option_color_right = color;
         
@@ -3909,10 +4055,18 @@
         attach1_right_color = 0;
         attach2_right_color = 0;
         attach3_right_color = 0;
-        if (moving2_position == 2) moving2_color = 0;
-        if (moving3_position == 2) moving3_color = 0;
+        if (moving2_position == 2) {
+          moving2_color = 0;
+          moving2_position = 0;
+        }
+        if (moving3_position == 2) {
+          moving3_color = 0;
+          moving3_position = 0;
+        }
         
         if (type == 0 || color == 0) {
+          lower_option_type_right = 0;
+          lower_option_color_right = 0;
           // 메뉴 텍스트 업데이트
           $(".swiper-slide").has("#lower-option-right").find(".menu_sel_text").text("없음");
         } else {
@@ -5046,87 +5200,200 @@
             setPartiVerMColor(parti_ver_M_color_val);
             
             var width_values_parti = [0, 1200, 1400, 1600, 1800];
-            if (parti_hol_B_width_idx >= 0 && parti_hol_B_width_idx < width_values_parti.length) {
-              setPartiHolBWidth(width_values_parti[parti_hol_B_width_idx]);
-            } else {
-              setPartiHolBWidth(0);
-            }
-            // 색상 설정 (너비 설정 후)
-            setPartiHolBColor(parti_hol_B_color_val);
-            
-            // 파티션 Z축 위치 정렬 설정
-            if (parti_z_align_front_val == 1) {
-              setPartiZAlignFront(1);
-            } else {
-              setPartiZAlignFront(0);
+          if (parti_hol_B_width_idx >= 0 && parti_hol_B_width_idx < width_values_parti.length) {
+            setPartiHolBWidth(width_values_parti[parti_hol_B_width_idx]);
+          } else {
+            setPartiHolBWidth(0);
+          }
+          // 색상 설정 (너비 설정 후)
+          setPartiHolBColor(parti_hol_B_color_val);
+          
+          // 파티션 Z축 위치 정렬 설정
+          if (parti_z_align_front_val == 1) {
+            setPartiZAlignFront(1);
+          } else {
+            setPartiZAlignFront(0);
+          }
+        }
+        
+        // part6 파싱: giyeok_drawer_type_left + giyeok_left_color + giyeok_drawer_type_right + giyeok_right_color + shelf_depth
+        // 색상 값은 알파벳일 수 있으므로 singleCharToNumber 사용
+        if (part6 && part6.length >= 5) {
+          var giyeok_drawer_type_left_val = parseInt(part6[0]) || 0;
+          var giyeok_left_color_val = singleCharToNumber(part6[1]);
+          var giyeok_drawer_type_right_val = parseInt(part6[2]) || 0;
+          var giyeok_right_color_val = singleCharToNumber(part6[3]);
+          var shelf_depth_val = parseInt(part6[4]) || 0;
+          
+          // ㄱ자 하부 서랍 설정
+          setGiyeokDrawerTypeLeft(giyeok_drawer_type_left_val);
+          // 색상이 0이어도 명시적으로 설정 (색상 정보 보존)
+          setGiyeokDrawerColorLeft(giyeok_left_color_val);
+          
+          setGiyeokDrawerTypeRight(giyeok_drawer_type_right_val);
+          // 색상이 0이어도 명시적으로 설정 (색상 정보 보존)
+          setGiyeokDrawerColorRight(giyeok_right_color_val);
+          
+          // shelf_depth 설정
+          if (shelf_depth_val == 1) {
+            setShelfDepth(200);
+          } else if (shelf_depth_val == 2) {
+            setShelfDepth(360);
+          } else {
+            setShelfDepth(200);
+          }
+        } else if (part5.length >= 9) {
+          // 이전 형식 호환: part5에 shelf_depth가 포함된 경우
+          var shelf_depth_val = parseInt(part5[8]);
+          if (shelf_depth_val == 1) {
+            setShelfDepth(200);
+          } else if (shelf_depth_val == 2) {
+            setShelfDepth(360);
+          } else {
+            setShelfDepth(200);
+          }
+        }
+        
+        // === 좌측 슬라이드바 UI 동기화 ===
+        syncSidebarFromState();
+        
+        // 플래그 해제 (모든 설정 완료 후)
+        skipSceneUpdate = false;
+        
+        // 모든 설정이 완료된 후 씬 업데이트 (한 번만 호출)
+        updateScene();
+        render();
+        
+        // 코드 입력창 업데이트
+        var codeInput = document.getElementById('product_code_input');
+        if (codeInput) {
+          codeInput.value = generateProductCode();
+        }
+        
+        // URL 업데이트 (히스토리 교체 - 이미 로드 중이므로 replaceState 사용)
+        // skipURLUpdate 플래그를 해제하기 전에 업데이트해야 함
+        var finalCode = generateProductCode();
+        var url = new URL(window.location.href);
+        url.searchParams.set('code', finalCode);
+        window.history.replaceState({code: finalCode}, '', url.toString());
+        
+      } catch (error) {
+        console.error('코드 파싱 오류:', error);
+        alert('상품코드를 읽는 중 오류가 발생했습니다: ' + error.message);
+      } finally {
+        // 플래그 해제
+        skipURLUpdate = false;
+        skipSceneUpdate = false;
+      }
+      }
+
+      // 현재 상태 변수들을 기준으로 좌측 슬라이드바(menu_sel_text)를 동기화하는 함수
+      function syncSidebarFromState() {
+        try {
+          function setSlideTextByTitle(titleText, text) {
+            var $slide = $(".swiper-slide").filter(function () {
+              return $(this).find(".menu_title").text().replace(/\s+/g, '').
+                indexOf(titleText.replace(/\s+/g, '')) !== -1;
+            });
+            if ($slide.length) {
+              $slide.find(".menu_sel_text").text(text);
             }
           }
-          
-          // part6 파싱: giyeok_drawer_type_left + giyeok_left_color + giyeok_drawer_type_right + giyeok_right_color + shelf_depth
-          // 색상 값은 알파벳일 수 있으므로 singleCharToNumber 사용
-          if (part6 && part6.length >= 5) {
-            var giyeok_drawer_type_left_val = parseInt(part6[0]) || 0;
-            var giyeok_left_color_val = singleCharToNumber(part6[1]);
-            var giyeok_drawer_type_right_val = parseInt(part6[2]) || 0;
-            var giyeok_right_color_val = singleCharToNumber(part6[3]);
-            var shelf_depth_val = parseInt(part6[4]) || 0;
-            
-            // ㄱ자 하부 서랍 설정
-            setGiyeokDrawerTypeLeft(giyeok_drawer_type_left_val);
-            // 색상이 0이어도 명시적으로 설정 (색상 정보 보존)
-            setGiyeokDrawerColorLeft(giyeok_left_color_val);
-            
-            setGiyeokDrawerTypeRight(giyeok_drawer_type_right_val);
-            // 색상이 0이어도 명시적으로 설정 (색상 정보 보존)
-            setGiyeokDrawerColorRight(giyeok_right_color_val);
-            
-            // shelf_depth 설정
-            if (shelf_depth_val == 1) {
-              setShelfDepth(200);
-            } else if (shelf_depth_val == 2) {
-              setShelfDepth(360);
-            } else {
-              setShelfDepth(200);
+
+          // 1) 책상
+          setSlideTextByTitle("책상다리", is_mium ? "ㅁ다리" : "기본형");
+          setSlideTextByTitle("폭(W)", board_width.toString());
+          setSlideTextByTitle("깊이(D)", board_depth.toString());
+
+          // 상판색상
+          (function () {
+            var $slide = $(".swiper-slide").filter(function () {
+              return $(this).find(".menu_title").text().indexOf("상판색상") !== -1;
+            });
+            if (!$slide.length) return;
+            var name = "없음";
+            $slide.find(".mal_buttons > div").each(function () {
+              var onclick = $(this).attr("onclick") || "";
+              if (onclick.indexOf("setBoardColor(" + board_color + ")") !== -1) {
+                name = $(this).text().trim();
+              }
+            });
+            $slide.find(".menu_sel_text").text(name);
+          })();
+
+          // 프레임색상
+          (function () {
+            var $slide = $(".swiper-slide").filter(function () {
+              return $(this).find(".menu_title").text().indexOf("프레임색상") !== -1;
+            });
+            if (!$slide.length) return;
+            var name = "없음";
+            $slide.find(".mal_buttons > div").each(function () {
+              var onclick = $(this).attr("onclick") || "";
+              if (onclick.indexOf("setFrameColor(" + frame_color + ")") !== -1) {
+                name = $(this).text().trim();
+              }
+            });
+            $slide.find(".menu_sel_text").text(name);
+          })();
+
+          // 하부가림판
+          (function () {
+            var $slide = $(".swiper-slide").filter(function () {
+              return $(this).find(".menu_title").text().indexOf("하부가림판") !== -1;
+            });
+            if (!$slide.length) return;
+            var name = "없음";
+            if (fence_color) {
+              $slide.find(".mal_buttons > div").each(function () {
+                var onclick = $(this).attr("onclick") || "";
+                if (onclick.indexOf("setFence(" + fence_color + ")") !== -1) {
+                  name = $(this).text().trim();
+                }
+              });
             }
-          } else if (part5.length >= 9) {
-            // 이전 형식 호환: part5에 shelf_depth가 포함된 경우
-            var shelf_depth_val = parseInt(part5[8]);
-            if (shelf_depth_val == 1) {
-              setShelfDepth(200);
-            } else if (shelf_depth_val == 2) {
-              setShelfDepth(360);
-            } else {
-              setShelfDepth(200);
+            $slide.find(".menu_sel_text").text(name);
+          })();
+
+          // ㄱ자 모듈
+          (function () {
+            var names = ["없음", "왼쪽", "오른쪽", "중앙", "양쪽"];
+            var name = names[giyeok_position] || "없음";
+            setSlideTextByTitle("ㄱ자모듈", name);
+          })();
+
+          // 2) 하부옵션 통합 (좌/우)
+          (function () {
+            function updateLowerOption(side) {
+              var type = side === "left" ? (lower_option_type_left || 0) : (lower_option_type_right || 0);
+              var color = side === "left" ? (lower_option_color_left || 0) : (lower_option_color_right || 0);
+              var selector = side === "left" ? "#lower-option-left" : "#lower-option-right";
+              var text = "없음";
+              var $slide = $(".swiper-slide").has(selector);
+              if (!$slide.length) return;
+              if (type > 0 && color > 0) {
+                var $btn = $slide.find(".mal_buttons > div").filter(function () {
+                  var onclick = $(this).attr("onclick") || "";
+                  var fn = side === "left" ? "setLowerOptionLeft" : "setLowerOptionRight";
+                  return onclick.indexOf(fn + "(" + type + ", " + color + ")") !== -1;
+                }).first();
+                if ($btn.length) {
+                  text = $btn.text().trim();
+                }
+              }
+              $slide.find(".menu_sel_text").text(text);
             }
-          }
-          
-          // 플래그 해제 (모든 설정 완료 후)
-          skipSceneUpdate = false;
-          
-          // 모든 설정이 완료된 후 씬 업데이트 (한 번만 호출)
-          updateScene();
-          render();
-          
-          // 코드 입력창 업데이트
-          var codeInput = document.getElementById('product_code_input');
-          if (codeInput) {
-            codeInput.value = generateProductCode();
-          }
-          
-          // URL 업데이트 (히스토리 교체 - 이미 로드 중이므로 replaceState 사용)
-          // skipURLUpdate 플래그를 해제하기 전에 업데이트해야 함
-          var finalCode = generateProductCode();
-          var url = new URL(window.location.href);
-          url.searchParams.set('code', finalCode);
-          window.history.replaceState({code: finalCode}, '', url.toString());
-          
-        } catch (error) {
-          console.error('코드 파싱 오류:', error);
-          alert('상품코드를 읽는 중 오류가 발생했습니다: ' + error.message);
-        } finally {
-          // 플래그 해제
-          skipURLUpdate = false;
-          skipSceneUpdate = false;
+            updateLowerOption("left");
+            updateLowerOption("right");
+          })();
+
+          // 3) 선반 기본 값
+          setSlideTextByTitle("수직부재", vertical_length ? vertical_length.toString() : "없음");
+          setSlideTextByTitle("선반갯수", shelf_num ? shelf_num.toString() : "0");
+          setSlideTextByTitle("선반방향규격", shelf_direction === 1 ? "안쪽" : "바깥쪽");
+
+        } catch (e) {
+          console.warn("좌측 슬라이드바 동기화 중 오류:", e);
         }
       }
 
@@ -5143,35 +5410,55 @@
         // 가격 데이터에서 가져오기 (없으면 기본값 사용)
         var prices = priceData && priceData.prices ? priceData.prices : null;
         
-        // 책상 본체 가격
-        var board_price_table = prices && prices.board && prices.board.table ? 
-          prices.board.table.flat() : // 2D 배열을 1D로 변환
-          [0, 0, 0, 0, 0, 0,
-           109800, 129800, 141700, 159700, 193100, 0,
-           118400, 139900, 159900, 198800, 214500, 0,
-           151000, 169800, 189800, 217300, 241400, 0,
-           0, 0, 0, 0, 0, 0,
-           0, 0, 0, 0, 0, 0,
-           0, 0, 0, 0, 0, 0];
-
-        var shelf_product_price_table = prices && prices.shelf && prices.shelf.product ? 
-          prices.shelf.product : [34000, 43000, 45000, 51000, 57000, 0];
-        var shelf_delivery_price_table = prices && prices.shelf && prices.shelf.delivery ? 
-          prices.shelf.delivery : [29800, 29800, 32800, 35800, 38800, 41800, 44800];
-        var fence_price_table = prices && prices.fence && prices.fence.product ? 
-          prices.fence.product : [81700, 101700, 103400, 105000, 113900, 0];
-
-        // Updated Table Index Logic for 6x6 grid (Width Max 6)
-        var table_index = (board_width_idx - 1) + (board_depth_idx - 1) * 6; 
-        
-        if (board_price_table[table_index] !== undefined && board_price_table[table_index] > 0) {
-             product_price += board_price_table[table_index];
+        // 폭 매핑 함수: UI 폭 → CSV 폭
+        function mapWidthToCSV(uiWidth) {
+          if (uiWidth === 1200) return 1180;
+          if (uiWidth === 1600) return 1580;
+          return uiWidth; // 1400, 1800, 2060, 2360은 동일
         }
         
-        // 기본 배송비
-        var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
-          prices.delivery.basic : 29800;
-        delivery_price += basic_delivery;
+        // 현재 UI 폭/깊이 값
+        var width_values = [0, 1200, 1400, 1600, 1800, 2060, 2360];
+        var depth_values = [0, 500, 600, 700, 800, 1000, 1200];
+        var current_width = width_values[board_width_idx] || 0;
+        var current_depth = depth_values[board_depth_idx] || 0;
+        var csv_width = mapWidthToCSV(current_width);
+        
+        // 책상 본체 가격 (2D 배열에서 직접 가져오기)
+        var board_price_table = prices && prices.board && prices.board.table ? 
+          prices.board.table : null;
+        var board_delivery_table = prices && prices.board && prices.board.delivery ? 
+          prices.board.delivery : null;
+        
+        if (board_price_table && board_depth_idx > 0 && board_width_idx > 0) {
+          var board_price = board_price_table[board_depth_idx - 1][board_width_idx - 1];
+          if (board_price && board_price > 0) {
+            product_price += board_price;
+          }
+          
+          // 배송비도 폭/깊이별로 다를 수 있음
+          if (board_delivery_table && board_delivery_table[board_depth_idx - 1]) {
+            var board_delivery = board_delivery_table[board_depth_idx - 1][board_width_idx - 1];
+            if (board_delivery && board_delivery > 0) {
+              delivery_price += board_delivery;
+            } else {
+              // 기본 배송비
+              var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+                prices.delivery.basic : 29800;
+              delivery_price += basic_delivery;
+            }
+          } else {
+            // 기본 배송비
+            var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+              prices.delivery.basic : 29800;
+            delivery_price += basic_delivery;
+          }
+        } else {
+          // 기본 배송비
+          var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+            prices.delivery.basic : 29800;
+          delivery_price += basic_delivery;
+        }
 
         // ㅁ다리
         if (is_mium) {
@@ -5183,82 +5470,320 @@
           delivery_price += mium_delivery;
         }
 
-        // 선반
-        if (vertical_length_idx) {
-          if (shelf_product_price_table[board_width_idx - 1]) {
-             product_price += shelf_product_price_table[board_width_idx - 1] * shelf_num;
-          }
-          if (shelf_delivery_price_table[shelf_num - 1]) {
-            delivery_price += shelf_delivery_price_table[shelf_num - 1];
-          }
-
-          // 높이 추가 비용
-          var heightExtra = prices && prices.shelf && prices.shelf.heightExtra ? 
-            prices.shelf.heightExtra : { "925": 11400, "1400": 16000, "1860": 21900 };
+        // 수직부재 가격
+        if (vertical_length_idx && vertical_length > 0) {
+          var vertical_prices = prices && prices.vertical && prices.vertical.product ? 
+            prices.vertical.product : null;
+          // 가격 데이터가 없어도 기본값 사용하여 항상 추가
+          var vertical_price = (vertical_prices && vertical_prices[vertical_length.toString()]) ? 
+            vertical_prices[vertical_length.toString()] : 
+            (vertical_length === 460 ? 81800 : (vertical_length === 646 ? 86200 : (vertical_length === 925 ? 102700 : (vertical_length === 1400 ? 118400 : 133700)))); // 기본값
+          product_price += vertical_price;
+          var vertical_delivery = prices && prices.vertical && prices.vertical.delivery ? 
+            prices.vertical.delivery : 29800;
+          delivery_price += vertical_delivery;
+        }
+        
+        // 선반 가격 (폭 x 깊이별, 현재는 깊이 200만 사용)
+        if (vertical_length_idx && shelf_num > 0) {
+          var shelf_prices = prices && prices.shelf && prices.shelf.product ? 
+            prices.shelf.product : null;
+          // 가격 데이터가 없어도 기본값 사용하여 항상 추가
+          var shelf_unit_price = (shelf_prices && shelf_prices[csv_width.toString()] && shelf_prices[csv_width.toString()]["200"]) ? 
+            shelf_prices[csv_width.toString()]["200"] : 
+            (csv_width === 1180 ? 70000 : (csv_width === 1400 ? 77300 : (csv_width === 1580 ? 82900 : (csv_width === 1800 ? 94400 : (csv_width === 2060 ? 107100 : 143400))))); // 기본값
+          product_price += shelf_unit_price * shelf_num;
           
-          if (vertical_length_idx == 2 && heightExtra["925"])
-            product_price += heightExtra["925"];
-          else if (vertical_length_idx == 3 && heightExtra["1400"])
-            product_price += heightExtra["1400"];
-          else if (vertical_length_idx == 4 && heightExtra["1860"])
-            product_price += heightExtra["1860"];
+          // 선반 배송비 (개수별)
+          var shelf_delivery_table = prices && prices.shelf && prices.shelf.delivery ? 
+            prices.shelf.delivery : null;
+          var shelf_delivery = (shelf_delivery_table && shelf_delivery_table[shelf_num.toString()]) ? 
+            shelf_delivery_table[shelf_num.toString()] : 
+            (shelf_num === 1 ? 29800 : (shelf_num === 2 ? 29800 : (shelf_num === 3 ? 32800 : (shelf_num === 4 ? 35800 : (shelf_num === 5 ? 38800 : (shelf_num === 6 ? 41800 : 44800)))))); // 기본값
+          delivery_price += shelf_delivery;
         }
 
-        // ㄱ자 모듈
+        // ㄱ자 모듈 (폭별 가격, 실제 ㄱ자 모듈 크기에 따라 결정)
         if (giyeok_position) {
-          var giyeok_price = prices && prices.giyeok && prices.giyeok.product ? 
-            prices.giyeok.product : 94500;
+          // ㄱ자 모듈의 실제 폭을 계산 (현재는 board_width를 기준으로 추정)
+          // 실제로는 giyeok 모듈의 크기에 따라 다를 수 있음
+          var giyeok_prices = prices && prices.giyeok && prices.giyeok.product ? 
+            prices.giyeok.product : null;
+          // 기본값으로 board_width에 가장 가까운 값 사용
+          var giyeok_price = 150900; // 기본값
+          if (giyeok_prices) {
+            // board_width에 따라 가장 가까운 값 선택
+            if (current_width <= 1200) giyeok_price = giyeok_prices["1205"] || giyeok_prices["800"] || 150900;
+            else if (current_width <= 1400) giyeok_price = giyeok_prices["1385"] || giyeok_prices["1205"] || 176100;
+            else if (current_width <= 1600) giyeok_price = giyeok_prices["1605"] || giyeok_prices["1385"] || 203400;
+            else if (current_width <= 1800) giyeok_price = giyeok_prices["1865"] || giyeok_prices["1605"] || 212900;
+            else giyeok_price = giyeok_prices["1865"] || 222800;
+          }
           product_price += giyeok_price;
+          
+          var giyeok_delivery = prices && prices.giyeok && prices.giyeok.delivery ? 
+            prices.giyeok.delivery : 29800;
+          delivery_price += giyeok_delivery;
         }
 
         // 데스크 매트
         if (desk_mat_color) {
           var deskMat_product = prices && prices.deskMat && prices.deskMat.product ? 
-            prices.deskMat.product : 65000;
+            prices.deskMat.product : 61500;
           var deskMat_delivery = prices && prices.deskMat && prices.deskMat.delivery ? 
-            prices.deskMat.delivery : 5000;
+            prices.deskMat.delivery : 0; // 무료배송
           product_price += deskMat_product;
           delivery_price += deskMat_delivery;
         }
 
-        // 미니서랍
+        // 미니서랍 (높이별 가격)
         if (drawer_color) {
-          var drawer_product = prices && prices.drawer && prices.drawer.product ? 
-            prices.drawer.product : 34400;
-          var drawer_delivery = prices && prices.drawer && prices.drawer.delivery ? 
-            prices.drawer.delivery : 3000;
+          var drawer_prices = prices && prices.drawer && prices.drawer.product ? 
+            prices.drawer.product : null;
+          // drawer_color에 따라 높이 결정 (현재는 기본값 사용)
+          var drawer_product = 18300; // 기본값 H45
+          if (drawer_prices) {
+            // drawer_color 값에 따라 높이 결정 로직 필요 (현재는 기본값 사용)
+            drawer_product = drawer_prices["H45"] || 18300;
+          }
           product_price += drawer_product;
+          // 무료배송
+          var drawer_delivery = prices && prices.drawer && prices.drawer.delivery ? 
+            prices.drawer.delivery : 0;
           delivery_price += drawer_delivery;
         }
 
-        // 하부가림막
+        // 하부가림판 (폭별 가격)
         if (fence_color) {
-          if (fence_price_table[board_width_idx - 1]) {
-             product_price += fence_price_table[board_width_idx - 1];
+          var fence_prices = prices && prices.fence && prices.fence.product ? 
+            prices.fence.product : null;
+          if (fence_prices && fence_prices[csv_width.toString()]) {
+            product_price += fence_prices[csv_width.toString()];
           }
           var fence_delivery = prices && prices.fence && prices.fence.delivery ? 
-            prices.fence.delivery : 19800;
+            prices.fence.delivery : 29800;
           delivery_price += fence_delivery;
         }
 
-        // 2단 이동 서랍
-        if (moving2_color) {
-          var moving2_product = prices && prices.moving2 && prices.moving2.product ? 
-            prices.moving2.product : 88000;
-          var moving2_delivery = prices && prices.moving2 && prices.moving2.delivery ? 
-            prices.moving2.delivery : 19800;
-          product_price += moving2_product;
-          delivery_price += moving2_delivery;
+        // 하부옵션 (좌/우)
+        // 하부옵션 타입: 1=부착서랍1단, 2=부착서랍2단, 3=본체함, 4=이동서랍2단, 5=이동서랍3단
+        function calculateLowerOptionPrice(type, side) {
+          if (!type || type === 0) return;
+          
+          if (type === 1) { // 부착서랍1단
+            var attach1_prices = prices && prices.drawerAttach && prices.drawerAttach.product ? 
+              prices.drawerAttach.product : null;
+            var depth_key = current_depth >= 800 ? "800" : (current_depth >= 700 ? "700" : "600");
+            var attach1_price = (attach1_prices && attach1_prices["1"] && attach1_prices["1"][depth_key]) ? 
+              attach1_prices["1"][depth_key] : 
+              ((attach1_prices && attach1_prices["1"] && attach1_prices["1"]["600"]) ? attach1_prices["1"]["600"] : 123800);
+            product_price += attach1_price;
+            var attach1_delivery = prices && prices.drawerAttach && prices.drawerAttach.delivery ? 
+              prices.drawerAttach.delivery : 29800;
+            delivery_price += attach1_delivery;
+          } else if (type === 2) { // 부착서랍2단
+            var attach2_prices = prices && prices.drawerAttach && prices.drawerAttach.product ? 
+              prices.drawerAttach.product : null;
+            var depth_key = current_depth >= 800 ? "800" : (current_depth >= 700 ? "700" : "600");
+            var attach2_price = (attach2_prices && attach2_prices["2"] && attach2_prices["2"][depth_key]) ? 
+              attach2_prices["2"][depth_key] : 
+              ((attach2_prices && attach2_prices["2"] && attach2_prices["2"]["600"]) ? attach2_prices["2"]["600"] : 175700);
+            product_price += attach2_price;
+            var attach2_delivery = prices && prices.drawerAttach && prices.drawerAttach.delivery ? 
+              prices.drawerAttach.delivery : 29800;
+            delivery_price += attach2_delivery;
+          } else if (type === 3) { // 본체함
+            var bodyBox_prices = prices && prices.bodyBox && prices.bodyBox.product ? 
+              prices.bodyBox.product : null;
+            var height_key = "H470"; // 기본값
+            var type_key = "attach_600"; // 기본값
+            var bodyBox_price = (bodyBox_prices && bodyBox_prices[height_key] && bodyBox_prices[height_key][type_key]) ? 
+              bodyBox_prices[height_key][type_key] : 100200;
+            product_price += bodyBox_price;
+            var bodyBox_delivery = prices && prices.bodyBox && prices.bodyBox.delivery ? 
+              prices.bodyBox.delivery : 29800;
+            delivery_price += bodyBox_delivery;
+          } else if (type === 4) { // 이동서랍2단
+            var moving2_product = prices && prices.moving2 && prices.moving2.product ? 
+              prices.moving2.product : 88000;
+            var moving2_delivery = prices && prices.moving2 && prices.moving2.delivery ? 
+              prices.moving2.delivery : 29800;
+            product_price += moving2_product;
+            delivery_price += moving2_delivery;
+          } else if (type === 5) { // 이동서랍3단
+            var moving3_product = prices && prices.moving3 && prices.moving3.product ? 
+              prices.moving3.product : 121000;
+            var moving3_delivery = prices && prices.moving3 && prices.moving3.delivery ? 
+              prices.moving3.delivery : 29800;
+            product_price += moving3_product;
+            delivery_price += moving3_delivery;
+          }
+        }
+        
+        // 하부옵션 좌/우 계산 (전역 변수 직접 접근)
+        if (lower_option_type_left && lower_option_type_left > 0) {
+          calculateLowerOptionPrice(lower_option_type_left, 'left');
+        }
+        if (lower_option_type_right && lower_option_type_right > 0) {
+          calculateLowerOptionPrice(lower_option_type_right, 'right');
+        }
+        
+        // ㄱ자옵션 좌/우 계산 (ㄱ자 책상 옵션이 있을 때만)
+        if (giyeok_position && giyeok_position > 0) {
+          if (giyeok_drawer_type_left && giyeok_drawer_type_left > 0) {
+            calculateLowerOptionPrice(giyeok_drawer_type_left, 'giyeok_left');
+          }
+          if (giyeok_drawer_type_right && giyeok_drawer_type_right > 0) {
+            calculateLowerOptionPrice(giyeok_drawer_type_right, 'giyeok_right');
+          }
+        }
+        
+        // 상부수납 가격 (전역 변수 직접 접근)
+        if (upper_storage_type && upper_storage_type > 0) {
+          if (upper_storage_type === 1 || upper_storage_type === 2) { // 슬라이딩1단/2단
+            var upperSlide_prices = prices && prices.upperSlide && prices.upperSlide.product ? 
+              prices.upperSlide.product : null;
+            var slide_level = upper_storage_type === 1 ? "1" : "2";
+            var upperSlide_price = (upperSlide_prices && upperSlide_prices[csv_width.toString()] && upperSlide_prices[csv_width.toString()][slide_level]) ? 
+              upperSlide_prices[csv_width.toString()][slide_level] : 
+              (slide_level === "1" ? 300600 : 418300); // 기본값
+            product_price += upperSlide_price;
+            var upperSlide_delivery_table = prices && prices.upperSlide && prices.upperSlide.delivery ? 
+              prices.upperSlide.delivery : null;
+            var upperSlide_delivery = (upperSlide_delivery_table && upperSlide_delivery_table[slide_level]) ? 
+              upperSlide_delivery_table[slide_level] : 39800;
+            delivery_price += upperSlide_delivery;
+          } else if (upper_storage_type === 3) { // 플랩
+            var upperStorage_prices = prices && prices.upperStorage && prices.upperStorage.product ? 
+              prices.upperStorage.product : null;
+            var upperStorage_price = (upperStorage_prices && upperStorage_prices[csv_width.toString()]) ? 
+              upperStorage_prices[csv_width.toString()] : 230200; // 기본값
+            product_price += upperStorage_price;
+            var upperStorage_delivery = prices && prices.upperStorage && prices.upperStorage.delivery ? 
+              prices.upperStorage.delivery : 39800;
+            delivery_price += upperStorage_delivery;
+          } else if (upper_storage_type === 4) { // 플랩스테이
+            var upperStorageDouble_prices = prices && prices.upperStorageDouble && prices.upperStorageDouble.product ? 
+              prices.upperStorageDouble.product : null;
+            var upperStorageDouble_price = (upperStorageDouble_prices && upperStorageDouble_prices[csv_width.toString()]) ? 
+              upperStorageDouble_prices[csv_width.toString()] : 447200; // 기본값
+            product_price += upperStorageDouble_price;
+            var upperStorageDouble_delivery = prices && prices.upperStorageDouble && prices.upperStorageDouble.delivery ? 
+              prices.upperStorageDouble.delivery : 39800;
+            delivery_price += upperStorageDouble_delivery;
+          }
         }
 
-        // 3단 이동 서랍
-        if (moving3_color) {
-          var moving3_product = prices && prices.moving3 && prices.moving3.product ? 
-            prices.moving3.product : 121000;
-          var moving3_delivery = prices && prices.moving3 && prices.moving3.delivery ? 
-            prices.moving3.delivery : 19800;
-          product_price += moving3_product;
-          delivery_price += moving3_delivery;
+        // -------------------------------
+        // 파티션 가격 (스마트파티션 부착형 + 클램프)
+        // -------------------------------
+        function mapPartiHeightToWidth(height) {
+          if (height <= 0) return 0;
+          if (height <= 480) return 400;
+          if (height <= 800) return 800;
+          if (height <= 1200) return 1200;
+          if (height <= 1400) return 1400;
+          if (height <= 1600) return 1600;
+          return 1800;
+        }
+
+        var smartPart_prices = prices && prices.smartPartition && prices.smartPartition.product ?
+          prices.smartPartition.product : null;
+        var smartPart_delivery = prices && prices.smartPartition && prices.smartPartition.delivery ?
+          prices.smartPartition.delivery : null;
+        var clamp_price = prices && prices.partitionClamp && typeof prices.partitionClamp.product === 'number' ?
+          prices.partitionClamp.product : 0;
+        var clamp_delivery = prices && prices.partitionClamp && typeof prices.partitionClamp.delivery === 'number' ?
+          prices.partitionClamp.delivery : 0;
+
+        var parti_count = 0;
+
+        // 좌/우/중첩 수직 파티션
+        function addVerticalPartPrice(height) {
+          if (!height || height <= 0) return;
+          var w = mapPartiHeightToWidth(height);
+          if (!w) return;
+          
+          // 400(460)만 miniStanding 사용, 나머지는 attach 사용
+          var panelPrice = 0;
+          if (w === 400) {
+            // 400(460)은 miniStanding만 사용
+            panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].miniStanding) ? 
+              smartPart_prices[w.toString()].miniStanding : 84200; // 기본값
+          } else {
+            // 나머지는 attach 사용
+            panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].attach) ? 
+              smartPart_prices[w.toString()].attach : 
+              (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700)))); // 기본값
+          }
+          
+          product_price += panelPrice;
+          var parti_delivery = (smartPart_delivery && smartPart_delivery[w.toString()]) ? 
+            smartPart_delivery[w.toString()] : 
+            (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000))))); // 기본값
+          delivery_price += parti_delivery;
+          parti_count += 1;
+        }
+
+        // 파티션 변수 확인 및 가격 계산 (전역 변수 직접 접근)
+        // 좌측 수직 파티션
+        if (parti_ver_L_height && parti_ver_L_height > 0) {
+          addVerticalPartPrice(parti_ver_L_height);
+        }
+        // 우측 수직 파티션
+        if (parti_ver_R_height && parti_ver_R_height > 0) {
+          addVerticalPartPrice(parti_ver_R_height);
+        }
+        // 중첩 수직 파티션 (수량 계산: 책상배열수-1, 맞은편 복사 있으면 -2)
+        if (parti_ver_M_height && parti_ver_M_height > 0) {
+          var parti_M_quantity = Math.max(0, num_desk - 1); // 기본: 책상배열수 - 1 (최소 0)
+          if (opposite_desk_distance != 0) {
+            parti_M_quantity = Math.max(0, parti_M_quantity - 2); // 맞은편 복사 있으면 -2 (최소 0)
+          }
+          if (parti_M_quantity > 0) {
+            var w = mapPartiHeightToWidth(parti_ver_M_height);
+            if (w) {
+              // 400(460)만 miniStanding 사용, 나머지는 attach 사용
+              var panelPrice = 0;
+              if (w === 400) {
+                panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].miniStanding) ? 
+                  smartPart_prices[w.toString()].miniStanding : 84200;
+              } else {
+                panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].attach) ? 
+                  smartPart_prices[w.toString()].attach : 
+                  (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700))));
+              }
+              product_price += panelPrice * parti_M_quantity;
+              var parti_delivery = (smartPart_delivery && smartPart_delivery[w.toString()]) ? 
+                smartPart_delivery[w.toString()] : 
+                (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000)))));
+              delivery_price += parti_delivery * parti_M_quantity;
+              parti_count += parti_M_quantity;
+            }
+          }
+        }
+
+        // 전면 파티션 (폭 기준)
+        if (parti_hol_B_width && parti_hol_B_width > 0) {
+          var frontW = parti_hol_B_width;
+          // 전면 파티션은 400이 아니므로 항상 attach 사용
+          var frontPrice = (smartPart_prices && smartPart_prices[frontW.toString()] && smartPart_prices[frontW.toString()].attach) ? 
+            smartPart_prices[frontW.toString()].attach : 
+            (frontW === 1200 ? 145700 : (frontW === 1400 ? 161700 : (frontW === 1600 ? 194000 : 223700))); // 기본값
+          product_price += frontPrice;
+          var front_delivery = (smartPart_delivery && smartPart_delivery[frontW.toString()]) ? 
+            smartPart_delivery[frontW.toString()] : 
+            (frontW === 1200 ? 9600 : (frontW === 1400 ? 9600 : (frontW === 1600 ? 9600 : 11000))); // 기본값
+          delivery_price += front_delivery;
+          parti_count += 1;
+        }
+
+        // 파티션 클램프 (파티션 1개당 1조)
+        if (parti_count > 0 && clamp_price > 0) {
+          product_price += clamp_price * parti_count;
+        }
+        if (parti_count > 0 && clamp_delivery > 0) {
+          delivery_price += clamp_delivery * parti_count;
         }
 
         // 책상 배열 배수
@@ -5287,51 +5812,88 @@
         // 가격 데이터에서 가져오기 (없으면 기본값 사용)
         var prices = priceData && priceData.prices ? priceData.prices : null;
         
-        var board_price_table = prices && prices.board && prices.board.table ? 
-          prices.board.table.flat() : // 2D 배열을 1D로 변환
-          [0, 0, 0, 0, 0, 0,
-           109800, 129800, 141700, 159700, 193100, 0,
-           118400, 139900, 159900, 198800, 214500, 0,
-           151000, 169800, 189800, 217300, 241400, 0,
-           0, 0, 0, 0, 0, 0,
-           0, 0, 0, 0, 0, 0,
-           0, 0, 0, 0, 0, 0];
-        var shelf_product_price_table = prices && prices.shelf && prices.shelf.product ? 
-          prices.shelf.product : [34000, 43000, 45000, 51000, 57000, 0];
-        var shelf_delivery_price_table = prices && prices.shelf && prices.shelf.delivery ? 
-          prices.shelf.delivery : [29800, 29800, 32800, 35800, 38800, 41800, 44800];
-        var fence_price_table = prices && prices.fence && prices.fence.product ? 
-          prices.fence.product : [81700, 101700, 103400, 105000, 113900, 0];
+        // 폭 매핑 함수: UI 폭 → CSV 폭
+        function mapWidthToCSV(uiWidth) {
+          if (uiWidth === 1200) return 1180;
+          if (uiWidth === 1600) return 1580;
+          return uiWidth; // 1400, 1800, 2060, 2360은 동일
+        }
+        
+        // 현재 UI 폭/깊이 값
+        var width_values = [0, 1200, 1400, 1600, 1800, 2060, 2360];
+        var depth_values = [0, 500, 600, 700, 800, 1000, 1200];
+        var current_width = width_values[board_width_idx] || 0;
+        var current_depth = depth_values[board_depth_idx] || 0;
+        var csv_width = mapWidthToCSV(current_width);
         
         var width_names = ["", "1200", "1400", "1600", "1800", "2060", "2360"];
         var depth_names = ["", "500", "600", "700", "800", "1000", "1200"];
         var vertical_names = ["", "646", "925", "1400", "1860"];
         
-        var table_index = (board_width_idx - 1) + (board_depth_idx - 1) * 6;
-        var board_price = board_price_table[table_index] || 0;
         var desk_multiplier = num_desk > 1 ? num_desk : 1;
         var opposite_multiplier = opposite_desk_distance != 0 ? 2 : 1;
         var total_multiplier = desk_multiplier * opposite_multiplier;
         
-        // 책상 본체
-        if (board_price > 0) {
+        // 책상 본체 가격 (2D 배열에서 직접 가져오기)
+        var board_price_table = prices && prices.board && prices.board.table ? 
+          prices.board.table : null;
+        var board_delivery_table = prices && prices.board && prices.board.delivery ? 
+          prices.board.delivery : null;
+        
+        if (board_price_table && board_depth_idx > 0 && board_width_idx > 0) {
+          var board_price = board_price_table[board_depth_idx - 1][board_width_idx - 1];
+          if (board_price && board_price > 0) {
+            specList.push({
+              name: "책상 본체 (" + width_names[board_width_idx] + " x " + depth_names[board_depth_idx] + ")",
+              qty: total_multiplier,
+              unitPrice: board_price,
+              totalPrice: board_price * total_multiplier
+            });
+          }
+          
+          // 배송비도 폭/깊이별로 다를 수 있음
+          if (board_delivery_table && board_delivery_table[board_depth_idx - 1]) {
+            var board_delivery = board_delivery_table[board_depth_idx - 1][board_width_idx - 1];
+            if (board_delivery && board_delivery > 0) {
+              specList.push({
+                name: "기본 배송비",
+                qty: total_multiplier,
+                unitPrice: board_delivery,
+                totalPrice: board_delivery * total_multiplier
+              });
+            } else {
+              // 기본 배송비
+              var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+                prices.delivery.basic : 29800;
+              specList.push({
+                name: "기본 배송비",
+                qty: total_multiplier,
+                unitPrice: basic_delivery,
+                totalPrice: basic_delivery * total_multiplier
+              });
+            }
+          } else {
+            // 기본 배송비
+            var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+              prices.delivery.basic : 29800;
+            specList.push({
+              name: "기본 배송비",
+              qty: total_multiplier,
+              unitPrice: basic_delivery,
+              totalPrice: basic_delivery * total_multiplier
+            });
+          }
+        } else {
+          // 기본 배송비
+          var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
+            prices.delivery.basic : 29800;
           specList.push({
-            name: "책상 본체 (" + width_names[board_width_idx] + " x " + depth_names[board_depth_idx] + ")",
+            name: "기본 배송비",
             qty: total_multiplier,
-            unitPrice: board_price,
-            totalPrice: board_price * total_multiplier
+            unitPrice: basic_delivery,
+            totalPrice: basic_delivery * total_multiplier
           });
         }
-        
-        // 배송비
-        var basic_delivery = prices && prices.delivery && prices.delivery.basic ? 
-          prices.delivery.basic : 29800;
-        specList.push({
-          name: "기본 배송비",
-          qty: total_multiplier,
-          unitPrice: basic_delivery,
-          totalPrice: basic_delivery * total_multiplier
-        });
         
         // ㅁ다리
         if (is_mium) {
@@ -5353,168 +5915,491 @@
           });
         }
         
-        // 선반
-        if (vertical_length_idx > 0) {
-          var shelf_price = shelf_product_price_table[board_width_idx - 1] || 0;
-          if (shelf_price > 0 && shelf_num > 0) {
-            specList.push({
-              name: "선반 (" + width_names[board_width_idx] + " x " + shelf_num + "개)",
-              qty: total_multiplier,
-              unitPrice: shelf_price * shelf_num,
-              totalPrice: shelf_price * shelf_num * total_multiplier
-            });
-          }
-          
-          if (shelf_num > 0) {
-            var shelf_delivery = shelf_delivery_price_table[shelf_num - 1] || 0;
-            if (shelf_delivery > 0) {
-              specList.push({
-                name: "선반 배송비",
-                qty: total_multiplier,
-                unitPrice: shelf_delivery,
-                totalPrice: shelf_delivery * total_multiplier
-              });
-            }
-          }
-          
-          // 수직부재 높이 추가 비용
-          var heightExtra = prices && prices.shelf && prices.shelf.heightExtra ? 
-            prices.shelf.heightExtra : { "925": 11400, "1400": 16000, "1860": 21900 };
-          
-          if (vertical_length_idx == 2 && heightExtra["925"]) {
-            specList.push({
-              name: "수직부재 높이 추가 (925mm)",
-              qty: total_multiplier,
-              unitPrice: heightExtra["925"],
-              totalPrice: heightExtra["925"] * total_multiplier
-            });
-          } else if (vertical_length_idx == 3 && heightExtra["1400"]) {
-            specList.push({
-              name: "수직부재 높이 추가 (1400mm)",
-              qty: total_multiplier,
-              unitPrice: heightExtra["1400"],
-              totalPrice: heightExtra["1400"] * total_multiplier
-            });
-          } else if (vertical_length_idx == 4 && heightExtra["1860"]) {
-            specList.push({
-              name: "수직부재 높이 추가 (1860mm)",
-              qty: total_multiplier,
-              unitPrice: heightExtra["1860"],
-              totalPrice: heightExtra["1860"] * total_multiplier
-            });
-          }
+        // 수직부재 가격
+        if (vertical_length_idx && vertical_length > 0) {
+          var vertical_prices = prices && prices.vertical && prices.vertical.product ? 
+            prices.vertical.product : null;
+          // 가격 데이터가 없어도 기본값 사용하여 항상 추가
+          var vertical_price = (vertical_prices && vertical_prices[vertical_length.toString()]) ? 
+            vertical_prices[vertical_length.toString()] : 
+            (vertical_length === 460 ? 81800 : (vertical_length === 646 ? 86200 : (vertical_length === 925 ? 102700 : (vertical_length === 1400 ? 118400 : 133700)))); // 기본값
+          specList.push({
+            name: "수직부재 (" + vertical_length + "mm)",
+            qty: total_multiplier,
+            unitPrice: vertical_price,
+            totalPrice: vertical_price * total_multiplier
+          });
+          var vertical_delivery = prices && prices.vertical && prices.vertical.delivery ? 
+            prices.vertical.delivery : 29800;
+          specList.push({
+            name: "수직부재 배송비",
+            qty: total_multiplier,
+            unitPrice: vertical_delivery,
+            totalPrice: vertical_delivery * total_multiplier
+          });
         }
         
-        // ㄱ자 모듈
+        // 선반 가격 (폭 x 깊이별, 현재는 깊이 200만 사용)
+        if (vertical_length_idx && shelf_num > 0) {
+          var shelf_prices = prices && prices.shelf && prices.shelf.product ? 
+            prices.shelf.product : null;
+          // 가격 데이터가 없어도 기본값 사용하여 항상 추가
+          var shelf_unit_price = (shelf_prices && shelf_prices[csv_width.toString()] && shelf_prices[csv_width.toString()]["200"]) ? 
+            shelf_prices[csv_width.toString()]["200"] : 
+            (csv_width === 1180 ? 70000 : (csv_width === 1400 ? 77300 : (csv_width === 1580 ? 82900 : (csv_width === 1800 ? 94400 : (csv_width === 2060 ? 107100 : 143400))))); // 기본값
+          specList.push({
+            name: "선반 (" + width_names[board_width_idx] + " x " + shelf_num + "개)",
+            qty: total_multiplier,
+            unitPrice: shelf_unit_price * shelf_num,
+            totalPrice: shelf_unit_price * shelf_num * total_multiplier
+          });
+          
+          // 선반 배송비 (개수별)
+          var shelf_delivery_table = prices && prices.shelf && prices.shelf.delivery ? 
+            prices.shelf.delivery : null;
+          var shelf_delivery = (shelf_delivery_table && shelf_delivery_table[shelf_num.toString()]) ? 
+            shelf_delivery_table[shelf_num.toString()] : 
+            (shelf_num === 1 ? 29800 : (shelf_num === 2 ? 29800 : (shelf_num === 3 ? 32800 : (shelf_num === 4 ? 35800 : (shelf_num === 5 ? 38800 : (shelf_num === 6 ? 41800 : 44800)))))); // 기본값
+          specList.push({
+            name: "선반 배송비",
+            qty: total_multiplier,
+            unitPrice: shelf_delivery,
+            totalPrice: shelf_delivery * total_multiplier
+          });
+        }
+        
+        // ㄱ자 모듈 (폭별 가격)
         if (giyeok_position) {
-          var giyeok_price = prices && prices.giyeok && prices.giyeok.product ? 
-            prices.giyeok.product : 94500;
+          var giyeok_prices = prices && prices.giyeok && prices.giyeok.product ? 
+            prices.giyeok.product : null;
+          var giyeok_price = 150900; // 기본값
+          if (giyeok_prices) {
+            if (current_width <= 1200) giyeok_price = giyeok_prices["1205"] || giyeok_prices["800"] || 150900;
+            else if (current_width <= 1400) giyeok_price = giyeok_prices["1385"] || giyeok_prices["1205"] || 176100;
+            else if (current_width <= 1600) giyeok_price = giyeok_prices["1605"] || giyeok_prices["1385"] || 203400;
+            else if (current_width <= 1800) giyeok_price = giyeok_prices["1865"] || giyeok_prices["1605"] || 212900;
+            else giyeok_price = giyeok_prices["1865"] || 222800;
+          }
           specList.push({
             name: "ㄱ자 모듈",
             qty: total_multiplier,
             unitPrice: giyeok_price,
             totalPrice: giyeok_price * total_multiplier
           });
+          var giyeok_delivery = prices && prices.giyeok && prices.giyeok.delivery ? 
+            prices.giyeok.delivery : 29800;
+          specList.push({
+            name: "ㄱ자 모듈 배송비",
+            qty: total_multiplier,
+            unitPrice: giyeok_delivery,
+            totalPrice: giyeok_delivery * total_multiplier
+          });
         }
-        
+
         // 데스크 매트
         if (desk_mat_color) {
           var deskMat_product = prices && prices.deskMat && prices.deskMat.product ? 
-            prices.deskMat.product : 65000;
-          var deskMat_delivery = prices && prices.deskMat && prices.deskMat.delivery ? 
-            prices.deskMat.delivery : 5000;
+            prices.deskMat.product : 61500;
           specList.push({
             name: "데스크 매트",
             qty: total_multiplier,
             unitPrice: deskMat_product,
             totalPrice: deskMat_product * total_multiplier
           });
-          specList.push({
-            name: "데스크 매트 배송비",
-            qty: total_multiplier,
-            unitPrice: deskMat_delivery,
-            totalPrice: deskMat_delivery * total_multiplier
-          });
+          // 무료배송이므로 배송비 항목 추가 안함
         }
-        
-        // 미니서랍
+
+        // 미니서랍 (높이별 가격)
         if (drawer_color) {
-          var drawer_product = prices && prices.drawer && prices.drawer.product ? 
-            prices.drawer.product : 34400;
-          var drawer_delivery = prices && prices.drawer && prices.drawer.delivery ? 
-            prices.drawer.delivery : 3000;
+          var drawer_prices = prices && prices.drawer && prices.drawer.product ? 
+            prices.drawer.product : null;
+          var drawer_product = 18300; // 기본값 H45
+          if (drawer_prices) {
+            drawer_product = drawer_prices["H45"] || 18300;
+          }
           specList.push({
             name: "미니서랍",
             qty: total_multiplier,
             unitPrice: drawer_product,
             totalPrice: drawer_product * total_multiplier
           });
-          specList.push({
-            name: "미니서랍 배송비",
-            qty: total_multiplier,
-            unitPrice: drawer_delivery,
-            totalPrice: drawer_delivery * total_multiplier
-          });
+          // 무료배송이므로 배송비 항목 추가 안함
         }
-        
-        // 하부가림막
+
+        // 하부가림판 (폭별 가격)
         if (fence_color) {
-          var fence_price = fence_price_table[board_width_idx - 1] || 0;
-          if (fence_price > 0) {
+          var fence_prices = prices && prices.fence && prices.fence.product ? 
+            prices.fence.product : null;
+          if (fence_prices && fence_prices[csv_width.toString()]) {
             specList.push({
-              name: "하부가림막 (" + width_names[board_width_idx] + ")",
+              name: "하부가림판 (" + width_names[board_width_idx] + ")",
               qty: total_multiplier,
-              unitPrice: fence_price,
-              totalPrice: fence_price * total_multiplier
+              unitPrice: fence_prices[csv_width.toString()],
+              totalPrice: fence_prices[csv_width.toString()] * total_multiplier
             });
           }
           var fence_delivery = prices && prices.fence && prices.fence.delivery ? 
-            prices.fence.delivery : 19800;
+            prices.fence.delivery : 29800;
           specList.push({
-            name: "하부가림막 배송비",
+            name: "하부가림판 배송비",
             qty: total_multiplier,
             unitPrice: fence_delivery,
             totalPrice: fence_delivery * total_multiplier
           });
         }
         
-        // 2단 이동 서랍
-        if (moving2_color) {
-          var moving2_product = prices && prices.moving2 && prices.moving2.product ? 
-            prices.moving2.product : 88000;
-          var moving2_delivery = prices && prices.moving2 && prices.moving2.delivery ? 
-            prices.moving2.delivery : 19800;
-          specList.push({
-            name: "2단 이동 서랍",
-            qty: total_multiplier,
-            unitPrice: moving2_product,
-            totalPrice: moving2_product * total_multiplier
-          });
-          specList.push({
-            name: "2단 이동 서랍 배송비",
-            qty: total_multiplier,
-            unitPrice: moving2_delivery,
-            totalPrice: moving2_delivery * total_multiplier
-          });
+        // 하부옵션 (좌/우) - 부착서랍, 본체함, 이동서랍
+        function addLowerOptionSpec(type, side) {
+          if (!type || type === 0) return;
+          
+          var sideName = side === 'left' ? '(좌)' : (side === 'right' ? '(우)' : '');
+          
+          if (type === 1) { // 부착서랍1단
+            var attach1_prices = prices && prices.drawerAttach && prices.drawerAttach.product ? 
+              prices.drawerAttach.product : null;
+            var depth_key = current_depth >= 800 ? "800" : (current_depth >= 700 ? "700" : "600");
+            var attach1_price = (attach1_prices && attach1_prices["1"] && attach1_prices["1"][depth_key]) ? 
+              attach1_prices["1"][depth_key] : 
+              ((attach1_prices && attach1_prices["1"] && attach1_prices["1"]["600"]) ? attach1_prices["1"]["600"] : 123800);
+            specList.push({
+              name: "부착서랍1단 " + sideName,
+              qty: total_multiplier,
+              unitPrice: attach1_price,
+              totalPrice: attach1_price * total_multiplier
+            });
+            var attach1_delivery = prices && prices.drawerAttach && prices.drawerAttach.delivery ? 
+              prices.drawerAttach.delivery : 29800;
+            specList.push({
+              name: "부착서랍1단 배송비 " + sideName,
+              qty: total_multiplier,
+              unitPrice: attach1_delivery,
+              totalPrice: attach1_delivery * total_multiplier
+            });
+          } else if (type === 2) { // 부착서랍2단
+            var attach2_prices = prices && prices.drawerAttach && prices.drawerAttach.product ? 
+              prices.drawerAttach.product : null;
+            var depth_key = current_depth >= 800 ? "800" : (current_depth >= 700 ? "700" : "600");
+            var attach2_price = (attach2_prices && attach2_prices["2"] && attach2_prices["2"][depth_key]) ? 
+              attach2_prices["2"][depth_key] : 
+              ((attach2_prices && attach2_prices["2"] && attach2_prices["2"]["600"]) ? attach2_prices["2"]["600"] : 175700);
+            specList.push({
+              name: "부착서랍2단 " + sideName,
+              qty: total_multiplier,
+              unitPrice: attach2_price,
+              totalPrice: attach2_price * total_multiplier
+            });
+            var attach2_delivery = prices && prices.drawerAttach && prices.drawerAttach.delivery ? 
+              prices.drawerAttach.delivery : 29800;
+            specList.push({
+              name: "부착서랍2단 배송비 " + sideName,
+              qty: total_multiplier,
+              unitPrice: attach2_delivery,
+              totalPrice: attach2_delivery * total_multiplier
+            });
+          } else if (type === 3) { // 본체함
+            var bodyBox_prices = prices && prices.bodyBox && prices.bodyBox.product ? 
+              prices.bodyBox.product : null;
+            var height_key = "H470"; // 기본값
+            var type_key = "attach_600"; // 기본값
+            var bodyBox_price = (bodyBox_prices && bodyBox_prices[height_key] && bodyBox_prices[height_key][type_key]) ? 
+              bodyBox_prices[height_key][type_key] : 100200;
+            specList.push({
+              name: "본체함 " + sideName,
+              qty: total_multiplier,
+              unitPrice: bodyBox_price,
+              totalPrice: bodyBox_price * total_multiplier
+            });
+            var bodyBox_delivery = prices && prices.bodyBox && prices.bodyBox.delivery ? 
+              prices.bodyBox.delivery : 29800;
+            specList.push({
+              name: "본체함 배송비 " + sideName,
+              qty: total_multiplier,
+              unitPrice: bodyBox_delivery,
+              totalPrice: bodyBox_delivery * total_multiplier
+            });
+          } else if (type === 4) { // 이동서랍2단
+            var moving2_product = prices && prices.moving2 && prices.moving2.product ? 
+              prices.moving2.product : 88000;
+            specList.push({
+              name: "2단 이동 서랍 " + sideName,
+              qty: total_multiplier,
+              unitPrice: moving2_product,
+              totalPrice: moving2_product * total_multiplier
+            });
+            var moving2_delivery = prices && prices.moving2 && prices.moving2.delivery ? 
+              prices.moving2.delivery : 29800;
+            specList.push({
+              name: "2단 이동 서랍 배송비 " + sideName,
+              qty: total_multiplier,
+              unitPrice: moving2_delivery,
+              totalPrice: moving2_delivery * total_multiplier
+            });
+          } else if (type === 5) { // 이동서랍3단
+            var moving3_product = prices && prices.moving3 && prices.moving3.product ? 
+              prices.moving3.product : 121000;
+            specList.push({
+              name: "3단 이동 서랍 " + sideName,
+              qty: total_multiplier,
+              unitPrice: moving3_product,
+              totalPrice: moving3_product * total_multiplier
+            });
+            var moving3_delivery = prices && prices.moving3 && prices.moving3.delivery ? 
+              prices.moving3.delivery : 29800;
+            specList.push({
+              name: "3단 이동 서랍 배송비 " + sideName,
+              qty: total_multiplier,
+              unitPrice: moving3_delivery,
+              totalPrice: moving3_delivery * total_multiplier
+            });
+          }
         }
         
-        // 3단 이동 서랍
-        if (moving3_color) {
-          var moving3_product = prices && prices.moving3 && prices.moving3.product ? 
-            prices.moving3.product : 121000;
-          var moving3_delivery = prices && prices.moving3 && prices.moving3.delivery ? 
-            prices.moving3.delivery : 19800;
+        // 하부옵션 좌/우 (전역 변수 직접 접근)
+        // 실제로 설정된 변수를 확인하여 명세에 추가
+        if (lower_option_type_left && lower_option_type_left > 0) {
+          // 타입에 따라 실제 변수 확인
+          var shouldAdd = false;
+          if (lower_option_type_left == 1 && attach1_left_color > 0) {
+            shouldAdd = true;
+          } else if (lower_option_type_left == 2 && attach2_left_color > 0) {
+            shouldAdd = true;
+          } else if (lower_option_type_left == 3 && attach3_left_color > 0) {
+            shouldAdd = true;
+          } else if (lower_option_type_left == 4 && moving2_color > 0 && moving2_position == 1) {
+            shouldAdd = true;
+          } else if (lower_option_type_left == 5 && moving3_color > 0 && moving3_position == 1) {
+            shouldAdd = true;
+          }
+          if (shouldAdd) {
+            addLowerOptionSpec(lower_option_type_left, 'left');
+          }
+        }
+        if (lower_option_type_right && lower_option_type_right > 0) {
+          // 타입에 따라 실제 변수 확인
+          var shouldAdd = false;
+          if (lower_option_type_right == 1 && attach1_right_color > 0) {
+            shouldAdd = true;
+          } else if (lower_option_type_right == 2 && attach2_right_color > 0) {
+            shouldAdd = true;
+          } else if (lower_option_type_right == 3 && attach3_right_color > 0) {
+            shouldAdd = true;
+          } else if (lower_option_type_right == 4 && moving2_color > 0 && moving2_position == 2) {
+            shouldAdd = true;
+          } else if (lower_option_type_right == 5 && moving3_color > 0 && moving3_position == 2) {
+            shouldAdd = true;
+          }
+          if (shouldAdd) {
+            addLowerOptionSpec(lower_option_type_right, 'right');
+          }
+        }
+        
+        // ㄱ자옵션 좌/우 (ㄱ자 책상 옵션이 있을 때만)
+        if (giyeok_position && giyeok_position > 0) {
+          if (giyeok_drawer_type_left && giyeok_drawer_type_left > 0) {
+            addLowerOptionSpec(giyeok_drawer_type_left, 'giyeok_left');
+          }
+          if (giyeok_drawer_type_right && giyeok_drawer_type_right > 0) {
+            addLowerOptionSpec(giyeok_drawer_type_right, 'giyeok_right');
+          }
+        }
+        
+        // 상부수납 가격 (전역 변수 직접 접근)
+        if (upper_storage_type && upper_storage_type > 0) {
+          if (upper_storage_type === 1 || upper_storage_type === 2) { // 슬라이딩1단/2단
+            var upperSlide_prices = prices && prices.upperSlide && prices.upperSlide.product ? 
+              prices.upperSlide.product : null;
+            var slide_level = upper_storage_type === 1 ? "1" : "2";
+            var upperSlide_price = (upperSlide_prices && upperSlide_prices[csv_width.toString()] && upperSlide_prices[csv_width.toString()][slide_level]) ? 
+              upperSlide_prices[csv_width.toString()][slide_level] : 
+              (slide_level === "1" ? 300600 : 418300); // 기본값
+            specList.push({
+              name: "상부 슬라이드장 " + slide_level + "단 (" + width_names[board_width_idx] + ")",
+              qty: total_multiplier,
+              unitPrice: upperSlide_price,
+              totalPrice: upperSlide_price * total_multiplier
+            });
+            var upperSlide_delivery_table = prices && prices.upperSlide && prices.upperSlide.delivery ? 
+              prices.upperSlide.delivery : null;
+            var upperSlide_delivery = (upperSlide_delivery_table && upperSlide_delivery_table[slide_level]) ? 
+              upperSlide_delivery_table[slide_level] : 39800;
+            specList.push({
+              name: "상부 슬라이드장 배송비",
+              qty: total_multiplier,
+              unitPrice: upperSlide_delivery,
+              totalPrice: upperSlide_delivery * total_multiplier
+            });
+          } else if (upper_storage_type === 3) { // 플랩
+            var upperStorage_prices = prices && prices.upperStorage && prices.upperStorage.product ? 
+              prices.upperStorage.product : null;
+            var upperStorage_price = (upperStorage_prices && upperStorage_prices[csv_width.toString()]) ? 
+              upperStorage_prices[csv_width.toString()] : 230200; // 기본값
+            specList.push({
+              name: "상부수납장 플랩 (" + width_names[board_width_idx] + ")",
+              qty: total_multiplier,
+              unitPrice: upperStorage_price,
+              totalPrice: upperStorage_price * total_multiplier
+            });
+            var upperStorage_delivery = prices && prices.upperStorage && prices.upperStorage.delivery ? 
+              prices.upperStorage.delivery : 39800;
+            specList.push({
+              name: "상부수납장 배송비",
+              qty: total_multiplier,
+              unitPrice: upperStorage_delivery,
+              totalPrice: upperStorage_delivery * total_multiplier
+            });
+          } else if (upper_storage_type === 4) { // 플랩스테이
+            var upperStorageDouble_prices = prices && prices.upperStorageDouble && prices.upperStorageDouble.product ? 
+              prices.upperStorageDouble.product : null;
+            var upperStorageDouble_price = (upperStorageDouble_prices && upperStorageDouble_prices[csv_width.toString()]) ? 
+              upperStorageDouble_prices[csv_width.toString()] : 447200; // 기본값
+            specList.push({
+              name: "양면 상부수납장 (" + width_names[board_width_idx] + ")",
+              qty: total_multiplier,
+              unitPrice: upperStorageDouble_price,
+              totalPrice: upperStorageDouble_price * total_multiplier
+            });
+            var upperStorageDouble_delivery = prices && prices.upperStorageDouble && prices.upperStorageDouble.delivery ? 
+              prices.upperStorageDouble.delivery : 39800;
+            specList.push({
+              name: "양면 상부수납장 배송비",
+              qty: total_multiplier,
+              unitPrice: upperStorageDouble_delivery,
+              totalPrice: upperStorageDouble_delivery * total_multiplier
+            });
+          }
+        }
+
+        // -------------------------------
+        // 파티션 가격 (스마트파티션 부착형 + 클램프)
+        // -------------------------------
+        function mapPartiHeightToWidth(height) {
+          if (height <= 0) return 0;
+          if (height <= 480) return 400;
+          if (height <= 800) return 800;
+          if (height <= 1200) return 1200;
+          if (height <= 1400) return 1400;
+          if (height <= 1600) return 1600;
+          return 1800;
+        }
+
+        var smartPart_prices = prices && prices.smartPartition && prices.smartPartition.product ?
+          prices.smartPartition.product : null;
+        var smartPart_delivery = prices && prices.smartPartition && prices.smartPartition.delivery ?
+          prices.smartPartition.delivery : null;
+        var clamp_price = prices && prices.partitionClamp && typeof prices.partitionClamp.product === 'number' ?
+          prices.partitionClamp.product : 0;
+        var clamp_delivery = prices && prices.partitionClamp && typeof prices.partitionClamp.delivery === 'number' ?
+          prices.partitionClamp.delivery : 0;
+
+        var parti_count = 0;
+
+        function addPartitionSpec(namePrefix, heightOrWidth, isFront) {
+          if (!heightOrWidth || heightOrWidth <= 0) return;
+          var w = isFront ? heightOrWidth : mapPartiHeightToWidth(heightOrWidth);
+          if (!w) return;
+          
+          // 400(460)만 miniStanding 사용, 나머지는 attach 사용
+          var panelPrice = 0;
+          if (w === 400) {
+            // 400(460)은 miniStanding만 사용
+            panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].miniStanding) ? 
+              smartPart_prices[w.toString()].miniStanding : 84200; // 기본값
+          } else {
+            // 나머지는 attach 사용
+            panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].attach) ? 
+              smartPart_prices[w.toString()].attach : 
+              (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700)))); // 기본값
+          }
+          
           specList.push({
-            name: "3단 이동 서랍",
+            name: namePrefix + " (" + (isFront ? w : heightOrWidth) + "mm)",
             qty: total_multiplier,
-            unitPrice: moving3_product,
-            totalPrice: moving3_product * total_multiplier
+            unitPrice: panelPrice,
+            totalPrice: panelPrice * total_multiplier
           });
+          
+          // 배송비 추가
+          var parti_delivery = (smartPart_delivery && smartPart_delivery[w.toString()]) ? 
+            smartPart_delivery[w.toString()] : 
+            (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000))))); // 기본값
           specList.push({
-            name: "3단 이동 서랍 배송비",
+            name: namePrefix + " 배송비",
             qty: total_multiplier,
-            unitPrice: moving3_delivery,
-            totalPrice: moving3_delivery * total_multiplier
+            unitPrice: parti_delivery,
+            totalPrice: parti_delivery * total_multiplier
+          });
+          
+          parti_count += 1; // 파티션 개수 증가
+        }
+
+        // 좌/우/중첩 수직 파티션 (전역 변수 직접 접근)
+        if (parti_ver_L_height && parti_ver_L_height > 0) {
+          addPartitionSpec("파티션 좌", parti_ver_L_height, false);
+        }
+        if (parti_ver_R_height && parti_ver_R_height > 0) {
+          addPartitionSpec("파티션 우", parti_ver_R_height, false);
+        }
+        // 중첩 수직 파티션 (수량 계산: 책상배열수-1, 맞은편 복사 있으면 -2)
+        if (parti_ver_M_height && parti_ver_M_height > 0) {
+          var parti_M_quantity = Math.max(0, num_desk - 1); // 기본: 책상배열수 - 1 (최소 0)
+          if (opposite_desk_distance != 0) {
+            parti_M_quantity = Math.max(0, parti_M_quantity - 2); // 맞은편 복사 있으면 -2 (최소 0)
+          }
+          if (parti_M_quantity > 0) {
+            var w = mapPartiHeightToWidth(parti_ver_M_height);
+            if (w) {
+              // 400(460)만 miniStanding 사용, 나머지는 attach 사용
+              var panelPrice = 0;
+              if (w === 400) {
+                panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].miniStanding) ? 
+                  smartPart_prices[w.toString()].miniStanding : 84200;
+              } else {
+                panelPrice = (smartPart_prices && smartPart_prices[w.toString()] && smartPart_prices[w.toString()].attach) ? 
+                  smartPart_prices[w.toString()].attach : 
+                  (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700))));
+              }
+              if (panelPrice > 0) {
+                specList.push({
+                  name: "파티션 중첩 (" + parti_ver_M_height + "mm) x " + parti_M_quantity,
+                  qty: total_multiplier,
+                  unitPrice: panelPrice * parti_M_quantity,
+                  totalPrice: panelPrice * parti_M_quantity * total_multiplier
+                });
+                var parti_delivery = (smartPart_delivery && smartPart_delivery[w.toString()]) ? 
+                  smartPart_delivery[w.toString()] : 
+                  (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000)))));
+                specList.push({
+                  name: "파티션 중첩 배송비",
+                  qty: total_multiplier,
+                  unitPrice: parti_delivery * parti_M_quantity,
+                  totalPrice: parti_delivery * parti_M_quantity * total_multiplier
+                });
+                parti_count += parti_M_quantity;
+              }
+            }
+          }
+        }
+
+        // 전면 파티션 (폭 기준) (전역 변수 직접 접근)
+        if (parti_hol_B_width && parti_hol_B_width > 0) {
+          addPartitionSpec("파티션 전면", parti_hol_B_width, true);
+        }
+
+        // 파티션 클램프 (파티션 1개당 1조)
+        if (parti_count > 0 && clamp_price > 0) {
+          specList.push({
+            name: "파티션 클램프 (1조 x " + parti_count + ")",
+            qty: total_multiplier,
+            unitPrice: clamp_price * parti_count,
+            totalPrice: clamp_price * parti_count * total_multiplier
+          });
+        }
+        if (parti_count > 0 && clamp_delivery > 0) {
+          specList.push({
+            name: "파티션 클램프 배송비",
+            qty: total_multiplier,
+            unitPrice: clamp_delivery * parti_count,
+            totalPrice: clamp_delivery * parti_count * total_multiplier
           });
         }
         
@@ -6945,6 +7830,86 @@
         
         // 옵션 명세 리스트 업데이트
         updateOptionSpecList();
+        
+        // 제품 구성 중심을 타겟으로 설정 (기존 책상 + 맞은편 책상 포함)
+        var product_center_y = frame_length + board_thickness + 2000; // 책상 상판 높이 + 2000 (제품을 많이 위로 올림)
+        
+        // Z축 중심 계산: 맞은편 책상이 있으면 두 책상 배열의 중앙
+        var product_center_z = 0;
+        if (opposite_desk_distance != 0) {
+          // 맞은편 책상의 Z 위치 계산
+          var depth_z_offset = 0;
+          if (board_depth == 700) {
+            depth_z_offset = -100;
+          } else if (board_depth == 800) {
+            depth_z_offset = -200;
+          } else if (board_depth == 1000) {
+            depth_z_offset = -400;
+          } else if (board_depth == 1200) {
+            depth_z_offset = -600;
+          }
+          var opposite_desk_z_position = opposite_desk_distance + depth_z_offset;
+          // 두 책상 배열의 중앙 Z 위치
+          product_center_z = opposite_desk_z_position / 2;
+        }
+        
+        // 타겟 업데이트 (초기 설정이 아니거나 사용자가 조작하지 않은 경우에만)
+        if (controls && controls.target) {
+          controls.target.set(0, product_center_y, product_center_z);
+          
+          // 제품 수량과 크기에 비례하여 카메라 거리 조정
+          // 책상의 실제 크기(폭, 깊이)와 세트 수를 고려하여 화면에 적절히 채워지도록 계산
+          var desk_count = num_desk;
+          if (opposite_desk_distance != 0) {
+            desk_count *= 2; // 맞은편 책상이 있으면 2배
+          }
+          
+          // 책상의 전체 크기 계산 (X축: 폭 * 세트 수, Z축: 깊이 + 맞은편 거리)
+          var total_width = board_width * num_desk + (num_desk - 1) * 10; // 책상 폭 * 세트 수 + 간격
+          var total_depth = board_depth;
+          if (opposite_desk_distance != 0) {
+            var depth_z_offset = 0;
+            if (board_depth == 700) {
+              depth_z_offset = -100;
+            } else if (board_depth == 800) {
+              depth_z_offset = -200;
+            } else if (board_depth == 1000) {
+              depth_z_offset = -400;
+            } else if (board_depth == 1200) {
+              depth_z_offset = -600;
+            }
+            total_depth = Math.abs(opposite_desk_distance + depth_z_offset) + board_depth;
+          }
+          
+          // 전체 크기의 대각선 길이를 기준으로 거리 계산
+          var diagonal = Math.sqrt(total_width * total_width + total_depth * total_depth);
+          
+          // 엑소노메트릭 뷰에서 화면에 적절히 채워지도록 거리 계산
+          // 대각선 길이의 약 2.5배 정도가 적절한 거리
+          var base_scale = 2.5;
+          var adjusted_distance = diagonal * base_scale;
+          
+          // 최소/최대 거리 제한 (너무 가깝거나 멀지 않도록)
+          var min_distance = 8000;
+          var max_distance = 40000;
+          adjusted_distance = Math.max(min_distance, Math.min(max_distance, adjusted_distance));
+          
+          // 엑소노메트릭 뷰 각도 유지하면서 거리만 조정
+          var angleX = Math.PI / 4; // 45도 (X축 회전)
+          var angleY = Math.PI / 3.5; // 약 51도 (Y축 회전, 더 위에서 내려다보기)
+          
+          // 현재 타겟 위치
+          var target_x = controls.target.x;
+          var target_y = controls.target.y;
+          var target_z = controls.target.z;
+          
+          // 카메라를 타겟을 향해 새로운 거리로 재배치
+          camera.position.x = target_x + adjusted_distance * Math.cos(angleY) * Math.cos(angleX);
+          camera.position.y = target_y + adjusted_distance * Math.sin(angleY);
+          camera.position.z = target_z + adjusted_distance * Math.cos(angleY) * Math.sin(angleX);
+          
+          controls.update();
+        }
 
         // 모든 옵션들을 각 책상마다 복사
         // desk_offset_x는 책상이 중앙 정렬된 후의 실제 위치를 반영해야 함
@@ -7950,7 +8915,7 @@
         
         // light
         var lights = [];
-        var d = 4000; // 그림자 범위 확대 (기존 2048에서 4000으로 증가)
+        var d = 8000; // 그림자 범위 확대 (4000에서 8000으로 증가)
         lights[0] = new THREE.DirectionalLight(0xffffff, 0.3);
         lights[1] = new THREE.DirectionalLight(0xffffff, 0.3);
         lights[2] = new THREE.DirectionalLight(0xffffff, 0.3);
