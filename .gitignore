@@ -16,3 +16,13 @@ Thumbs.db
 *.tmp
 *.temp
 
+# 이전 폴더 구조
+Yuyeon5.github.io-master/
+
+# 미사용 GLB 파일
+glb/Storage Double sided*.glb
+glb/UPPER_FLAP.glb
+
+# glb 폴더의 중복 텍스처 (texture 폴더에 있음)
+glb/*.jpg
+

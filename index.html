@@ -1768,12 +1768,13 @@
           console.log('📦 attach1.glb 로드 시도:', attach1Path);
           gltfLoader.load(attach1Path, function(gltf) {
             attach1_model = gltf.scene;
-            // GLB 모델의 원점 보정: 바운딩 박스 계산하여 바닥면이 원점에 오도록 조정
+            // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
+            // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
             var box = new THREE.Box3().setFromObject(attach1_model);
             var center = box.getCenter(new THREE.Vector3());
             var size = box.getSize(new THREE.Vector3());
-            // 모델의 바닥면이 원점에 오도록 Y축 오프셋 적용
-            attach1_model.position.y = -center.y + size.y / 2;
+            // 중심이 원점에 오도록 보정 (기본 박스와 동일한 기준점)
+            attach1_model.position.y = -center.y;
             attach1_model.position.x = -center.x;
             attach1_model.position.z = -center.z;
             attach1_model.traverse(function(child) {
@@ -1806,11 +1807,13 @@
           console.log('📦 attach2.glb 로드 시도:', attach2Path);
           gltfLoader.load(attach2Path, function(gltf) {
             attach2_model = gltf.scene;
-            // GLB 모델의 원점 보정: 바운딩 박스 계산하여 바닥면이 원점에 오도록 조정
+            // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
+            // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
             var box = new THREE.Box3().setFromObject(attach2_model);
             var center = box.getCenter(new THREE.Vector3());
             var size = box.getSize(new THREE.Vector3());
-            attach2_model.position.y = -center.y + size.y / 2;
+            // 중심이 원점에 오도록 보정 (기본 박스와 동일한 기준점)
+            attach2_model.position.y = -center.y;
             attach2_model.position.x = -center.x;
             attach2_model.position.z = -center.z;
             attach2_model.traverse(function(child) {
@@ -1841,11 +1844,13 @@
           console.log('📦 attach3.glb 로드 시도:', attach3Path);
           gltfLoader.load(attach3Path, function(gltf) {
             attach3_model = gltf.scene;
-            // GLB 모델의 원점 보정: 바운딩 박스 계산하여 바닥면이 원점에 오도록 조정
+            // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
+            // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
             var box = new THREE.Box3().setFromObject(attach3_model);
             var center = box.getCenter(new THREE.Vector3());
             var size = box.getSize(new THREE.Vector3());
-            attach3_model.position.y = -center.y + size.y / 2;
+            // 중심이 원점에 오도록 보정 (기본 박스와 동일한 기준점)
+            attach3_model.position.y = -center.y;
             attach3_model.position.x = -center.x;
             attach3_model.position.z = -center.z;
             attach3_model.traverse(function(child) {
@@ -1875,7 +1880,7 @@
           // Storage_Sliding1 높이별 모델 로드
           var sliding1_heights = [1200, 1400, 1600, 1800, 2060];
           sliding1_heights.forEach(function(height) {
-            gltfLoader.load(getResourcePath('glb/상부옵션/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
+            gltfLoader.load(getResourcePath('glb/Storage_Sliding1 ' + height + '.glb'), function(gltf) {
               storage_sliding1_models[height] = gltf.scene;
               // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
               // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
@@ -1934,7 +1939,7 @@
           // Storage_Sliding2 높이별 모델 로드
           var sliding2_heights = [1200, 1400, 1600, 1800, 2060];
           sliding2_heights.forEach(function(height) {
-            var glbPath = getResourcePath('glb/상부옵션/Storage_Sliding2 ' + height + '.glb');
+            var glbPath = getResourcePath('glb/Storage_Sliding2 ' + height + '.glb');
             // 캐시 무시를 위해 타임스탬프 추가
             var cacheBuster = '?t=' + Date.now();
             var fullPath = glbPath + cacheBuster;
@@ -2017,7 +2022,7 @@
           // Storage_Flap 높이별 모델 로드
           var flap_heights = [1200, 1400, 1600, 1800, 2060];
           flap_heights.forEach(function(height) {
-            gltfLoader.load(getResourcePath('glb/상부옵션/Storage_Flap ' + height + '.glb'), function(gltf) {
+            gltfLoader.load(getResourcePath('glb/Storage_Flap ' + height + '.glb'), function(gltf) {
               storage_flap_models[height] = gltf.scene;
               // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
               // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
@@ -2076,7 +2081,7 @@
           // Storage_FlapStay 높이별 모델 로드
           var flapstay_heights = [1200, 1400, 1600, 1800, 2060];
           flapstay_heights.forEach(function(height) {
-            gltfLoader.load(getResourcePath('glb/상부옵션/Storage_FlapStay ' + height + '.glb'), function(gltf) {
+            gltfLoader.load(getResourcePath('glb/Storage_FlapStay ' + height + '.glb'), function(gltf) {
               storage_flapstay_models[height] = gltf.scene;
               // GLB 모델의 원점 보정: 기본 박스와 동일하게 중심이 원점에 오도록
               // 기본 박스(BoxBufferGeometry)는 중심이 원점이므로 GLB 모델도 중심을 원점에 맞춤
@@ -5426,43 +5431,27 @@
             }
             
             // fence는 frame_back의 앞쪽에 위치해야 함
-            // frame_back의 중심 Z 위치: -board_depth / 4
-            // frame_back의 깊이: frame_thickness_under_board (20mm)
-            // frame_back의 앞쪽 표면: -board_depth / 4 - frame_thickness_under_board / 2 = -board_depth / 4 - 10
+            // frame_back의 Z 위치: -board_depth / 4
             // fence의 깊이: 18mm
-            // fence를 board에 직접 추가하여 좌표계를 명확하게 함
+            // frame_back의 깊이: frame_thickness_under_board (20mm)
+            // fence가 frame_back의 앞쪽에 보이도록 Z 위치 조정
             geometry = new THREE.BoxBufferGeometry(board_width - 5, 200, 18);
-            
-            // frame_back의 Y 위치와 동일하게 설정
-            var fence_y = - (board_thickness + frame_thickness) / 2 - frame_margin;
-            // frame_back의 앞쪽 표면보다 앞에 위치 (fence 깊이의 절반만큼 더 앞으로)
-            var fence_z = - board_depth / 4 - frame_thickness_under_board / 2 - 18 / 2 - 1; // -board_depth/4 - 10 - 9 - 1
             
             // 첫 번째 fence (위쪽)
             fence = new THREE.Mesh(geometry, fence_material);
-            fence.position.y = fence_y - 100;
-            fence.position.z = fence_z;
+            fence.position.y = -100;
+            fence.position.z = - frame_thickness_under_board / 2 + 9; // fence 깊이의 절반을 더해서 앞쪽에 위치
             fence.castShadow = true;
-            board.add(fence);
-            console.log('✅ fence 1 생성:', { 
-              y: fence.position.y, 
-              z: fence.position.z,
-              board_y: board.position.y,
-              board_z: board.position.z
-            });
+            frame_back.add(fence);
+            console.log('✅ fence 1 생성:', { y: fence.position.y, z: fence.position.z });
 
             // 두 번째 fence (아래쪽)
             fence = new THREE.Mesh(geometry, fence_material);
-            fence.position.y = fence_y - 305;
-            fence.position.z = fence_z;
+            fence.position.y = -305;
+            fence.position.z = - frame_thickness_under_board / 2 + 9; // fence 깊이의 절반을 더해서 앞쪽에 위치
             fence.castShadow = true;
-            board.add(fence);
-            console.log('✅ fence 2 생성:', { 
-              y: fence.position.y, 
-              z: fence.position.z,
-              board_y: board.position.y,
-              board_z: board.position.z
-            });
+            frame_back.add(fence);
+            console.log('✅ fence 2 생성:', { y: fence.position.y, z: fence.position.z });
           } catch (error) {
             console.error('❌ fence 생성 에러:', error);
           }
@@ -6887,7 +6876,15 @@
             var vertical_z = - (board_depth + frame_thickness + 5) / 2;
             var shelf_z_absolute = vertical_z + shelf_z_relative + shelf_z_offset;
             
-            // GLB 모델만 표시 (기본 박스 제거)
+            // 기본 박스 항상 표시 (두 수직부재의 중앙에 위치)
+            // 두 수직부재의 중앙 = desk_offset_x (vertical_center_x는 항상 0이므로)
+            geometry = new THREE.BoxBufferGeometry(storage_sliding2_width, storage_sliding2_height, storage_sliding2_depth);
+            var storage_sliding2_dup = new THREE.Mesh(geometry, storage_sliding2_material);
+            storage_sliding2_dup.position.set(desk_offset_x, storage_center_y, shelf_z_absolute);
+            storage_sliding2_dup.castShadow = true;
+            scene.add(storage_sliding2_dup);
+            
+            // GLB 모델이 로드된 경우 함께 표시 (기본 박스 크기에 맞춰 스케일링)
             if (storage_sliding2_models[model_height]) {
               var storage_sliding2_glb = storage_sliding2_models[model_height].clone();
               
