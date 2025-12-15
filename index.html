@@ -88,19 +88,32 @@
           e.stopPropagation();
           
           var $this = $(this);
+          var mboxIdx = $(".swiper-slide .menu_box").index($this);
+          
           if (e.type === 'touchstart') {
             $this.one('touchend', function(e2) {
               e2.preventDefault();
-              var mboxIdx = $(".swiper-slide .menu_box").index($this);
-              $(".m_sidebar>.menu_all_list").fadeOut();
-              $(".m_sidebar>.menu_all_list:eq(" + mboxIdx + ")").fadeIn();
+              // 모바일에서는 .sidebar 내의 menu_all_list를 직접 제어
+              $(".sidebar .menu_all_list").fadeOut();
+              var targetList = $this.siblings(".menu_all_list");
+              if (targetList.length > 0) {
+                targetList.fadeIn();
+              } else {
+                // m_sidebar가 없는 경우 sidebar 내의 menu_all_list 사용
+                $(".sidebar .swiper-slide").eq(mboxIdx).find(".menu_all_list").fadeIn();
+              }
             });
             return false;
           }
           
-          var mboxIdx = $(".swiper-slide .menu_box").index($this);
-          $(".m_sidebar>.menu_all_list").fadeOut();
-          $(".m_sidebar>.menu_all_list:eq(" + mboxIdx + ")").fadeIn();
+          // 클릭 이벤트 처리
+          $(".sidebar .menu_all_list").fadeOut();
+          var targetList = $this.siblings(".menu_all_list");
+          if (targetList.length > 0) {
+            targetList.fadeIn();
+          } else {
+            $(".sidebar .swiper-slide").eq(mboxIdx).find(".menu_all_list").fadeIn();
+          }
         });
 
         $(".mal_buttons>div").on('click touchstart', function(e){
