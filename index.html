@@ -550,53 +550,96 @@
               </div>
             </div>
           </div>
+          <!-- ㄱ자 옵션 통합 메뉴 (타입+색상 통합) -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">ㄱ자하부<br>서랍(좌)</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">ㄱ자옵션<br>(좌)</div>
             </div>
             <div class="menu_all_list">
-              <div class="mal_buttons" id="giyeok-drawer-type-left">
-                <div onclick="setGiyeokDrawerTypeLeft(0)">없음</div>
-                <div onclick="setGiyeokDrawerTypeLeft(1)">부착서랍1단</div>
-                <div onclick="setGiyeokDrawerTypeLeft(2)">부착서랍2단</div>
-                <div onclick="setGiyeokDrawerTypeLeft(3)">본체함</div>
-                <div onclick="setGiyeokDrawerTypeLeft(4)">이동서랍2단</div>
-                <div onclick="setGiyeokDrawerTypeLeft(5)">이동서랍3단</div>
-              </div>
-              <div class="mal_buttons" id="giyeok-drawer-color-left" style="display: none;">
-                <div onclick="setGiyeokDrawerColorLeft(0)">없음</div>
-                <div onclick="setGiyeokDrawerColorLeft(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setGiyeokDrawerColorLeft(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setGiyeokDrawerColorLeft(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setGiyeokDrawerColorLeft(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setGiyeokDrawerColorLeft(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setGiyeokDrawerColorLeft(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+              <div class="mal_buttons" id="giyeok-option-left">
+                <div onclick="setGiyeokOptionLeft(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setGiyeokOptionLeft(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
+                <div onclick="setGiyeokOptionLeft(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setGiyeokOptionLeft(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
+                <div onclick="setGiyeokOptionLeft(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
+                <!-- 본체함 -->
+                <div onclick="setGiyeokOptionLeft(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
+                <div onclick="setGiyeokOptionLeft(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setGiyeokOptionLeft(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
+                <div onclick="setGiyeokOptionLeft(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setGiyeokOptionLeft(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
+                <div onclick="setGiyeokOptionLeft(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">ㄱ자하부<br>서랍(우)</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">ㄱ자옵션<br>(우)</div>
             </div>
             <div class="menu_all_list">
-              <div class="mal_buttons" id="giyeok-drawer-type-right">
-                <div onclick="setGiyeokDrawerTypeRight(0)">없음</div>
-                <div onclick="setGiyeokDrawerTypeRight(1)">부착서랍1단</div>
-                <div onclick="setGiyeokDrawerTypeRight(2)">부착서랍2단</div>
-                <div onclick="setGiyeokDrawerTypeRight(3)">본체함</div>
-                <div onclick="setGiyeokDrawerTypeRight(4)">이동서랍2단</div>
-                <div onclick="setGiyeokDrawerTypeRight(5)">이동서랍3단</div>
-              </div>
-              <div class="mal_buttons" id="giyeok-drawer-color-right" style="display: none;">
-                <div onclick="setGiyeokDrawerColorRight(0)">없음</div>
-                <div onclick="setGiyeokDrawerColorRight(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setGiyeokDrawerColorRight(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setGiyeokDrawerColorRight(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setGiyeokDrawerColorRight(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setGiyeokDrawerColorRight(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setGiyeokDrawerColorRight(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+              <div class="mal_buttons" id="giyeok-option-right">
+                <div onclick="setGiyeokOptionRight(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setGiyeokOptionRight(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionRight(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
+                <div onclick="setGiyeokOptionRight(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setGiyeokOptionRight(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionRight(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
+                <div onclick="setGiyeokOptionRight(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
+                <!-- 본체함 -->
+                <div onclick="setGiyeokOptionRight(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
+                <div onclick="setGiyeokOptionRight(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
+                <div onclick="setGiyeokOptionRight(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setGiyeokOptionRight(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionRight(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
+                <div onclick="setGiyeokOptionRight(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setGiyeokOptionRight(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setGiyeokOptionRight(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setGiyeokOptionRight(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setGiyeokOptionRight(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
+                <div onclick="setGiyeokOptionRight(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
+                <div onclick="setGiyeokOptionRight(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
               </div>
             </div>
           </div>
@@ -651,50 +694,60 @@
               </div>
             </div>
           </div>
-          <!-- 하부 옵션 통합 메뉴 (새 구조) -->
+          <!-- 하부 옵션 통합 메뉴 (타입+색상 통합) -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
               <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션<br>(좌)</div>
             </div>
             <div class="menu_all_list">
-              <div class="mal_buttons" id="lower-option-type-left">
-                <div onclick="setLowerOptionTypeLeft(0)">없음</div>
-                <div onclick="setLowerOptionTypeLeft(1)">부착서랍1단</div>
-                <div onclick="setLowerOptionTypeLeft(2)">부착서랍2단</div>
-                <div onclick="setLowerOptionTypeLeft(3)">본체함</div>
-                <div onclick="setLowerOptionTypeLeft(4)">이동서랍2단</div>
-                <div onclick="setLowerOptionTypeLeft(5)">이동서랍3단</div>
-              </div>
-              <div class="mal_buttons" id="lower-option-color-left" style="display: none;">
-                <div onclick="setLowerOptionColorLeft(0)">없음</div>
-                <div onclick="setLowerOptionColorLeft(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setLowerOptionColorLeft(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setLowerOptionColorLeft(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setLowerOptionColorLeft(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setLowerOptionColorLeft(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setLowerOptionColorLeft(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setLowerOptionColorLeft(14)"><span>오렌지</span></div>
-                <div onclick="setLowerOptionColorLeft(16)"><span>레몬</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션색<br>(좌)</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setLowerOptionColorLeft(0)">없음</div>
-                <div onclick="setLowerOptionColorLeft(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setLowerOptionColorLeft(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setLowerOptionColorLeft(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setLowerOptionColorLeft(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setLowerOptionColorLeft(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setLowerOptionColorLeft(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setLowerOptionColorLeft(14)"><span>오렌지</span></div>
-                <div onclick="setLowerOptionColorLeft(16)"><span>레몬</span></div>
+              <div class="mal_buttons" id="lower-option-left">
+                <div onclick="setLowerOptionLeft(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setLowerOptionLeft(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
+                <div onclick="setLowerOptionLeft(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
+                <div onclick="setLowerOptionLeft(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
+                <div onclick="setLowerOptionLeft(1, 14)"><span>부착서랍1단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(1, 16)"><span>부착서랍1단 레몬</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setLowerOptionLeft(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
+                <div onclick="setLowerOptionLeft(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
+                <div onclick="setLowerOptionLeft(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
+                <div onclick="setLowerOptionLeft(2, 14)"><span>부착서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(2, 16)"><span>부착서랍2단 레몬</span></div>
+                <!-- 본체함 -->
+                <div onclick="setLowerOptionLeft(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setLowerOptionLeft(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setLowerOptionLeft(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setLowerOptionLeft(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
+                <div onclick="setLowerOptionLeft(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
+                <div onclick="setLowerOptionLeft(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
+                <div onclick="setLowerOptionLeft(3, 14)"><span>본체함 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(3, 16)"><span>본체함 레몬</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setLowerOptionLeft(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
+                <div onclick="setLowerOptionLeft(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
+                <div onclick="setLowerOptionLeft(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
+                <div onclick="setLowerOptionLeft(4, 14)"><span>이동서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(4, 16)"><span>이동서랍2단 레몬</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setLowerOptionLeft(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setLowerOptionLeft(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setLowerOptionLeft(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setLowerOptionLeft(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
+                <div onclick="setLowerOptionLeft(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
+                <div onclick="setLowerOptionLeft(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
+                <div onclick="setLowerOptionLeft(5, 14)"><span>이동서랍3단 오렌지</span></div>
+                <div onclick="setLowerOptionLeft(5, 16)"><span>이동서랍3단 레몬</span></div>
               </div>
             </div>
           </div>
@@ -704,43 +757,53 @@
               <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션<br>(우)</div>
             </div>
             <div class="menu_all_list">
-              <div class="mal_buttons" id="lower-option-type-right">
-                <div onclick="setLowerOptionTypeRight(0)">없음</div>
-                <div onclick="setLowerOptionTypeRight(1)">부착서랍1단</div>
-                <div onclick="setLowerOptionTypeRight(2)">부착서랍2단</div>
-                <div onclick="setLowerOptionTypeRight(3)">본체함</div>
-                <div onclick="setLowerOptionTypeRight(4)">이동서랍2단</div>
-                <div onclick="setLowerOptionTypeRight(5)">이동서랍3단</div>
-              </div>
-              <div class="mal_buttons" id="lower-option-color-right" style="display: none;">
-                <div onclick="setLowerOptionColorRight(0)">없음</div>
-                <div onclick="setLowerOptionColorRight(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setLowerOptionColorRight(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setLowerOptionColorRight(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setLowerOptionColorRight(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setLowerOptionColorRight(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setLowerOptionColorRight(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setLowerOptionColorRight(14)"><span>오렌지</span></div>
-                <div onclick="setLowerOptionColorRight(16)"><span>레몬</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">하부옵션색<br>(우)</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setLowerOptionColorRight(0)">없음</div>
-                <div onclick="setLowerOptionColorRight(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setLowerOptionColorRight(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setLowerOptionColorRight(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setLowerOptionColorRight(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setLowerOptionColorRight(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setLowerOptionColorRight(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-                <div onclick="setLowerOptionColorRight(14)"><span>오렌지</span></div>
-                <div onclick="setLowerOptionColorRight(16)"><span>레몬</span></div>
+              <div class="mal_buttons" id="lower-option-right">
+                <div onclick="setLowerOptionRight(0, 0)">없음</div>
+                <!-- 부착서랍1단 -->
+                <div onclick="setLowerOptionRight(1, 1)"><img src="texture/white.jpg"><span>부착서랍1단 화이트</span></div>
+                <div onclick="setLowerOptionRight(1, 3)"><img src="texture/gray.jpg"><span>부착서랍1단 그레이</span></div>
+                <div onclick="setLowerOptionRight(1, 2)"><img src="texture/black.jpg"><span>부착서랍1단 블랙</span></div>
+                <div onclick="setLowerOptionRight(1, 8)"><img src="texture/maple.jpg"><span>부착서랍1단 밝은우드</span></div>
+                <div onclick="setLowerOptionRight(1, 9)"><img src="texture/natural.jpg"><span>부착서랍1단 중간우드</span></div>
+                <div onclick="setLowerOptionRight(1, 10)"><img src="texture/walnut.jpg"><span>부착서랍1단 월넛우드</span></div>
+                <div onclick="setLowerOptionRight(1, 14)"><span>부착서랍1단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(1, 16)"><span>부착서랍1단 레몬</span></div>
+                <!-- 부착서랍2단 -->
+                <div onclick="setLowerOptionRight(2, 1)"><img src="texture/white.jpg"><span>부착서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionRight(2, 3)"><img src="texture/gray.jpg"><span>부착서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionRight(2, 2)"><img src="texture/black.jpg"><span>부착서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionRight(2, 8)"><img src="texture/maple.jpg"><span>부착서랍2단 밝은우드</span></div>
+                <div onclick="setLowerOptionRight(2, 9)"><img src="texture/natural.jpg"><span>부착서랍2단 중간우드</span></div>
+                <div onclick="setLowerOptionRight(2, 10)"><img src="texture/walnut.jpg"><span>부착서랍2단 월넛우드</span></div>
+                <div onclick="setLowerOptionRight(2, 14)"><span>부착서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(2, 16)"><span>부착서랍2단 레몬</span></div>
+                <!-- 본체함 -->
+                <div onclick="setLowerOptionRight(3, 1)"><img src="texture/white.jpg"><span>본체함 화이트</span></div>
+                <div onclick="setLowerOptionRight(3, 3)"><img src="texture/gray.jpg"><span>본체함 그레이</span></div>
+                <div onclick="setLowerOptionRight(3, 2)"><img src="texture/black.jpg"><span>본체함 블랙</span></div>
+                <div onclick="setLowerOptionRight(3, 8)"><img src="texture/maple.jpg"><span>본체함 밝은우드</span></div>
+                <div onclick="setLowerOptionRight(3, 9)"><img src="texture/natural.jpg"><span>본체함 중간우드</span></div>
+                <div onclick="setLowerOptionRight(3, 10)"><img src="texture/walnut.jpg"><span>본체함 월넛우드</span></div>
+                <div onclick="setLowerOptionRight(3, 14)"><span>본체함 오렌지</span></div>
+                <div onclick="setLowerOptionRight(3, 16)"><span>본체함 레몬</span></div>
+                <!-- 이동서랍2단 -->
+                <div onclick="setLowerOptionRight(4, 1)"><img src="texture/white.jpg"><span>이동서랍2단 화이트</span></div>
+                <div onclick="setLowerOptionRight(4, 3)"><img src="texture/gray.jpg"><span>이동서랍2단 그레이</span></div>
+                <div onclick="setLowerOptionRight(4, 2)"><img src="texture/black.jpg"><span>이동서랍2단 블랙</span></div>
+                <div onclick="setLowerOptionRight(4, 8)"><img src="texture/maple.jpg"><span>이동서랍2단 밝은우드</span></div>
+                <div onclick="setLowerOptionRight(4, 9)"><img src="texture/natural.jpg"><span>이동서랍2단 중간우드</span></div>
+                <div onclick="setLowerOptionRight(4, 10)"><img src="texture/walnut.jpg"><span>이동서랍2단 월넛우드</span></div>
+                <div onclick="setLowerOptionRight(4, 14)"><span>이동서랍2단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(4, 16)"><span>이동서랍2단 레몬</span></div>
+                <!-- 이동서랍3단 -->
+                <div onclick="setLowerOptionRight(5, 1)"><img src="texture/white.jpg"><span>이동서랍3단 화이트</span></div>
+                <div onclick="setLowerOptionRight(5, 3)"><img src="texture/gray.jpg"><span>이동서랍3단 그레이</span></div>
+                <div onclick="setLowerOptionRight(5, 2)"><img src="texture/black.jpg"><span>이동서랍3단 블랙</span></div>
+                <div onclick="setLowerOptionRight(5, 8)"><img src="texture/maple.jpg"><span>이동서랍3단 밝은우드</span></div>
+                <div onclick="setLowerOptionRight(5, 9)"><img src="texture/natural.jpg"><span>이동서랍3단 중간우드</span></div>
+                <div onclick="setLowerOptionRight(5, 10)"><img src="texture/walnut.jpg"><span>이동서랍3단 월넛우드</span></div>
+                <div onclick="setLowerOptionRight(5, 14)"><span>이동서랍3단 오렌지</span></div>
+                <div onclick="setLowerOptionRight(5, 16)"><span>이동서랍3단 레몬</span></div>
               </div>
             </div>
           </div>
@@ -756,45 +819,43 @@
               </div>
             </div>
           </div>
-          <!-- 상부 수납 통합 메뉴 (새 구조) -->
+          <!-- 상부 수납 통합 메뉴 (타입+색상 통합) -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
               <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">상부수납</div>
             </div>
             <div class="menu_all_list">
-              <div class="mal_buttons" id="upper-storage-type">
-                <div onclick="setUpperStorageType(0)">없음</div>
-                <div onclick="setUpperStorageType(1)">슬라이딩1단</div>
-                <div onclick="setUpperStorageType(2)">슬라이딩2단</div>
-                <div onclick="setUpperStorageType(3)">플랩</div>
-                <div onclick="setUpperStorageType(4)">플랩스테이</div>
-              </div>
-              <div class="mal_buttons" id="upper-storage-color" style="display: none;">
-                <div onclick="setUpperStorageColor(0)">없음</div>
-                <div onclick="setUpperStorageColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setUpperStorageColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setUpperStorageColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setUpperStorageColor(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setUpperStorageColor(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setUpperStorageColor(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">상부수납색</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setUpperStorageColor(0)">없음</div>
-                <div onclick="setUpperStorageColor(1)"><img src="texture/white.jpg"><span>화이트</span></div>
-                <div onclick="setUpperStorageColor(3)"><img src="texture/gray.jpg"><span>그레이</span></div>
-                <div onclick="setUpperStorageColor(2)"><img src="texture/black.jpg"><span>블랙</span></div>
-                <div onclick="setUpperStorageColor(8)"><img src="texture/maple.jpg"><span>밝은우드</span></div>
-                <div onclick="setUpperStorageColor(9)"><img src="texture/natural.jpg"><span>중간우드</span></div>
-                <div onclick="setUpperStorageColor(10)"><img src="texture/walnut.jpg"><span>월넛우드</span></div>
+              <div class="mal_buttons" id="upper-storage">
+                <div onclick="setUpperStorage(0, 0)">없음</div>
+                <!-- 슬라이딩1단 -->
+                <div onclick="setUpperStorage(1, 1)"><img src="texture/white.jpg"><span>슬라이딩1단 화이트</span></div>
+                <div onclick="setUpperStorage(1, 3)"><img src="texture/gray.jpg"><span>슬라이딩1단 그레이</span></div>
+                <div onclick="setUpperStorage(1, 2)"><img src="texture/black.jpg"><span>슬라이딩1단 블랙</span></div>
+                <div onclick="setUpperStorage(1, 8)"><img src="texture/maple.jpg"><span>슬라이딩1단 밝은우드</span></div>
+                <div onclick="setUpperStorage(1, 9)"><img src="texture/natural.jpg"><span>슬라이딩1단 중간우드</span></div>
+                <div onclick="setUpperStorage(1, 10)"><img src="texture/walnut.jpg"><span>슬라이딩1단 월넛우드</span></div>
+                <!-- 슬라이딩2단 -->
+                <div onclick="setUpperStorage(2, 1)"><img src="texture/white.jpg"><span>슬라이딩2단 화이트</span></div>
+                <div onclick="setUpperStorage(2, 3)"><img src="texture/gray.jpg"><span>슬라이딩2단 그레이</span></div>
+                <div onclick="setUpperStorage(2, 2)"><img src="texture/black.jpg"><span>슬라이딩2단 블랙</span></div>
+                <div onclick="setUpperStorage(2, 8)"><img src="texture/maple.jpg"><span>슬라이딩2단 밝은우드</span></div>
+                <div onclick="setUpperStorage(2, 9)"><img src="texture/natural.jpg"><span>슬라이딩2단 중간우드</span></div>
+                <div onclick="setUpperStorage(2, 10)"><img src="texture/walnut.jpg"><span>슬라이딩2단 월넛우드</span></div>
+                <!-- 플랩 -->
+                <div onclick="setUpperStorage(3, 1)"><img src="texture/white.jpg"><span>플랩 화이트</span></div>
+                <div onclick="setUpperStorage(3, 3)"><img src="texture/gray.jpg"><span>플랩 그레이</span></div>
+                <div onclick="setUpperStorage(3, 2)"><img src="texture/black.jpg"><span>플랩 블랙</span></div>
+                <div onclick="setUpperStorage(3, 8)"><img src="texture/maple.jpg"><span>플랩 밝은우드</span></div>
+                <div onclick="setUpperStorage(3, 9)"><img src="texture/natural.jpg"><span>플랩 중간우드</span></div>
+                <div onclick="setUpperStorage(3, 10)"><img src="texture/walnut.jpg"><span>플랩 월넛우드</span></div>
+                <!-- 플랩스테이 -->
+                <div onclick="setUpperStorage(4, 1)"><img src="texture/white.jpg"><span>플랩스테이 화이트</span></div>
+                <div onclick="setUpperStorage(4, 3)"><img src="texture/gray.jpg"><span>플랩스테이 그레이</span></div>
+                <div onclick="setUpperStorage(4, 2)"><img src="texture/black.jpg"><span>플랩스테이 블랙</span></div>
+                <div onclick="setUpperStorage(4, 8)"><img src="texture/maple.jpg"><span>플랩스테이 밝은우드</span></div>
+                <div onclick="setUpperStorage(4, 9)"><img src="texture/natural.jpg"><span>플랩스테이 중간우드</span></div>
+                <div onclick="setUpperStorage(4, 10)"><img src="texture/walnut.jpg"><span>플랩스테이 월넛우드</span></div>
               </div>
             </div>
           </div>
@@ -3168,6 +3229,110 @@
         }
       }
 
+      // ㄱ자옵션_좌: 타입과 색상을 함께 설정 (통합 메뉴용)
+      function setGiyeokOptionLeft(type, color) {
+        giyeok_drawer_type_left = type;
+        
+        // 모든 좌측 서랍 초기화
+        giyeok_attach1_left_color = 0;
+        giyeok_attach2_left_color = 0;
+        giyeok_attach3_left_color = 0;
+        giyeok_moving2_left_color = 0;
+        giyeok_moving3_left_color = 0;
+        giyeok_attach1_material = null;
+        giyeok_attach2_material = null;
+        giyeok_attach3_material = null;
+        giyeok_moving2_material = null;
+        giyeok_moving3_material = null;
+        
+        if (type == 0 || color == 0) {
+          $(".swiper-slide").has("#giyeok-option-left").find(".menu_sel_text").text("없음");
+        } else {
+          var material = getMaterial(color);
+          var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
+          var colorNames = ["", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드"];
+          
+          if (type == 1) {
+            giyeok_attach1_left_color = color;
+            giyeok_attach1_material = material;
+          } else if (type == 2) {
+            giyeok_attach2_left_color = color;
+            giyeok_attach2_material = material;
+          } else if (type == 3) {
+            giyeok_attach3_left_color = color;
+            giyeok_attach3_material = material;
+          } else if (type == 4) {
+            giyeok_moving2_left_color = color;
+            giyeok_moving2_material = material;
+          } else if (type == 5) {
+            giyeok_moving3_left_color = color;
+            giyeok_moving3_material = material;
+          }
+          
+          var displayText = typeNames[type] + " " + (colorNames[color] || "");
+          $(".swiper-slide").has("#giyeok-option-left").find(".menu_sel_text").text(displayText);
+          // 메뉴 리스트 닫기
+          $(".swiper-slide").has("#giyeok-option-left").find(".menu_all_list").fadeOut();
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // ㄱ자옵션_우: 타입과 색상을 함께 설정 (통합 메뉴용)
+      function setGiyeokOptionRight(type, color) {
+        giyeok_drawer_type_right = type;
+        
+        // 모든 우측 서랍 초기화
+        giyeok_attach1_right_color = 0;
+        giyeok_attach2_right_color = 0;
+        giyeok_attach3_right_color = 0;
+        giyeok_moving2_right_color = 0;
+        giyeok_moving3_right_color = 0;
+        giyeok_attach1_material = null;
+        giyeok_attach2_material = null;
+        giyeok_attach3_material = null;
+        giyeok_moving2_material = null;
+        giyeok_moving3_material = null;
+        
+        if (type == 0 || color == 0) {
+          $(".swiper-slide").has("#giyeok-option-right").find(".menu_sel_text").text("없음");
+        } else {
+          var material = getMaterial(color);
+          var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
+          var colorNames = ["", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드"];
+          
+          if (type == 1) {
+            giyeok_attach1_right_color = color;
+            giyeok_attach1_material = material;
+          } else if (type == 2) {
+            giyeok_attach2_right_color = color;
+            giyeok_attach2_material = material;
+          } else if (type == 3) {
+            giyeok_attach3_right_color = color;
+            giyeok_attach3_material = material;
+          } else if (type == 4) {
+            giyeok_moving2_right_color = color;
+            giyeok_moving2_material = material;
+          } else if (type == 5) {
+            giyeok_moving3_right_color = color;
+            giyeok_moving3_material = material;
+          }
+          
+          var displayText = typeNames[type] + " " + (colorNames[color] || "");
+          $(".swiper-slide").has("#giyeok-option-right").find(".menu_sel_text").text(displayText);
+          // 메뉴 리스트 닫기
+          $(".swiper-slide").has("#giyeok-option-right").find(".menu_all_list").fadeOut();
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
       function setOppositeKeepSides(keep) {
         opposite_keep_sides = keep;
 
@@ -3611,7 +3776,7 @@
         }
       }
 
-      // 하부옵션_좌: 색상 선택
+      // 하부옵션_좌: 색상 선택 (타입과 함께)
       function setLowerOptionColorLeft(color) {
         lower_option_color_left = color;
         
@@ -3628,6 +3793,52 @@
         } else if (lower_option_type_left == 5) {
           moving3_position = 1;
           setMoving3(color);
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 하부옵션_좌: 타입과 색상을 함께 설정 (통합 메뉴용)
+      function setLowerOptionLeft(type, color) {
+        lower_option_type_left = type;
+        lower_option_color_left = color;
+        
+        // 기존 변수들 초기화
+        attach1_left_color = 0;
+        attach2_left_color = 0;
+        attach3_left_color = 0;
+        if (moving2_position == 1) moving2_color = 0;
+        if (moving3_position == 1) moving3_color = 0;
+        
+        if (type == 0 || color == 0) {
+          // 메뉴 텍스트 업데이트
+          $(".swiper-slide").has("#lower-option-left").find(".menu_sel_text").text("없음");
+        } else {
+          // 타입에 따라 기존 함수 호출
+          if (type == 1) {
+            setAttach1Left(color);
+          } else if (type == 2) {
+            setAttach2Left(color);
+          } else if (type == 3) {
+            setAttach3Left(color);
+          } else if (type == 4) {
+            moving2_position = 1;
+            setMoving2(color);
+          } else if (type == 5) {
+            moving3_position = 1;
+            setMoving3(color);
+          }
+          
+          // 메뉴 텍스트 업데이트
+          var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
+          var colorNames = ["", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드", "", "", "", "오렌지", "", "레몬"];
+          var displayText = typeNames[type] + " " + (colorNames[color] || "");
+          $(".swiper-slide").has("#lower-option-left").find(".menu_sel_text").text(displayText);
+          // 메뉴 리스트 닫기
+          $(".swiper-slide").has("#lower-option-left").find(".menu_all_list").fadeOut();
         }
         
         if (!skipSceneUpdate) {
@@ -3664,7 +3875,7 @@
         }
       }
 
-      // 하부옵션_우: 색상 선택
+      // 하부옵션_우: 색상 선택 (타입과 함께)
       function setLowerOptionColorRight(color) {
         lower_option_color_right = color;
         
@@ -3681,6 +3892,52 @@
         } else if (lower_option_type_right == 5) {
           moving3_position = 2;
           setMoving3(color);
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 하부옵션_우: 타입과 색상을 함께 설정 (통합 메뉴용)
+      function setLowerOptionRight(type, color) {
+        lower_option_type_right = type;
+        lower_option_color_right = color;
+        
+        // 기존 변수들 초기화
+        attach1_right_color = 0;
+        attach2_right_color = 0;
+        attach3_right_color = 0;
+        if (moving2_position == 2) moving2_color = 0;
+        if (moving3_position == 2) moving3_color = 0;
+        
+        if (type == 0 || color == 0) {
+          // 메뉴 텍스트 업데이트
+          $(".swiper-slide").has("#lower-option-right").find(".menu_sel_text").text("없음");
+        } else {
+          // 타입에 따라 기존 함수 호출
+          if (type == 1) {
+            setAttach1Right(color);
+          } else if (type == 2) {
+            setAttach2Right(color);
+          } else if (type == 3) {
+            setAttach3Right(color);
+          } else if (type == 4) {
+            moving2_position = 2;
+            setMoving2(color);
+          } else if (type == 5) {
+            moving3_position = 2;
+            setMoving3(color);
+          }
+          
+          // 메뉴 텍스트 업데이트
+          var typeNames = ["", "부착서랍1단", "부착서랍2단", "본체함", "이동서랍2단", "이동서랍3단"];
+          var colorNames = ["", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드", "", "", "", "오렌지", "", "레몬"];
+          var displayText = typeNames[type] + " " + (colorNames[color] || "");
+          $(".swiper-slide").has("#lower-option-right").find(".menu_sel_text").text(displayText);
+          // 메뉴 리스트 닫기
+          $(".swiper-slide").has("#lower-option-right").find(".menu_all_list").fadeOut();
         }
         
         if (!skipSceneUpdate) {
@@ -3717,7 +3974,7 @@
         }
       }
 
-      // 상부수납: 색상 선택
+      // 상부수납: 색상 선택 (타입과 함께)
       function setUpperStorageColor(color) {
         upper_storage_color = color;
         
@@ -3730,6 +3987,47 @@
           setStorageFlap(color);
         } else if (upper_storage_type == 4) {
           setStorageFlapStay(color);
+        }
+        
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 상부수납: 타입과 색상을 함께 설정 (통합 메뉴용)
+      function setUpperStorage(type, color) {
+        upper_storage_type = type;
+        upper_storage_color = color;
+        
+        // 기존 변수들 초기화
+        storage_sliding1_color = 0;
+        storage_sliding2_color = 0;
+        storage_flap_color = 0;
+        storage_flapstay_color = 0;
+        
+        if (type == 0 || color == 0) {
+          // 메뉴 텍스트 업데이트
+          $(".swiper-slide").has("#upper-storage").find(".menu_sel_text").text("없음");
+        } else {
+          // 타입에 따라 기존 함수 호출
+          if (type == 1) {
+            setStorageSliding1(color);
+          } else if (type == 2) {
+            setStorageSliding2(color);
+          } else if (type == 3) {
+            setStorageFlap(color);
+          } else if (type == 4) {
+            setStorageFlapStay(color);
+          }
+          
+          // 메뉴 텍스트 업데이트
+          var typeNames = ["", "슬라이딩1단", "슬라이딩2단", "플랩", "플랩스테이"];
+          var colorNames = ["", "화이트", "블랙", "그레이", "", "", "", "", "밝은우드", "중간우드", "월넛우드"];
+          var displayText = typeNames[type] + " " + (colorNames[color] || "");
+          $(".swiper-slide").has("#upper-storage").find(".menu_sel_text").text(displayText);
+          // 메뉴 리스트 닫기
+          $(".swiper-slide").has("#upper-storage").find(".menu_all_list").fadeOut();
         }
         
         if (!skipSceneUpdate) {
