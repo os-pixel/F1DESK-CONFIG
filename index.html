@@ -67,10 +67,14 @@
       var swiper; // Swiper 인스턴스를 전역 변수로 선언
       if(windowWidth < 1024) {
        swiper = new Swiper('.sidebar .swiper-container', {
-          slidesPerView: 4,
+          slidesPerView: 'auto',
           spaceBetween: 0,
-          slidesPerGroup: 4,
           freeMode: true,
+          touchRatio: 1,
+          resistance: true,
+          resistanceRatio: 0.85,
+          touchReleaseOnEdges: false,
+          allowTouchMove: true,
           navigation: {
             nextEl: '.sidebar .swiper-button-next',
             prevEl: '.sidebar .swiper-button-prev',
@@ -84,29 +88,45 @@
 
         // 모바일 터치 이벤트 지원
         $(".menu_box").on('click touchstart', function(e){
-          e.preventDefault();
-          e.stopPropagation();
-          
           var $this = $(this);
           var mboxIdx = $(".swiper-slide .menu_box").index($this);
           
           if (e.type === 'touchstart') {
+            // 터치 이벤트는 스크롤과 구분하기 위해 약간의 지연 후 처리
+            var touchStartTime = Date.now();
+            var touchStartX = e.originalEvent.touches[0].clientX;
+            var touchStartY = e.originalEvent.touches[0].clientY;
+            
             $this.one('touchend', function(e2) {
-              e2.preventDefault();
-              // 모바일에서는 .sidebar 내의 menu_all_list를 직접 제어
-              $(".sidebar .menu_all_list").fadeOut();
-              var targetList = $this.siblings(".menu_all_list");
-              if (targetList.length > 0) {
-                targetList.fadeIn();
-              } else {
-                // m_sidebar가 없는 경우 sidebar 내의 menu_all_list 사용
-                $(".sidebar .swiper-slide").eq(mboxIdx).find(".menu_all_list").fadeIn();
+              var touchEndTime = Date.now();
+              var touchEndX = e2.originalEvent.changedTouches[0].clientX;
+              var touchEndY = e2.originalEvent.changedTouches[0].clientY;
+              var timeDiff = touchEndTime - touchStartTime;
+              var xDiff = Math.abs(touchEndX - touchStartX);
+              var yDiff = Math.abs(touchEndY - touchStartY);
+              
+              // 스크롤이 아닌 탭인 경우에만 메뉴 열기 (시간이 짧고 이동 거리가 작을 때)
+              if (timeDiff < 300 && xDiff < 10 && yDiff < 10) {
+                e2.preventDefault();
+                e2.stopPropagation();
+                
+                // 모바일에서는 .sidebar 내의 menu_all_list를 직접 제어
+                $(".sidebar .menu_all_list").fadeOut();
+                var targetList = $this.siblings(".menu_all_list");
+                if (targetList.length > 0) {
+                  targetList.fadeIn();
+                } else {
+                  // m_sidebar가 없는 경우 sidebar 내의 menu_all_list 사용
+                  $(".sidebar .swiper-slide").eq(mboxIdx).find(".menu_all_list").fadeIn();
+                }
               }
             });
             return false;
           }
           
           // 클릭 이벤트 처리
+          e.preventDefault();
+          e.stopPropagation();
           $(".sidebar .menu_all_list").fadeOut();
           var targetList = $this.siblings(".menu_all_list");
           if (targetList.length > 0) {
@@ -117,32 +137,48 @@
         });
 
         $(".mal_buttons>div").on('click touchstart', function(e){
-          e.preventDefault();
-          e.stopPropagation();
-          
           var $this = $(this);
           
           if (e.type === 'touchstart') {
+            // 터치 이벤트는 스크롤과 구분하기 위해 약간의 지연 후 처리
+            var touchStartTime = Date.now();
+            var touchStartX = e.originalEvent.touches[0].clientX;
+            var touchStartY = e.originalEvent.touches[0].clientY;
+            
             $this.one('touchend', function(e2) {
-              e2.preventDefault();
-              // 선택된 버튼 표시
-              $this.siblings().removeClass("sel");
-              $this.addClass("sel");
+              var touchEndTime = Date.now();
+              var touchEndX = e2.originalEvent.changedTouches[0].clientX;
+              var touchEndY = e2.originalEvent.changedTouches[0].clientY;
+              var timeDiff = touchEndTime - touchStartTime;
+              var xDiff = Math.abs(touchEndX - touchStartX);
+              var yDiff = Math.abs(touchEndY - touchStartY);
               
-              // 메뉴 텍스트 업데이트
-              var seltext = $this.html();
-              var $swiperSlide = $this.closest(".swiper-slide");
-              if ($swiperSlide.length > 0) {
-                $swiperSlide.find(".menu_sel_text").html(seltext);
+              // 스크롤이 아닌 탭인 경우에만 선택 처리 (시간이 짧고 이동 거리가 작을 때)
+              if (timeDiff < 300 && xDiff < 10 && yDiff < 10) {
+                e2.preventDefault();
+                e2.stopPropagation();
+                
+                // 선택된 버튼 표시
+                $this.siblings().removeClass("sel");
+                $this.addClass("sel");
+                
+                // 메뉴 텍스트 업데이트
+                var seltext = $this.html();
+                var $swiperSlide = $this.closest(".swiper-slide");
+                if ($swiperSlide.length > 0) {
+                  $swiperSlide.find(".menu_sel_text").html(seltext);
+                }
+                
+                // 메뉴 리스트 닫기
+                $this.closest(".menu_all_list").fadeOut();
               }
-              
-              // 메뉴 리스트 닫기
-              $this.closest(".menu_all_list").fadeOut();
             });
             return false;
           }
           
           // 클릭 이벤트 처리
+          e.preventDefault();
+          e.stopPropagation();
           $this.siblings().removeClass("sel");
           $this.addClass("sel");
           
@@ -313,8 +349,8 @@
   
     @media (max-width:1024px) {
       .sidebar,
-      .m_sidebar {display: block; overflow: hidden; position: fixed; left: 50%; top: 100px; width: 840px; height: 130px; padding: 0; margin-left: -420px; box-sizing: border-box; background-color: #fff; }
-      .sidebar .swiper-container { position: static; width: 720px;; height: 100%; }
+      .m_sidebar {display: block; overflow-x: auto; overflow-y: hidden; position: fixed; left: 50%; top: 100px; width: 100%; max-width: 840px; height: 130px; padding: 0; margin-left: -50%; box-sizing: border-box; background-color: #fff; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
+      .sidebar .swiper-container { position: static; width: 720px; min-width: 720px; height: 100%; }
       .sidebar .swiper-wrapper { position: static; height: 100%; }
       .swiper-slide { position: static !important; }
       .swiper-slide:first-child { border-left: 0; }
@@ -1921,16 +1957,20 @@
 
         camera = new THREE.PerspectiveCamera(20, width / height, 100, 50000);
         
-        // 45도 버드아이 엑소노메트릭 뷰 설정
-        // 씬 중앙을 향하도록 카메라 위치 설정
-        var distance = 32000; // 카메라 거리 (1배 더 멀리서 보기)
+        // 엑소노메트릭 뷰 설정 - 바닥이 화면 중앙에 보이도록
+        var distance = 32000; // 카메라 거리
         var angleX = Math.PI / 4; // 45도 (X축 회전)
         var angleY = Math.PI / 3.5; // 약 51도 (Y축 회전, 더 위에서 내려다보기)
         
-        // 엑소노메트릭 뷰 계산
-        camera.position.x = distance * Math.cos(angleY) * Math.cos(angleX);
-        camera.position.y = distance * Math.sin(angleY);
-        camera.position.z = distance * Math.cos(angleY) * Math.sin(angleX);
+        // 타겟을 바닥 중앙 (0, 0, 0)으로 설정
+        var target_x = 0;
+        var target_y = 0; // 바닥 높이
+        var target_z = 0;
+        
+        // 엑소노메트릭 뷰 계산 - 타겟을 중심으로 카메라 위치 설정
+        camera.position.x = target_x + distance * Math.cos(angleY) * Math.cos(angleX);
+        camera.position.y = target_y + distance * Math.sin(angleY);
+        camera.position.z = target_z + distance * Math.cos(angleY) * Math.sin(angleX);
 
         // GLTFLoader 초기화
         var gltfLoader = null;
@@ -2397,18 +2437,16 @@
         controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.autoRotate = false; // 기본적으로 멈춰있게 설정
         controls.autoRotateSpeed *= 2.0;
-        // 모바일에서 컨트롤 속도 조정
-        controls.rotateSpeed = isMobile ? 2.5 : 5.0;
+        // 모바일에서 컨트롤 속도 조정 (1/3 속도)
+        controls.rotateSpeed = isMobile ? 0.83 : 5.0;
         controls.zoomSpeed = isMobile ? 0.8 : 1.2;
         controls.panSpeed = isMobile ? 1.0 : 1.8;
         controls.enableDamping = isMobile; // 모바일에서 댐핑 활성화 (부드러운 움직임)
         if (isMobile) {
           controls.dampingFactor = 0.05;
         }
-        // 제품 구성 중심을 타겟으로 설정 (엑소노메트릭 뷰)
-        // 책상 상판 높이를 기준으로 제품 중심 계산
-        var product_center_y = frame_length + board_thickness + 2000; // 책상 상판 높이 + 2000 (제품을 많이 위로 올림)
-        controls.target = new THREE.Vector3(0, product_center_y, 0);
+        // 엑소노메트릭 뷰 - 바닥 중앙을 타겟으로 설정
+        controls.target = new THREE.Vector3(0, 0, 0);
         controls.update(); // 카메라 위치와 타겟을 즉시 적용
 
         // 모바일에서 터치 이벤트 최적화
@@ -5557,9 +5595,11 @@
         if (fence_color) {
           var fence_prices = prices && prices.fence && prices.fence.product ? 
             prices.fence.product : null;
+          var fence_product = 49100; // 기본값 (1180 폭 기준)
           if (fence_prices && fence_prices[csv_width.toString()]) {
-            product_price += fence_prices[csv_width.toString()];
+            fence_product = fence_prices[csv_width.toString()];
           }
+          product_price += fence_product;
           var fence_delivery = prices && prices.fence && prices.fence.delivery ? 
             prices.fence.delivery : 29800;
           delivery_price += fence_delivery;
@@ -5805,6 +5845,67 @@
         return ret_price;
       }
       
+      // 색상 이름 변환 함수
+      function getColorName(colorCode) {
+        var colorNames = {
+          0: "없음",
+          1: "화이트",
+          2: "블랙",
+          3: "그레이",
+          4: "메이플",
+          5: "아카시아",
+          6: "월넛",
+          7: "스틸",
+          8: "브론지트",
+          9: "테라조",
+          10: "라이트그레이",
+          11: "라임",
+          12: "오렌지",
+          13: "스카이블루",
+          14: "베이지",
+          15: "그린",
+          16: "베이지",
+          17: "브라운",
+          18: "다크초콜릿",
+          19: "민트",
+          20: "오렌지투명"
+        };
+        return colorNames[colorCode] || ("색상" + colorCode);
+      }
+      
+      // 메뉴 번호 매핑 함수
+      function getMenuNumber(itemName) {
+        var menuMap = {
+          "책상 본체": "2-3",
+          "ㅁ다리": "1",
+          "수직부재": "12",
+          "선반": "13-19",
+          "ㄱ자 모듈": "7",
+          "데스크 매트": "31",
+          "미니서랍": "32",
+          "하부가림판": "6",
+          "부착서랍1단": "8-9",
+          "부착서랍2단": "8-9",
+          "본체함": "8-9",
+          "2단 이동 서랍": "8-9",
+          "3단 이동 서랍": "8-9",
+          "상부 슬라이드장": "20",
+          "상부수납장 플랩": "20",
+          "양면 상부수납장": "20",
+          "파티션 좌": "22",
+          "파티션 우": "24",
+          "파티션 전면": "26",
+          "파티션 중첩": "28"
+        };
+        
+        for (var key in menuMap) {
+          if (itemName.indexOf(key) !== -1) {
+            return menuMap[key];
+          }
+        }
+        return "";
+      }
+      
       // 옵션 명세 리스트 생성 함수
       function generateOptionSpecList() {
         var specList = [];
@@ -5843,8 +5944,9 @@
         if (board_price_table && board_depth_idx > 0 && board_width_idx > 0) {
           var board_price = board_price_table[board_depth_idx - 1][board_width_idx - 1];
           if (board_price && board_price > 0) {
+            var board_color_name = board_color ? " - " + getColorName(board_color) : "";
             specList.push({
-              name: "책상 본체 (" + width_names[board_width_idx] + " x " + depth_names[board_depth_idx] + ")",
+              name: "[2-3] 책상 본체 (" + width_names[board_width_idx] + " x " + depth_names[board_depth_idx] + ")" + board_color_name,
               qty: total_multiplier,
               unitPrice: board_price,
               totalPrice: board_price * total_multiplier
@@ -5900,7 +6002,7 @@
           var mium_product = prices && prices.mium && prices.mium.product ? 
             prices.mium.product : 69900;
           specList.push({
-            name: "ㅁ다리",
+            name: "[1] ㅁ다리",
             qty: total_multiplier,
             unitPrice: mium_product,
             totalPrice: mium_product * total_multiplier
@@ -5923,8 +6025,9 @@
           var vertical_price = (vertical_prices && vertical_prices[vertical_length.toString()]) ? 
             vertical_prices[vertical_length.toString()] : 
             (vertical_length === 460 ? 81800 : (vertical_length === 646 ? 86200 : (vertical_length === 925 ? 102700 : (vertical_length === 1400 ? 118400 : 133700)))); // 기본값
+          var vertical_color_name = vertical_color ? " - " + getColorName(vertical_color) : "";
           specList.push({
-            name: "수직부재 (" + vertical_length + "mm)",
+            name: "[12] 수직부재 (" + vertical_length + "mm)" + vertical_color_name,
             qty: total_multiplier,
             unitPrice: vertical_price,
             totalPrice: vertical_price * total_multiplier
@@ -5947,8 +6050,9 @@
           var shelf_unit_price = (shelf_prices && shelf_prices[csv_width.toString()] && shelf_prices[csv_width.toString()]["200"]) ? 
             shelf_prices[csv_width.toString()]["200"] : 
             (csv_width === 1180 ? 70000 : (csv_width === 1400 ? 77300 : (csv_width === 1580 ? 82900 : (csv_width === 1800 ? 94400 : (csv_width === 2060 ? 107100 : 143400))))); // 기본값
+          var shelf_color_name = shelf_board_color ? " - " + getColorName(shelf_board_color) : "";
           specList.push({
-            name: "선반 (" + width_names[board_width_idx] + " x " + shelf_num + "개)",
+            name: "[13-19] 선반 (" + width_names[board_width_idx] + " x " + shelf_num + "개)" + shelf_color_name,
             qty: total_multiplier,
             unitPrice: shelf_unit_price * shelf_num,
             totalPrice: shelf_unit_price * shelf_num * total_multiplier
@@ -5981,7 +6085,7 @@
             else giyeok_price = giyeok_prices["1865"] || 222800;
           }
           specList.push({
-            name: "ㄱ자 모듈",
+            name: "[7] ㄱ자 모듈",
             qty: total_multiplier,
             unitPrice: giyeok_price,
             totalPrice: giyeok_price * total_multiplier
@@ -6000,8 +6104,9 @@
         if (desk_mat_color) {
           var deskMat_product = prices && prices.deskMat && prices.deskMat.product ? 
             prices.deskMat.product : 61500;
+          var deskMat_color_name = desk_mat_color ? " - " + getColorName(desk_mat_color) : "";
           specList.push({
-            name: "데스크 매트",
+            name: "[31] 데스크 매트" + deskMat_color_name,
             qty: total_multiplier,
             unitPrice: deskMat_product,
             totalPrice: deskMat_product * total_multiplier
@@ -6017,8 +6122,9 @@
           if (drawer_prices) {
             drawer_product = drawer_prices["H45"] || 18300;
           }
+          var drawer_color_name = drawer_color ? " - " + getColorName(drawer_color) : "";
           specList.push({
-            name: "미니서랍",
+            name: "[32] 미니서랍" + drawer_color_name,
             qty: total_multiplier,
             unitPrice: drawer_product,
             totalPrice: drawer_product * total_multiplier
@@ -6030,14 +6136,17 @@
         if (fence_color) {
           var fence_prices = prices && prices.fence && prices.fence.product ? 
             prices.fence.product : null;
+          var fence_product = 49100; // 기본값 (1180 폭 기준)
           if (fence_prices && fence_prices[csv_width.toString()]) {
-            specList.push({
-              name: "하부가림판 (" + width_names[board_width_idx] + ")",
-              qty: total_multiplier,
-              unitPrice: fence_prices[csv_width.toString()],
-              totalPrice: fence_prices[csv_width.toString()] * total_multiplier
-            });
+            fence_product = fence_prices[csv_width.toString()];
           }
+          var fence_color_name = fence_color ? " - " + getColorName(fence_color) : "";
+          specList.push({
+            name: "[6] 하부가림판 (" + width_names[board_width_idx] + ")" + fence_color_name,
+            qty: total_multiplier,
+            unitPrice: fence_product,
+            totalPrice: fence_product * total_multiplier
+          });
           var fence_delivery = prices && prices.fence && prices.fence.delivery ? 
             prices.fence.delivery : 29800;
           specList.push({
@@ -6052,7 +6161,8 @@
         function addLowerOptionSpec(type, side) {
           if (!type || type === 0) return;
           
-          var sideName = side === 'left' ? '(좌)' : (side === 'right' ? '(우)' : '');
+          var sideName = side === 'left' ? '(좌)' : (side === 'right' ? '(우)' : (side === 'giyeok_left' ? '(ㄱ좌)' : (side === 'giyeok_right' ? '(ㄱ우)' : '')));
+          var menuNum = (side === 'left' || side === 'right') ? "8-9" : "10-11";
           
           if (type === 1) { // 부착서랍1단
             var attach1_prices = prices && prices.drawerAttach && prices.drawerAttach.product ? 
@@ -6061,8 +6171,10 @@
             var attach1_price = (attach1_prices && attach1_prices["1"] && attach1_prices["1"][depth_key]) ? 
               attach1_prices["1"][depth_key] : 
               ((attach1_prices && attach1_prices["1"] && attach1_prices["1"]["600"]) ? attach1_prices["1"]["600"] : 123800);
+            var attach1_color = side === 'left' ? attach1_left_color : (side === 'right' ? attach1_right_color : (side === 'giyeok_left' ? giyeok_attach1_left_color : giyeok_attach1_right_color));
+            var attach1_color_name = attach1_color ? " - " + getColorName(attach1_color) : "";
             specList.push({
-              name: "부착서랍1단 " + sideName,
+              name: "[" + menuNum + "] 부착서랍1단 " + sideName + attach1_color_name,
               qty: total_multiplier,
               unitPrice: attach1_price,
               totalPrice: attach1_price * total_multiplier
@@ -6082,8 +6194,10 @@
             var attach2_price = (attach2_prices && attach2_prices["2"] && attach2_prices["2"][depth_key]) ? 
               attach2_prices["2"][depth_key] : 
               ((attach2_prices && attach2_prices["2"] && attach2_prices["2"]["600"]) ? attach2_prices["2"]["600"] : 175700);
+            var attach2_color = side === 'left' ? attach2_left_color : (side === 'right' ? attach2_right_color : (side === 'giyeok_left' ? giyeok_attach2_left_color : giyeok_attach2_right_color));
+            var attach2_color_name = attach2_color ? " - " + getColorName(attach2_color) : "";
             specList.push({
-              name: "부착서랍2단 " + sideName,
+              name: "[" + menuNum + "] 부착서랍2단 " + sideName + attach2_color_name,
               qty: total_multiplier,
               unitPrice: attach2_price,
               totalPrice: attach2_price * total_multiplier
@@ -6103,8 +6217,10 @@
             var type_key = "attach_600"; // 기본값
             var bodyBox_price = (bodyBox_prices && bodyBox_prices[height_key] && bodyBox_prices[height_key][type_key]) ? 
               bodyBox_prices[height_key][type_key] : 100200;
+            var attach3_color = side === 'left' ? attach3_left_color : (side === 'right' ? attach3_right_color : (side === 'giyeok_left' ? giyeok_attach3_left_color : giyeok_attach3_right_color));
+            var attach3_color_name = attach3_color ? " - " + getColorName(attach3_color) : "";
             specList.push({
-              name: "본체함 " + sideName,
+              name: "[" + menuNum + "] 본체함 " + sideName + attach3_color_name,
               qty: total_multiplier,
               unitPrice: bodyBox_price,
               totalPrice: bodyBox_price * total_multiplier
@@ -6120,8 +6236,10 @@
           } else if (type === 4) { // 이동서랍2단
             var moving2_product = prices && prices.moving2 && prices.moving2.product ? 
               prices.moving2.product : 88000;
+            var moving2_color_val = side === 'left' ? moving2_color : (side === 'right' ? moving2_color : (side === 'giyeok_left' ? giyeok_moving2_left_color : giyeok_moving2_right_color));
+            var moving2_color_name = moving2_color_val ? " - " + getColorName(moving2_color_val) : "";
             specList.push({
-              name: "2단 이동 서랍 " + sideName,
+              name: "[" + menuNum + "] 2단 이동 서랍 " + sideName + moving2_color_name,
               qty: total_multiplier,
               unitPrice: moving2_product,
               totalPrice: moving2_product * total_multiplier
@@ -6137,8 +6255,10 @@
           } else if (type === 5) { // 이동서랍3단
             var moving3_product = prices && prices.moving3 && prices.moving3.product ? 
               prices.moving3.product : 121000;
+            var moving3_color_val = side === 'left' ? moving3_color : (side === 'right' ? moving3_color : (side === 'giyeok_left' ? giyeok_moving3_left_color : giyeok_moving3_right_color));
+            var moving3_color_name = moving3_color_val ? " - " + getColorName(moving3_color_val) : "";
             specList.push({
-              name: "3단 이동 서랍 " + sideName,
+              name: "[" + menuNum + "] 3단 이동 서랍 " + sideName + moving3_color_name,
               qty: total_multiplier,
               unitPrice: moving3_product,
               totalPrice: moving3_product * total_multiplier
@@ -6212,8 +6332,9 @@
             var upperSlide_price = (upperSlide_prices && upperSlide_prices[csv_width.toString()] && upperSlide_prices[csv_width.toString()][slide_level]) ? 
               upperSlide_prices[csv_width.toString()][slide_level] : 
               (slide_level === "1" ? 300600 : 418300); // 기본값
+            var upper_storage_color_name = upper_storage_color ? " - " + getColorName(upper_storage_color) : "";
             specList.push({
-              name: "상부 슬라이드장 " + slide_level + "단 (" + width_names[board_width_idx] + ")",
+              name: "[20] 상부 슬라이드장 " + slide_level + "단 (" + width_names[board_width_idx] + ")" + upper_storage_color_name,
               qty: total_multiplier,
               unitPrice: upperSlide_price,
               totalPrice: upperSlide_price * total_multiplier
@@ -6233,8 +6354,9 @@
               prices.upperStorage.product : null;
             var upperStorage_price = (upperStorage_prices && upperStorage_prices[csv_width.toString()]) ? 
               upperStorage_prices[csv_width.toString()] : 230200; // 기본값
+            var upper_storage_color_name = upper_storage_color ? " - " + getColorName(upper_storage_color) : "";
             specList.push({
-              name: "상부수납장 플랩 (" + width_names[board_width_idx] + ")",
+              name: "[20] 상부수납장 플랩 (" + width_names[board_width_idx] + ")" + upper_storage_color_name,
               qty: total_multiplier,
               unitPrice: upperStorage_price,
               totalPrice: upperStorage_price * total_multiplier
@@ -6252,8 +6374,9 @@
               prices.upperStorageDouble.product : null;
             var upperStorageDouble_price = (upperStorageDouble_prices && upperStorageDouble_prices[csv_width.toString()]) ? 
               upperStorageDouble_prices[csv_width.toString()] : 447200; // 기본값
+            var upper_storage_color_name = upper_storage_color ? " - " + getColorName(upper_storage_color) : "";
             specList.push({
-              name: "양면 상부수납장 (" + width_names[board_width_idx] + ")",
+              name: "[20] 양면 상부수납장 (" + width_names[board_width_idx] + ")" + upper_storage_color_name,
               qty: total_multiplier,
               unitPrice: upperStorageDouble_price,
               totalPrice: upperStorageDouble_price * total_multiplier
@@ -6293,7 +6416,7 @@
 
         var parti_count = 0;
 
-        function addPartitionSpec(namePrefix, heightOrWidth, isFront) {
+        function addPartitionSpec(namePrefix, heightOrWidth, isFront, colorCode, menuNum) {
           if (!heightOrWidth || heightOrWidth <= 0) return;
           var w = isFront ? heightOrWidth : mapPartiHeightToWidth(heightOrWidth);
           if (!w) return;
@@ -6311,8 +6434,10 @@
               (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700)))); // 기본값
           }
           
+          var color_name = colorCode ? " - " + getColorName(colorCode) : "";
+          var menu_prefix = menuNum ? "[" + menuNum + "] " : "";
           specList.push({
-            name: namePrefix + " (" + (isFront ? w : heightOrWidth) + "mm)",
+            name: menu_prefix + namePrefix + " (" + (isFront ? w : heightOrWidth) + "mm)" + color_name,
             qty: total_multiplier,
             unitPrice: panelPrice,
             totalPrice: panelPrice * total_multiplier
@@ -6334,10 +6459,10 @@
 
         // 좌/우/중첩 수직 파티션 (전역 변수 직접 접근)
         if (parti_ver_L_height && parti_ver_L_height > 0) {
-          addPartitionSpec("파티션 좌", parti_ver_L_height, false);
+          addPartitionSpec("파티션 좌", parti_ver_L_height, false, parti_ver_L_color, "22");
         }
         if (parti_ver_R_height && parti_ver_R_height > 0) {
-          addPartitionSpec("파티션 우", parti_ver_R_height, false);
+          addPartitionSpec("파티션 우", parti_ver_R_height, false, parti_ver_R_color, "24");
         }
         // 중첩 수직 파티션 (수량 계산: 책상배열수-1, 맞은편 복사 있으면 -2)
         if (parti_ver_M_height && parti_ver_M_height > 0) {
@@ -6359,8 +6484,9 @@
                   (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700))));
               }
               if (panelPrice > 0) {
+                var parti_M_color_name = parti_ver_M_color ? " - " + getColorName(parti_ver_M_color) : "";
                 specList.push({
-                  name: "파티션 중첩 (" + parti_ver_M_height + "mm) x " + parti_M_quantity,
+                  name: "[28] 파티션 중첩 (" + parti_ver_M_height + "mm) x " + parti_M_quantity + parti_M_color_name,
                   qty: total_multiplier,
                   unitPrice: panelPrice * parti_M_quantity,
                   totalPrice: panelPrice * parti_M_quantity * total_multiplier
@@ -6382,7 +6508,7 @@
 
         // 전면 파티션 (폭 기준) (전역 변수 직접 접근)
         if (parti_hol_B_width && parti_hol_B_width > 0) {
-          addPartitionSpec("파티션 전면", parti_hol_B_width, true);
+          addPartitionSpec("파티션 전면", parti_hol_B_width, true, parti_hol_B_color, "26");
         }
 
         // 파티션 클램프 (파티션 1개당 1조)
@@ -7831,85 +7957,7 @@
         // 옵션 명세 리스트 업데이트
         updateOptionSpecList();
         
-        // 제품 구성 중심을 타겟으로 설정 (기존 책상 + 맞은편 책상 포함)
-        var product_center_y = frame_length + board_thickness + 2000; // 책상 상판 높이 + 2000 (제품을 많이 위로 올림)
-        
-        // Z축 중심 계산: 맞은편 책상이 있으면 두 책상 배열의 중앙
-        var product_center_z = 0;
-        if (opposite_desk_distance != 0) {
-          // 맞은편 책상의 Z 위치 계산
-          var depth_z_offset = 0;
-          if (board_depth == 700) {
-            depth_z_offset = -100;
-          } else if (board_depth == 800) {
-            depth_z_offset = -200;
-          } else if (board_depth == 1000) {
-            depth_z_offset = -400;
-          } else if (board_depth == 1200) {
-            depth_z_offset = -600;
-          }
-          var opposite_desk_z_position = opposite_desk_distance + depth_z_offset;
-          // 두 책상 배열의 중앙 Z 위치
-          product_center_z = opposite_desk_z_position / 2;
-        }
-        
-        // 타겟 업데이트 (초기 설정이 아니거나 사용자가 조작하지 않은 경우에만)
-        if (controls && controls.target) {
-          controls.target.set(0, product_center_y, product_center_z);
-          
-          // 제품 수량과 크기에 비례하여 카메라 거리 조정
-          // 책상의 실제 크기(폭, 깊이)와 세트 수를 고려하여 화면에 적절히 채워지도록 계산
-          var desk_count = num_desk;
-          if (opposite_desk_distance != 0) {
-            desk_count *= 2; // 맞은편 책상이 있으면 2배
-          }
-          
-          // 책상의 전체 크기 계산 (X축: 폭 * 세트 수, Z축: 깊이 + 맞은편 거리)
-          var total_width = board_width * num_desk + (num_desk - 1) * 10; // 책상 폭 * 세트 수 + 간격
-          var total_depth = board_depth;
-          if (opposite_desk_distance != 0) {
-            var depth_z_offset = 0;
-            if (board_depth == 700) {
-              depth_z_offset = -100;
-            } else if (board_depth == 800) {
-              depth_z_offset = -200;
-            } else if (board_depth == 1000) {
-              depth_z_offset = -400;
-            } else if (board_depth == 1200) {
-              depth_z_offset = -600;
-            }
-            total_depth = Math.abs(opposite_desk_distance + depth_z_offset) + board_depth;
-          }
-          
-          // 전체 크기의 대각선 길이를 기준으로 거리 계산
-          var diagonal = Math.sqrt(total_width * total_width + total_depth * total_depth);
-          
-          // 엑소노메트릭 뷰에서 화면에 적절히 채워지도록 거리 계산
-          // 대각선 길이의 약 2.5배 정도가 적절한 거리
-          var base_scale = 2.5;
-          var adjusted_distance = diagonal * base_scale;
-          
-          // 최소/최대 거리 제한 (너무 가깝거나 멀지 않도록)
-          var min_distance = 8000;
-          var max_distance = 40000;
-          adjusted_distance = Math.max(min_distance, Math.min(max_distance, adjusted_distance));
-          
-          // 엑소노메트릭 뷰 각도 유지하면서 거리만 조정
-          var angleX = Math.PI / 4; // 45도 (X축 회전)
-          var angleY = Math.PI / 3.5; // 약 51도 (Y축 회전, 더 위에서 내려다보기)
-          
-          // 현재 타겟 위치
-          var target_x = controls.target.x;
-          var target_y = controls.target.y;
-          var target_z = controls.target.z;
-          
-          // 카메라를 타겟을 향해 새로운 거리로 재배치
-          camera.position.x = target_x + adjusted_distance * Math.cos(angleY) * Math.cos(angleX);
-          camera.position.y = target_y + adjusted_distance * Math.sin(angleY);
-          camera.position.z = target_z + adjusted_distance * Math.cos(angleY) * Math.sin(angleX);
-          
-          controls.update();
-        }
+        // 카메라 뷰는 메뉴 변경 시 재설정하지 않음 (사용자가 조작한 뷰 유지)
 
         // 모든 옵션들을 각 책상마다 복사
         // desk_offset_x는 책상이 중앙 정렬된 후의 실제 위치를 반영해야 함
