@@ -767,16 +767,17 @@
             </div>
           </div>
 
-          <!-- 선반방향규격 -->
+          <!-- 선반규격방향 (깊이+방향 통합) -->
           <div class="swiper-slide">
             <div class="menu_box">
-              <p class="menu_sel_text">바깥쪽</p>
-              <div class="menu_title">14. 선반방향규격</div>
+              <p class="menu_sel_text">200바깥쪽</p>
+              <div class="menu_title">14. 선반규격방향</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setShelfDirection(0)">바깥쪽</div>
-                <div onclick="setShelfDirection(1)">안쪽</div>
+                <div onclick="setShelfSpec('200out')">200바깥쪽</div>
+                <div onclick="setShelfSpec('200in')">200안쪽</div>
+                <div onclick="setShelfSpec('360')">360</div>
               </div>
             </div>
           </div>
@@ -841,36 +842,25 @@
           <!-- 수직부재이동 -->
           <div class="swiper-slide">
             <div class="menu_box">
-              <p class="menu_sel_text">위</p>
+              <p class="menu_sel_text">기준위치</p>
               <div class="menu_title">18. 수직부재<br>이동</div>
             </div>
-            <div class="menu_all_list" style="width: 100px;">
+            <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="moveVerticalUp()">위</div>
-                <div onclick="moveVerticalDown()">아래</div>
+                <div onclick="setVerticalMove(-2)">-187</div>
+                <div onclick="setVerticalMove(-1)">-93.5</div>
+                <div onclick="setVerticalMove(0)">기준위치</div>
+                <div onclick="setVerticalMove(1)">+93.5</div>
+                <div onclick="setVerticalMove(2)">+187</div>
               </div>
             </div>
           </div>
 
-          <!-- ㄱ자 옵션 통합 메뉴 (타입+색상 통합) -->
-          <!-- (하부 카테고리용 ㄱ자옵션/하부옵션은 위쪽 하부 블록으로 이동됨) -->
-          <div class="swiper-slide">
-            <div class="menu_box">
-              <p class="menu_sel_text">200</p>
-              <div class="menu_title">19. 선반깊이</div>
-            </div>
-            <div class="menu_all_list">
-              <div class="mal_buttons">
-                <div onclick="setShelfDepth(200)">200</div>
-                <div onclick="setShelfDepth(360)">360</div>
-              </div>
-            </div>
-          </div>
           <!-- 상부 수납 통합 메뉴 (타입+색상 통합) -->
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">20. 상부수납</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">19. 상부수납</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons" id="upper-storage">
@@ -908,20 +898,23 @@
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
-              <p class="menu_sel_text">위</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">21. 상부수납<br>이동</div>
+              <p class="menu_sel_text">최상단</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">20. 상부수납<br>이동</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setUpperStorageMove('up')">위</div>
-                <div onclick="setUpperStorageMove('down')">아래</div>
+                <div onclick="setUpperStorageMove(0)">최상단</div>
+                <div onclick="setUpperStorageMove(-1)">-93.5</div>
+                <div onclick="setUpperStorageMove(-2)">-187</div>
+                <div onclick="setUpperStorageMove(-3)">-280.5</div>
+                <div onclick="setUpperStorageMove(-4)">-374</div>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">22. 파티션_좌</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">21. 파티션_좌</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -938,7 +931,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">그레이</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">23. 파티션색_좌</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">22. 파티션색_좌</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -957,7 +950,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">24. 파티션_우</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">23. 파티션_우</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -974,7 +967,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">그레이</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">25. 파티션색_우</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">24. 파티션색_우</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -993,7 +986,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">26. 파티션_전면</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">25. 파티션_전면</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1008,7 +1001,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">그레이</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">27. 파티션색_전면</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">26. 파티션색_전면</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1027,7 +1020,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">28. 파티션_중첩</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">27. 파티션_중첩</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1043,28 +1036,27 @@
           </div>
           <div class="swiper-slide">
             <div class="menu_box">
-              <p class="menu_sel_text">없음</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">29. 파티션색_중첩</div>
+              <p class="menu_sel_text">라이트그레이</p>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">28. 파티션색_중첩</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
-                <div onclick="setPartiVerMColor(0)"><span>없음</span></div>
-                <div onclick="setPartiVerMColor(1)"><span>화이트</span></div>
-                <div onclick="setPartiVerMColor(2)"><span>블랙</span></div>
-                <div onclick="setPartiVerMColor(3)"><span>그레이</span></div>
-                <div onclick="setPartiVerMColor(4)"><span>다크그레이</span></div>
-                <div onclick="setPartiVerMColor(5)"><span>베이지</span></div>
-                <div onclick="setPartiVerMColor(6)"><span>브라운</span></div>
-                <div onclick="setPartiVerMColor(7)"><span>오렌지</span></div>
-                <div onclick="setPartiVerMColor(8)"><span>라이트그레이</span></div>
-                <div onclick="setPartiVerMColor(10)"><span>그린</span></div>
+                <div onclick="setPartiVerMColor(10)"><span>라이트그레이</span></div>
+                <div onclick="setPartiVerMColor(11)"><span>라임</span></div>
+                <div onclick="setPartiVerMColor(12)"><span>오렌지</span></div>
+                <div onclick="setPartiVerMColor(13)"><span>스카이블루</span></div>
+                <div onclick="setPartiVerMColor(14)"><span>베이지</span></div>
+                <div onclick="setPartiVerMColor(15)"><span>그린</span></div>
+                <div onclick="setPartiVerMColor(17)"><span>브라운</span></div>
+                <div onclick="setPartiVerMColor(18)"><span>다크초콜릿</span></div>
+                <div onclick="setPartiVerMColor(19)"><span>민트</span></div>
               </div>
             </div>
           </div>
           <div class="swiper-slide" id="parti-z-align-menu">
             <div class="menu_box">
               <p class="menu_sel_text">기본위치</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">30. 파티션Z<br>이동</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">29. 파티션Z<br>이동</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1078,7 +1070,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title">31. 데스크매트</div>
+              <div class="menu_title">30. 데스크매트</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1094,7 +1086,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">없음</p>
-              <div class="menu_title">32. 미니서랍</div>
+              <div class="menu_title">31. 미니서랍</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1111,7 +1103,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">1</p>
-              <div class="menu_title">33. 배열</div>
+              <div class="menu_title">32. 배열</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1125,7 +1117,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">복사 안함</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">34. 맞은편<br>복제</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">33. 맞은편<br>복제</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1139,7 +1131,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
               <p class="menu_sel_text">유지</p>
-              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">35. 맞은편<br>좌우</div>
+              <div class="menu_title line2" style="margin-top: -8px; line-height: 1.2;">34. 맞은편<br>좌우</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1151,7 +1143,7 @@
           <div class="swiper-slide">
             <div class="menu_box">
             <p class="menu_sel_text">Export</p>
-              <div class="menu_title">36. 3D저장</div>
+              <div class="menu_title">35. 3D저장</div>
             </div>
             <div class="menu_all_list">
               <div class="mal_buttons">
@@ -1203,16 +1195,16 @@
         </div>
         <div style="width: 18.5%;">
           <div class="delivery_box">
-            <strong class="ft_title">배송조립비</strong>
+            <strong class="ft_title">배송조립비 합계</strong>
             <div class="delivery_info price">28,000 <span>원</span></div>
           </div>
           <div class="delivery_box">
-            <strong class="ft_title">상품금액</strong>
+            <strong class="ft_title">상품 합계</strong>
             <div class="delivery_info price">283,000 <span>원</span></div>
           </div>
         </div>
         <div style="width: 27.4%; padding-top: 0;">
-          <strong class="ft_total_title">총 결제금액</strong>
+          <strong class="ft_total_title">총 합계</strong>
           <span class="ft_total_price" id="total_price_display">0<span>원</span></span>
         </div>
       </div>
@@ -1232,7 +1224,7 @@
     </div>
     
     <!-- 회전 정지/재개 버튼 -->
-    <div id="rotation-control" style="position: fixed; left: 70px; bottom: 170px; z-index: 1000;">
+    <div id="rotation-control" style="position: fixed; right: 50px; top: 120px; z-index: 1000;">
       <button id="rotation-toggle-btn" onclick="toggleRotation()" style="
         width: 120px;
         height: 120px;
@@ -2406,7 +2398,7 @@
         }, 100);
         
         // 선반 방향 UI 초기화
-        updateShelfDirectionUI();
+        updateShelfSpecUI();
 
         // renderer
         // 모바일 감지
@@ -2843,73 +2835,54 @@
         }
       }
 
-      function moveVerticalUp() {
+      // 수직부재이동: 기준위치에서 위/아래로 이동 (-187, -93.5, 기준위치, +93.5, +187)
+      function setVerticalMove(offset) {
+        // offset: -2=-187, -1=-93.5, 0=기준위치, 1=+93.5, 2=+187
         if (vertical_length == 0) return; // 수직부재가 없으면 동작 안함
         
-        var max_up = 0; // 위로 이동 가능한 최대 칸 수
-        var max_down = 0; // 아래로 이동 가능한 최대 칸 수
-        
-        switch (vertical_length_idx) {
-          case 1: // 646
-            max_up = 3;
-            max_down = 3;
-            break;
-          case 2: // 925
-            max_up = 3;
-            max_down = 3;
-            break;
-          case 3: // 1400
-            max_up = 3;
-            max_down = 0; // 아래로 이동 불가
-            break;
-          case 4: // 1860
-            max_up = 3;
-            max_down = 0; // 아래로 이동 불가
-            break;
-          default:
-            return;
+        // offset 범위 체크 (최소 -2, 최대 2)
+        if (offset < -2 || offset > 2) {
+          return;
         }
         
-        // 위로 이동 가능한지 확인
-        if (vertical_y_offset < max_up) {
-          vertical_y_offset++;
-          updateScene();
-          render();
+        vertical_y_offset = offset;
+        
+        // 메뉴 텍스트 업데이트
+        var offsetText = "";
+        if (offset === -2) {
+          offsetText = "-187";
+        } else if (offset === -1) {
+          offsetText = "-93.5";
+        } else if (offset === 0) {
+          offsetText = "기준위치";
+        } else if (offset === 1) {
+          offsetText = "+93.5";
+        } else if (offset === 2) {
+          offsetText = "+187";
+        }
+        $(".swiper-slide").filter(function() {
+          return $(this).find(".menu_title").text().indexOf("수직부재이동") !== -1;
+        }).find(".menu_sel_text").text(offsetText);
+        $(".swiper-slide").filter(function() {
+          return $(this).find(".menu_title").text().indexOf("수직부재이동") !== -1;
+        }).find(".menu_all_list").fadeOut();
+        
+        updateScene();
+        render();
+      }
+
+      // 기존 함수 호환성 유지
+      function moveVerticalUp() {
+        if (vertical_length == 0) return;
+        if (vertical_y_offset < 2) {
+          setVerticalMove(vertical_y_offset + 1);
         }
       }
 
       function moveVerticalDown() {
-        if (vertical_length == 0) return; // 수직부재가 없으면 동작 안함
-        
-        var max_up = 0; // 위로 이동 가능한 최대 칸 수
-        var max_down = 0; // 아래로 이동 가능한 최대 칸 수
-        
-        switch (vertical_length_idx) {
-          case 1: // 646
-            max_up = 3;
-            max_down = 3;
-            break;
-          case 2: // 925
-            max_up = 3;
-            max_down = 3;
-            break;
-          case 3: // 1400
-            max_up = 3;
-            max_down = 0; // 아래로 이동 불가
-            break;
-          case 4: // 1860
-            max_up = 3;
-            max_down = 0; // 아래로 이동 불가
-            break;
-          default:
-            return;
-        }
-        
-        // 아래로 이동 가능한지 확인
-        if (vertical_y_offset > -max_down) {
-          vertical_y_offset--;
-          updateScene();
-          render();
+        if (vertical_length == 0) return;
+        if (vertical_y_offset > -2) {
+          setVerticalMove(vertical_y_offset - 1);
         }
       }
 
@@ -2923,6 +2896,35 @@
         }
       }
 
+      // 선반규격방향 통합 함수 (깊이+방향)
+      function setShelfSpec(spec) {
+        // spec: '200out', '200in', '360'
+        if (spec === '200out') {
+          shelf_depth = 200;
+          shelf_direction = 0; // 바깥쪽
+        } else if (spec === '200in') {
+          shelf_depth = 200;
+          shelf_direction = 1; // 안쪽
+          // 선반 깊이가 200이고 방향을 안쪽으로 설정할 때는 상부 옵션 해제
+          storage_sliding1_color = 0;
+          storage_sliding2_color = 0;
+          storage_flap_color = 0;
+          storage_flapstay_color = 0;
+        } else if (spec === '360') {
+          shelf_depth = 360;
+          shelf_direction = 0; // 360은 바깥쪽만 가능
+        }
+        
+        adjustShlefNum();
+        updateShelfSpecUI();
+
+        if (!skipSceneUpdate) {
+          updateScene();
+          render();
+        }
+      }
+
+      // 선반 방향 UI 업데이트 함수 (기존 함수 유지 - 호환성)
       function setShelfDirection(d) {
         // 선반 깊이가 360일 때는 바깥방향(0)만 선택 가능
         if (shelf_depth == 360 && d == 1) {
@@ -2939,7 +2941,7 @@
           storage_flapstay_color = 0;
         }
         adjustShlefNum();
-        updateShelfDirectionUI();
+        updateShelfSpecUI();
 
         if (!skipSceneUpdate) {
           updateScene();
@@ -2947,9 +2949,27 @@
         }
       }
 
-      // 선반 방향 UI 업데이트 함수
-      function updateShelfDirectionUI() {
-        // 선반 방향 버튼 찾기 (선반방향 메뉴의 버튼들)
+      // 선반규격방향 UI 업데이트 함수
+      function updateShelfSpecUI() {
+        // 선반규격방향 메뉴 찾기
+        var shelfSpecSlide = $(".swiper-slide").filter(function() {
+          return $(this).find(".menu_title").text().indexOf("선반규격방향") !== -1;
+        });
+        
+        if (shelfSpecSlide.length > 0) {
+          // 현재 설정에 맞는 텍스트 표시
+          var displayText = "";
+          if (shelf_depth == 200 && shelf_direction == 0) {
+            displayText = "200바깥쪽";
+          } else if (shelf_depth == 200 && shelf_direction == 1) {
+            displayText = "200안쪽";
+          } else if (shelf_depth == 360) {
+            displayText = "360";
+          }
+          shelfSpecSlide.find(".menu_sel_text").text(displayText);
+        }
+        
+        // 기존 updateShelfDirectionUI 호환성 유지
         var shelfDirectionSlide = $(".swiper-slide").filter(function() {
           return $(this).find(".menu_title").text().trim() === "선반방향";
         });
@@ -3472,24 +3492,13 @@
         }
       }
 
+      // 선반 깊이 설정 함수 (기존 호환성 유지)
       function setShelfDepth(d) {
-        shelf_depth = d;
-        // 선반 깊이를 360으로 변경할 때, 현재 방향이 안쪽(1)이면 자동으로 바깥쪽(0)으로 변경
-        if (d == 360 && shelf_direction == 1) {
-          shelf_direction = 0;
-          // UI 업데이트: 선반 방향 표시를 "바깥쪽"으로 변경
-          updateShelfDirectionUI();
-        }
-        // 선반 깊이를 200으로 설정하고 방향이 안쪽일 때는 상부 옵션 해제
-        if (d == 200 && shelf_direction == 1) {
-          storage_sliding1_color = 0;
-          storage_sliding2_color = 0;
-          storage_flap_color = 0;
-          storage_flapstay_color = 0;
-        }
-        if (!skipSceneUpdate) {
-          updateScene();
-          render();
+        if (d == 200) {
+          // 현재 방향 유지
+          setShelfSpec(shelf_direction == 1 ? '200in' : '200out');
+        } else if (d == 360) {
+          setShelfSpec('360');
         }
       }
 
@@ -3651,11 +3660,7 @@
           }
           // 선반 깊이를 360으로 변경 (항상)
           if (shelf_depth != 360) {
-            setShelfDepth(360);
-            // UI 업데이트: 선반깊이 메뉴 텍스트 업데이트
-            $(".swiper-slide").filter(function() {
-              return $(this).find(".menu_title").text().trim() === "선반깊이";
-            }).find(".menu_sel_text").text("360");
+            setShelfSpec('360');
           }
           // 선반 수를 3개로 변경 (항상)
           if (shelf_num != 3) {
@@ -3698,11 +3703,7 @@
           }
           // 선반 깊이를 360으로 변경 (항상)
           if (shelf_depth != 360) {
-            setShelfDepth(360);
-            // UI 업데이트: 선반깊이 메뉴 텍스트 업데이트
-            $(".swiper-slide").filter(function() {
-              return $(this).find(".menu_title").text().trim() === "선반깊이";
-            }).find(".menu_sel_text").text("360");
+            setShelfSpec('360');
           }
           // 선반 수를 3개로 변경 (항상)
           if (shelf_num != 3) {
@@ -3745,11 +3746,7 @@
           }
           // 선반 깊이를 360으로 변경 (항상)
           if (shelf_depth != 360) {
-            setShelfDepth(360);
-            // UI 업데이트: 선반깊이 메뉴 텍스트 업데이트
-            $(".swiper-slide").filter(function() {
-              return $(this).find(".menu_title").text().trim() === "선반깊이";
-            }).find(".menu_sel_text").text("360");
+            setShelfSpec('360');
           }
           // 선반 수를 3개로 변경 (항상)
           if (shelf_num != 3) {
@@ -3792,11 +3789,7 @@
           }
           // 선반 깊이를 360으로 변경 (항상)
           if (shelf_depth != 360) {
-            setShelfDepth(360);
-            // UI 업데이트: 선반깊이 메뉴 텍스트 업데이트
-            $(".swiper-slide").filter(function() {
-              return $(this).find(".menu_title").text().trim() === "선반깊이";
-            }).find(".menu_sel_text").text("360");
+            setShelfSpec('360');
           }
           // 선반 수를 3개로 변경 (항상)
           if (shelf_num != 3) {
@@ -4228,13 +4221,34 @@
         }
       }
 
-      // 상부수납이동: 위/아래 (기존 함수 그대로 사용)
-      function setUpperStorageMove(direction) {
-        if (direction == 'up') {
-          moveStorageUp();
-        } else if (direction == 'down') {
-          moveStorageDown();
+      // 상부수납이동: 최상단, -93.5, -187, -280.5, -374 (수직부재 기준)
+      function setUpperStorageMove(offset) {
+        // offset: 0=최상단, -1=-93.5, -2=-187, -3=-280.5, -4=-374
+        // storage_y_offset은 93.5mm 단위이므로 offset 값을 그대로 사용
+        var hasStorage = (upper_storage_type > 0 && upper_storage_color > 0) ||
+                         (storage_sliding1_color > 0 || storage_sliding2_color > 0 || storage_flap_color > 0 || storage_flapstay_color > 0);
+        if (!hasStorage) {
+          return;
         }
+        
+        // offset 범위 체크 (최소 -4, 최대 0)
+        if (offset < -4 || offset > 0) {
+          return;
+        }
+        
+        storage_y_offset = offset;
+        
+        // 메뉴 텍스트 업데이트
+        var offsetText = offset === 0 ? "최상단" : offset.toString();
+        $(".swiper-slide").filter(function() {
+          return $(this).find(".menu_title").text().indexOf("상부수납이동") !== -1;
+        }).find(".menu_sel_text").text(offsetText);
+        $(".swiper-slide").filter(function() {
+          return $(this).find(".menu_title").text().indexOf("상부수납이동") !== -1;
+        }).find(".menu_all_list").fadeOut();
+        
+        updateScene();
+        render();
       }
 
       function setPartiVerLHeight(h) {
@@ -4242,6 +4256,7 @@
         // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
         if (!skipSceneUpdate && parti_ver_L_height > 0 && parti_ver_L_color == 0) {
           parti_ver_L_color = 3; // 기본값: 그레이
+          parti_ver_L_material = getMaterial(3); // material도 함께 업데이트
         }
         if (!skipSceneUpdate) {
           updateScene();
@@ -4267,6 +4282,7 @@
         // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
         if (!skipSceneUpdate && parti_ver_R_height > 0 && parti_ver_R_color == 0) {
           parti_ver_R_color = 3; // 기본값: 그레이
+          parti_ver_R_material = getMaterial(3); // material도 함께 업데이트
         }
         if (!skipSceneUpdate) {
           updateScene();
@@ -4292,6 +4308,7 @@
         // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
         if (!skipSceneUpdate && parti_hol_B_width > 0 && parti_hol_B_color == 0) {
           parti_hol_B_color = 3; // 기본값: 그레이
+          parti_hol_B_material = getMaterial(3); // material도 함께 업데이트
         }
         if (!skipSceneUpdate) {
           updateScene();
@@ -4316,7 +4333,8 @@
         parti_ver_M_height = h;
         // skipSceneUpdate가 true일 때는 자동 색상 설정을 하지 않음 (코드 로드 중일 때)
         if (!skipSceneUpdate && parti_ver_M_height > 0 && parti_ver_M_color == 0) {
-          parti_ver_M_color = 3; // 기본값: 그레이
+          parti_ver_M_color = 10; // 기본값: 라이트그레이 (다른 파티션과 동일)
+          parti_ver_M_material = getMaterial(10); // material도 함께 업데이트
         }
         if (!skipSceneUpdate) {
           updateScene();
@@ -5428,7 +5446,16 @@
           // 3) 선반 기본 값
           setSlideTextByTitle("수직부재", vertical_length ? vertical_length.toString() : "없음");
           setSlideTextByTitle("선반갯수", shelf_num ? shelf_num.toString() : "0");
-          setSlideTextByTitle("선반방향규격", shelf_direction === 1 ? "안쪽" : "바깥쪽");
+          // 선반규격방향 메뉴 텍스트 업데이트
+          var shelfSpecText = "";
+          if (shelf_depth == 200 && shelf_direction == 0) {
+            shelfSpecText = "200바깥쪽";
+          } else if (shelf_depth == 200 && shelf_direction == 1) {
+            shelfSpecText = "200안쪽";
+          } else if (shelf_depth == 360) {
+            shelfSpecText = "360";
+          }
+          setSlideTextByTitle("선반규격방향", shelfSpecText);
 
         } catch (e) {
           console.warn("좌측 슬라이드바 동기화 중 오류:", e);
@@ -5739,8 +5766,9 @@
         var parti_count = 0;
 
         // 좌/우/중첩 수직 파티션
-        function addVerticalPartPrice(height) {
+        function addVerticalPartPrice(height, qty) {
           if (!height || height <= 0) return;
+          if (!qty) qty = 1; // 기본값 1
           var w = mapPartiHeightToWidth(height);
           if (!w) return;
           
@@ -5757,29 +5785,68 @@
               (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700)))); // 기본값
           }
           
-          product_price += panelPrice;
+          product_price += panelPrice * qty;
           var parti_delivery = (smartPart_delivery && smartPart_delivery[w.toString()]) ? 
             smartPart_delivery[w.toString()] : 
             (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000))))); // 기본값
-          delivery_price += parti_delivery;
-          parti_count += 1;
+          delivery_price += parti_delivery * qty;
+          parti_count += qty;
         }
 
         // 파티션 변수 확인 및 가격 계산 (전역 변수 직접 접근)
+        // 파티션 좌/우는 세트당 각 1개 (배열 수와 무관), 맞은편 복제 있으면 2배
+        // 파티션 좌/우는 이미 맞은편 복제를 고려하므로, 마지막 전체 곱셈에서 제외하기 위해 별도로 계산
+        var parti_LR_product_price = 0;
+        var parti_LR_delivery_price = 0;
+        var opposite_multiplier_price = opposite_desk_distance != 0 ? 2 : 1;
         // 좌측 수직 파티션
         if (parti_ver_L_height && parti_ver_L_height > 0) {
-          addVerticalPartPrice(parti_ver_L_height);
+          var w_L = mapPartiHeightToWidth(parti_ver_L_height);
+          if (w_L) {
+            var panelPrice_L = 0;
+            if (w_L === 400) {
+              panelPrice_L = (smartPart_prices && smartPart_prices[w_L.toString()] && smartPart_prices[w_L.toString()].miniStanding) ? 
+                smartPart_prices[w_L.toString()].miniStanding : 84200;
+            } else {
+              panelPrice_L = (smartPart_prices && smartPart_prices[w_L.toString()] && smartPart_prices[w_L.toString()].attach) ? 
+                smartPart_prices[w_L.toString()].attach : 
+                (w_L === 800 ? 104700 : (w_L === 1200 ? 145700 : (w_L === 1400 ? 161700 : (w_L === 1600 ? 194000 : 223700))));
+            }
+            parti_LR_product_price += panelPrice_L * opposite_multiplier_price;
+            var parti_delivery_L = (smartPart_delivery && smartPart_delivery[w_L.toString()]) ? 
+              smartPart_delivery[w_L.toString()] : 
+              (w_L === 400 ? 7200 : (w_L === 800 ? 7200 : (w_L === 1200 ? 9600 : (w_L === 1400 ? 9600 : (w_L === 1600 ? 9600 : 11000)))));
+            parti_LR_delivery_price += parti_delivery_L * opposite_multiplier_price;
+            parti_count += opposite_multiplier_price;
+          }
         }
         // 우측 수직 파티션
         if (parti_ver_R_height && parti_ver_R_height > 0) {
-          addVerticalPartPrice(parti_ver_R_height);
-        }
-        // 중첩 수직 파티션 (수량 계산: 책상배열수-1, 맞은편 복사 있으면 -2)
-        if (parti_ver_M_height && parti_ver_M_height > 0) {
-          var parti_M_quantity = Math.max(0, num_desk - 1); // 기본: 책상배열수 - 1 (최소 0)
-          if (opposite_desk_distance != 0) {
-            parti_M_quantity = Math.max(0, parti_M_quantity - 2); // 맞은편 복사 있으면 -2 (최소 0)
+          var w_R = mapPartiHeightToWidth(parti_ver_R_height);
+          if (w_R) {
+            var panelPrice_R = 0;
+            if (w_R === 400) {
+              panelPrice_R = (smartPart_prices && smartPart_prices[w_R.toString()] && smartPart_prices[w_R.toString()].miniStanding) ? 
+                smartPart_prices[w_R.toString()].miniStanding : 84200;
+            } else {
+              panelPrice_R = (smartPart_prices && smartPart_prices[w_R.toString()] && smartPart_prices[w_R.toString()].attach) ? 
+                smartPart_prices[w_R.toString()].attach : 
+                (w_R === 800 ? 104700 : (w_R === 1200 ? 145700 : (w_R === 1400 ? 161700 : (w_R === 1600 ? 194000 : 223700))));
+            }
+            parti_LR_product_price += panelPrice_R * opposite_multiplier_price;
+            var parti_delivery_R = (smartPart_delivery && smartPart_delivery[w_R.toString()]) ? 
+              smartPart_delivery[w_R.toString()] : 
+              (w_R === 400 ? 7200 : (w_R === 800 ? 7200 : (w_R === 1200 ? 9600 : (w_R === 1400 ? 9600 : (w_R === 1600 ? 9600 : 11000)))));
+            parti_LR_delivery_price += parti_delivery_R * opposite_multiplier_price;
+            parti_count += opposite_multiplier_price;
           }
+        }
+        // 중첩 수직 파티션 (수량 계산: 책상배열수-1, 책상배열 1개일 때는 없음)
+        // 파티션 중첩도 이미 맞은편 복제를 고려하므로, 마지막 전체 곱셈에서 제외하기 위해 별도로 계산
+        var parti_M_product_price = 0;
+        var parti_M_delivery_price = 0;
+        if (parti_ver_M_height && parti_ver_M_height > 0) {
+          var parti_M_quantity = Math.max(0, num_desk - 1); // 책상배열수 - 1 (최소 0, 1개일 때는 0)
           if (parti_M_quantity > 0) {
             var w = mapPartiHeightToWidth(parti_ver_M_height);
             if (w) {
@@ -5793,11 +5860,14 @@
                   smartPart_prices[w.toString()].attach : 
                   (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700))));
               }
-              product_price += panelPrice * parti_M_quantity;
+              // 파티션 중첩 수량: 각 세트당 (num_desk - 1)개, 맞은편 복제 있으면 세트 수만큼 곱
+              var opposite_multiplier = opposite_desk_distance != 0 ? 2 : 1;
+              var parti_M_total_qty = parti_M_quantity * opposite_multiplier;
+              parti_M_product_price = panelPrice * parti_M_total_qty;
               var parti_delivery = (smartPart_delivery && smartPart_delivery[w.toString()]) ? 
                 smartPart_delivery[w.toString()] : 
                 (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000)))));
-              delivery_price += parti_delivery * parti_M_quantity;
+              parti_M_delivery_price = parti_delivery * parti_M_total_qty;
               parti_count += parti_M_quantity;
             }
           }
@@ -5818,25 +5888,66 @@
           parti_count += 1;
         }
 
-        // 파티션 클램프 (파티션 1개당 1조)
-        if (parti_count > 0 && clamp_price > 0) {
-          product_price += clamp_price * parti_count;
+        // 파티션 클램프 계산 (파티션 좌/우/중첩/전면 모두 포함)
+        // 파티션 클램프는 모든 파티션에 적용되므로, 파티션 좌/우/중첩도 포함하여 계산
+        var total_parti_count = parti_count; // 전면 파티션 포함된 개수
+        // 파티션 좌/우 개수 추가 (이미 맞은편 복제 반영됨)
+        if (parti_ver_L_height && parti_ver_L_height > 0) {
+          total_parti_count += opposite_multiplier_price;
         }
-        if (parti_count > 0 && clamp_delivery > 0) {
-          delivery_price += clamp_delivery * parti_count;
+        if (parti_ver_R_height && parti_ver_R_height > 0) {
+          total_parti_count += opposite_multiplier_price;
+        }
+        // 파티션 중첩 개수 추가 (이미 맞은편 복제 반영됨)
+        if (parti_ver_M_height && parti_ver_M_height > 0) {
+          var parti_M_quantity = Math.max(0, num_desk - 1);
+          if (parti_M_quantity > 0) {
+            var opposite_multiplier = opposite_desk_distance != 0 ? 2 : 1;
+            total_parti_count += parti_M_quantity * opposite_multiplier;
+          }
+        }
+        
+        // 파티션 클램프 가격 (모든 파티션에 적용)
+        var clamp_product_price = 0;
+        var clamp_delivery_price = 0;
+        if (total_parti_count > 0 && clamp_price > 0) {
+          clamp_product_price = clamp_price * total_parti_count;
+        }
+        if (total_parti_count > 0 && clamp_delivery > 0) {
+          clamp_delivery_price = clamp_delivery * total_parti_count;
         }
 
-        // 책상 배열 배수
+        // 책상 배열 배수 (파티션 좌/우/중첩 제외)
         if (num_desk > 1) {
           product_price *= num_desk;
           delivery_price *= num_desk;
+          clamp_product_price *= num_desk;
+          clamp_delivery_price *= num_desk;
         }
 
-        // 반대편 책상 배수
+        // 반대편 책상 배수 (파티션 좌/우/중첩은 이미 맞은편 복제를 고려했으므로 제외)
         if (opposite_desk_distance != 0) {
           product_price *= 2;
           delivery_price *= 2;
+          clamp_product_price *= 2;
+          clamp_delivery_price *= 2;
         }
+        
+        // 파티션 좌/우 가격에 배열 배수 적용 (이미 맞은편 복제를 고려했으므로)
+        if (num_desk > 1) {
+          parti_LR_product_price *= num_desk;
+          parti_LR_delivery_price *= num_desk;
+        }
+        
+        // 파티션 중첩 가격에 배열 배수 적용 (이미 맞은편 복제를 고려했으므로)
+        if (num_desk > 1) {
+          parti_M_product_price *= num_desk;
+          parti_M_delivery_price *= num_desk;
+        }
+        
+        // 최종 가격 계산 (모든 항목 합산)
+        product_price = product_price + clamp_product_price + parti_LR_product_price + parti_M_product_price;
+        delivery_price = delivery_price + clamp_delivery_price + parti_LR_delivery_price + parti_M_delivery_price;
         
         // return
         ret_price[0] = delivery_price;
@@ -6416,7 +6527,7 @@
 
         var parti_count = 0;
 
-        function addPartitionSpec(namePrefix, heightOrWidth, isFront, colorCode, menuNum) {
+        function addPartitionSpec(namePrefix, heightOrWidth, isFront, colorCode, menuNum, useOppositeMultiplier) {
           if (!heightOrWidth || heightOrWidth <= 0) return;
           var w = isFront ? heightOrWidth : mapPartiHeightToWidth(heightOrWidth);
           if (!w) return;
@@ -6434,13 +6545,17 @@
               (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700)))); // 기본값
           }
           
-          var color_name = colorCode ? " - " + getColorName(colorCode) : "";
+          // 파티션 좌/우는 세트당 각 1개 (배열 수와 무관), 맞은편 복제 있으면 2배
+          // 파티션 전면은 배열 수에 따라 증가
+          var qty_multiplier = useOppositeMultiplier ? opposite_multiplier : total_multiplier;
+          
+          var color_name = colorCode ? " - 색상F" + getColorName(colorCode) : "";
           var menu_prefix = menuNum ? "[" + menuNum + "] " : "";
           specList.push({
             name: menu_prefix + namePrefix + " (" + (isFront ? w : heightOrWidth) + "mm)" + color_name,
-            qty: total_multiplier,
+            qty: qty_multiplier,
             unitPrice: panelPrice,
-            totalPrice: panelPrice * total_multiplier
+            totalPrice: panelPrice * qty_multiplier
           });
           
           // 배송비 추가
@@ -6449,27 +6564,25 @@
             (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000))))); // 기본값
           specList.push({
             name: namePrefix + " 배송비",
-            qty: total_multiplier,
+            qty: qty_multiplier,
             unitPrice: parti_delivery,
-            totalPrice: parti_delivery * total_multiplier
+            totalPrice: parti_delivery * qty_multiplier
           });
           
           parti_count += 1; // 파티션 개수 증가
         }
 
         // 좌/우/중첩 수직 파티션 (전역 변수 직접 접근)
+        // 파티션 좌/우는 세트당 각 1개 (배열 수와 무관), 맞은편 복제 있으면 2배
         if (parti_ver_L_height && parti_ver_L_height > 0) {
-          addPartitionSpec("파티션 좌", parti_ver_L_height, false, parti_ver_L_color, "22");
+          addPartitionSpec("파티션 좌", parti_ver_L_height, false, parti_ver_L_color, "22", true);
         }
         if (parti_ver_R_height && parti_ver_R_height > 0) {
-          addPartitionSpec("파티션 우", parti_ver_R_height, false, parti_ver_R_color, "24");
+          addPartitionSpec("파티션 우", parti_ver_R_height, false, parti_ver_R_color, "24", true);
         }
-        // 중첩 수직 파티션 (수량 계산: 책상배열수-1, 맞은편 복사 있으면 -2)
+        // 중첩 수직 파티션 (수량 계산: 책상배열수-1, 책상배열 1개일 때는 없음)
         if (parti_ver_M_height && parti_ver_M_height > 0) {
-          var parti_M_quantity = Math.max(0, num_desk - 1); // 기본: 책상배열수 - 1 (최소 0)
-          if (opposite_desk_distance != 0) {
-            parti_M_quantity = Math.max(0, parti_M_quantity - 2); // 맞은편 복사 있으면 -2 (최소 0)
-          }
+          var parti_M_quantity = Math.max(0, num_desk - 1); // 책상배열수 - 1 (최소 0, 1개일 때는 0)
           if (parti_M_quantity > 0) {
             var w = mapPartiHeightToWidth(parti_ver_M_height);
             if (w) {
@@ -6484,21 +6597,23 @@
                   (w === 800 ? 104700 : (w === 1200 ? 145700 : (w === 1400 ? 161700 : (w === 1600 ? 194000 : 223700))));
               }
               if (panelPrice > 0) {
-                var parti_M_color_name = parti_ver_M_color ? " - " + getColorName(parti_ver_M_color) : "";
+                var parti_M_color_name = parti_ver_M_color ? " - 색상F" + getColorName(parti_ver_M_color) : "";
+                // 파티션 중첩 수량: 각 세트당 (num_desk - 1)개, 맞은편 복제 있으면 세트 수만큼 곱
+                var parti_M_total_qty = parti_M_quantity * opposite_multiplier;
                 specList.push({
-                  name: "[28] 파티션 중첩 (" + parti_ver_M_height + "mm) x " + parti_M_quantity + parti_M_color_name,
-                  qty: total_multiplier,
-                  unitPrice: panelPrice * parti_M_quantity,
-                  totalPrice: panelPrice * parti_M_quantity * total_multiplier
+                  name: "[28] 파티션 중첩 (" + parti_ver_M_height + "mm)" + parti_M_color_name,
+                  qty: parti_M_total_qty,
+                  unitPrice: panelPrice,
+                  totalPrice: panelPrice * parti_M_total_qty
                 });
                 var parti_delivery = (smartPart_delivery && smartPart_delivery[w.toString()]) ? 
                   smartPart_delivery[w.toString()] : 
                   (w === 400 ? 7200 : (w === 800 ? 7200 : (w === 1200 ? 9600 : (w === 1400 ? 9600 : (w === 1600 ? 9600 : 11000)))));
                 specList.push({
                   name: "파티션 중첩 배송비",
-                  qty: total_multiplier,
-                  unitPrice: parti_delivery * parti_M_quantity,
-                  totalPrice: parti_delivery * parti_M_quantity * total_multiplier
+                  qty: parti_M_total_qty,
+                  unitPrice: parti_delivery,
+                  totalPrice: parti_delivery * parti_M_total_qty
                 });
                 parti_count += parti_M_quantity;
               }
@@ -6529,6 +6644,26 @@
           });
         }
         
+        // 맞은편 복제 거리 표기 (가격 없이 정보만 표시)
+        if (opposite_desk_distance != 0) {
+          var distanceText = "";
+          if (opposite_desk_distance == 3600) {
+            distanceText = "거리 3600mm";
+          } else if (opposite_desk_distance == -1030) {
+            distanceText = "거리 -1030mm";
+          } else if (opposite_desk_distance == -2400) {
+            distanceText = "거리 -2400mm";
+          } else {
+            distanceText = "거리 " + opposite_desk_distance + "mm";
+          }
+          specList.push({
+            name: "[33] 맞은편 복제 (" + distanceText + ")",
+            qty: 1,
+            unitPrice: 0,
+            totalPrice: 0
+          });
+        }
+        
         return specList;
       }
       
@@ -6555,22 +6690,24 @@
           var row = document.createElement('div');
           row.className = 'option_spec_item';
           
-          var unitPriceStr = item.unitPrice.toLocaleString('ko-KR');
-          var totalPriceStr = item.totalPrice.toLocaleString('ko-KR');
+          var unitPriceStr = item.unitPrice > 0 ? item.unitPrice.toLocaleString('ko-KR') + '원' : '-';
+          var totalPriceStr = item.totalPrice > 0 ? item.totalPrice.toLocaleString('ko-KR') + '원' : '-';
           
           row.innerHTML = 
             '<div class="option_spec_name">' + item.name + '</div>' +
             '<div class="option_spec_qty">' + item.qty + '</div>' +
-            '<div class="option_spec_unit">' + unitPriceStr + '원</div>' +
-            '<div class="option_spec_total">' + totalPriceStr + '원</div>';
+            '<div class="option_spec_unit">' + unitPriceStr + '</div>' +
+            '<div class="option_spec_total">' + totalPriceStr + '</div>';
           
           specListContainer.appendChild(row);
           
-          // 배송비와 상품가격 분리
-          if (item.name.indexOf('배송비') !== -1) {
-            totalDeliveryPrice += item.totalPrice;
-          } else {
-            totalProductPrice += item.totalPrice;
+          // 배송비와 상품가격 분리 (가격이 있는 경우만)
+          if (item.totalPrice > 0) {
+            if (item.name.indexOf('배송비') !== -1) {
+              totalDeliveryPrice += item.totalPrice;
+            } else {
+              totalProductPrice += item.totalPrice;
+            }
           }
         });
         
@@ -6593,21 +6730,21 @@
           totalPriceDisplay.innerHTML = totalPrice.toLocaleString('ko-KR') + '<span>원</span>';
         }
         
-        // 배송조립비와 상품금액 업데이트
-        var deliveryPriceEl = document.querySelector('.delivery_box:has(.ft_title:contains("배송조립비")) .delivery_info.price');
-        var productPriceEl = document.querySelector('.delivery_box:has(.ft_title:contains("상품금액")) .delivery_info.price');
+        // 배송조립비 합계와 상품 합계 업데이트
+        var deliveryPriceEl = document.querySelector('.delivery_box:has(.ft_title:contains("배송조립비 합계")) .delivery_info.price');
+        var productPriceEl = document.querySelector('.delivery_box:has(.ft_title:contains("상품 합계")) .delivery_info.price');
         
         // 더 정확한 선택자 사용
         var deliveryBoxes = document.querySelectorAll('.delivery_box');
         deliveryBoxes.forEach(function(box) {
           var title = box.querySelector('.ft_title');
-          if (title && title.textContent === '배송조립비') {
+          if (title && title.textContent === '배송조립비 합계') {
             var priceEl = box.querySelector('.delivery_info.price');
             if (priceEl) {
               priceEl.innerHTML = priceArr[0].toLocaleString('ko-KR') + ' <span>원</span>';
             }
           }
-          if (title && title.textContent === '상품금액') {
+          if (title && title.textContent === '상품 합계') {
             var priceEl = box.querySelector('.delivery_info.price');
             if (priceEl) {
               priceEl.innerHTML = priceArr[1].toLocaleString('ko-KR') + ' <span>원</span>';
@@ -7035,42 +7172,88 @@
           board.add(vertical);
 
           // shelves
-          // shelf frame (top)
-          geometry = new THREE.BoxBufferGeometry(board_width + 8, frame_thickness, frame_thickness + 2);
-          frame = new THREE.Mesh(geometry, shelf_frame_material);
-          frame.position.x = - (board_width - frame_thickness) / 2;
-          frame.position.y = (vertical_length + frame_thickness) / 2 - board_thickness;
-          frame.castShadow = true;
-          vertical.add(frame);
-
-          // shelf board (top)
+          // 상부옵션 선택 여부 확인
+          var hasStorage = (upper_storage_type > 0 && upper_storage_color > 0) ||
+                           (storage_sliding1_color > 0 || storage_sliding2_color > 0 || storage_flap_color > 0 || storage_flapstay_color > 0);
+          
           // 선반깊이 360일 때: 기존 200 선반을 200에서 360으로 늘리고, Z축으로 160 이동
-          var shelf_z_offset = 0; // 선반 위치 오프셋
+          var shelf_z_offset = 0;
           if (shelf_depth == 360) {
-            shelf_z_offset = 160; // Z축으로 160 이동
+            shelf_z_offset = 160;
           }
           
-          geometry = new THREE.BoxBufferGeometry(board_width - 52, board_thickness, shelf_depth); // 양쪽 20mm씩 줄임 (총 40mm)
-          shelf = new THREE.Mesh(geometry, shelf_board_material);
-          shelf.position.y = (frame_thickness + board_thickness) / 2;
-          if (shelf_direction)
-            shelf.position.z = (shelf_depth - frame_thickness + 2) / 2 + shelf_z_offset;
-          else 
-            shelf.position.z = - (shelf_depth - frame_thickness + 2) / 2 + shelf_z_offset;
-          shelf.castShadow = true;
-          frame.add(shelf);    
+          // 상부옵션이 선택되지 않은 경우에만 최상단 선반 생성
+          if (!hasStorage) {
+            // shelf frame (top)
+            geometry = new THREE.BoxBufferGeometry(board_width + 8, frame_thickness, frame_thickness + 2);
+            frame = new THREE.Mesh(geometry, shelf_frame_material);
+            frame.position.x = - (board_width - frame_thickness) / 2;
+            frame.position.y = (vertical_length + frame_thickness) / 2 - board_thickness;
+            frame.castShadow = true;
+            vertical.add(frame);
+
+            // shelf board (top)
+            geometry = new THREE.BoxBufferGeometry(board_width - 52, board_thickness, shelf_depth);
+            shelf = new THREE.Mesh(geometry, shelf_board_material);
+            shelf.position.y = (frame_thickness + board_thickness) / 2;
+            if (shelf_direction)
+              shelf.position.z = (shelf_depth - frame_thickness + 2) / 2 + shelf_z_offset;
+            else 
+              shelf.position.z = - (shelf_depth - frame_thickness + 2) / 2 + shelf_z_offset;
+            shelf.castShadow = true;
+            frame.add(shelf);
+          }
 
           // shelf duplicate
-          var i;
-          for (i = 1; i < shelf_num; i++) {
-            var frame_dup = frame.clone();
-            frame_dup.position.x = - (board_width - frame_thickness) / 2;
-            if (shelf_direction)
-              frame_dup.position.y = - (vertical_length / 2 + vertical_y) * (i / (shelf_num - 1)) + vertical_length / 2;
-            else
-              frame_dup.position.y = vertical_length * (0.5 - i / (shelf_num - 1));
-            frame_dup.castShadow = true;
-            vertical.add(frame_dup);
+          // 상부옵션이 선택된 경우: 최상단(i=0)과 그 아래 한 단(i=1) 제거, i=2부터 시작
+          // 상부옵션이 선택되지 않은 경우: 기존 로직 (i=1부터 시작)
+          var startIndex = hasStorage ? 2 : 1;
+          
+          // 상부옵션이 선택된 경우, shelf_num이 2 이하이면 선반을 생성하지 않음
+          if (hasStorage && shelf_num <= 2) {
+            // 선반을 생성하지 않음
+          } else {
+            var i;
+            for (i = startIndex; i < shelf_num; i++) {
+              // 새로운 frame 객체 생성
+              geometry = new THREE.BoxBufferGeometry(board_width + 8, frame_thickness, frame_thickness + 2);
+              var frame_dup = new THREE.Mesh(geometry, shelf_frame_material);
+              frame_dup.position.x = - (board_width - frame_thickness) / 2;
+              
+              // shelf board 생성
+              var shelf_dup = new THREE.Mesh(
+                new THREE.BoxBufferGeometry(board_width - 52, board_thickness, shelf_depth),
+                shelf_board_material
+              );
+              shelf_dup.position.y = (frame_thickness + board_thickness) / 2;
+              if (shelf_direction)
+                shelf_dup.position.z = (shelf_depth - frame_thickness + 2) / 2 + shelf_z_offset;
+              else 
+                shelf_dup.position.z = - (shelf_depth - frame_thickness + 2) / 2 + shelf_z_offset;
+              shelf_dup.castShadow = true;
+              frame_dup.add(shelf_dup);
+              
+              // Y 위치 계산
+              if (hasStorage) {
+                // 상부옵션이 선택된 경우: 수직부재 중간부터 최하단까지만 선반 배열
+                // i=2부터 시작하므로 (i-2)를 사용하여 인덱스 조정
+                // 남은 선반 수: shelf_num - 2
+                var remainingShelves = shelf_num - 2;
+                if (remainingShelves > 1) {
+                  frame_dup.position.y = - (vertical_length / 2) * ((i - 2) / (remainingShelves - 1));
+                } else if (remainingShelves === 1) {
+                  frame_dup.position.y = 0; // 선반이 하나만 남은 경우 중간 위치
+                }
+              } else {
+                // 상부옵션이 선택되지 않은 경우: 기존 로직 (수직부재 전체에 걸쳐 배열)
+                if (shelf_direction)
+                  frame_dup.position.y = - (vertical_length / 2 + vertical_y) * (i / (shelf_num - 1)) + vertical_length / 2;
+                else
+                  frame_dup.position.y = vertical_length * (0.5 - i / (shelf_num - 1));
+              }
+              frame_dup.castShadow = true;
+              vertical.add(frame_dup);
+            }
           }
 
           // safety leg
@@ -7280,18 +7463,13 @@
               var storage_sliding1_depth = 360;
               var storage_sliding1_height = 400;
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-              var vertical_bottom_y = vertical_y_current - vertical_length / 2;
+              var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
               // 두 수직부재의 중앙 X 좌표 계산
               var left_vertical_x = - (board_width - frame_thickness) / 2;
               var right_vertical_x = + (board_width - frame_thickness) / 2;
               var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-              var storage_height_position = 0;
-              if (vertical_length_idx == 3) {
-                storage_height_position = 1200;
-              } else if (vertical_length_idx == 4) {
-                storage_height_position = 1400;
-              }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding1_height / 2 + (storage_y_offset * 93.5);
+              // 도어의 센터 위치 = 수직부재 최상단 + 도어 높이의 절반 + 오프셋 (최하단이 수직부재 최상단에 위치)
+              var storage_center_y = vertical_top_y + storage_sliding1_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -7337,20 +7515,13 @@
               var storage_sliding2_depth = 360;
               var storage_sliding2_height = 800;
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-              var vertical_bottom_y = vertical_y_current - vertical_length / 2;
+              var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
               // 두 수직부재의 중앙 X 좌표 계산
               var left_vertical_x = - (board_width - frame_thickness) / 2;
               var right_vertical_x = + (board_width - frame_thickness) / 2;
               var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-              var storage_height_position = 0;
-              if (vertical_length_idx == 3) {
-                storage_height_position = 1200;
-              } else if (vertical_length_idx == 4) {
-                storage_height_position = 1400;
-              } else if (vertical_length == 1600) {
-                storage_height_position = 1200;
-              }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5);
+              // 도어의 센터 위치 = 수직부재 최상단 - 도어 높이의 절반 + 오프셋 (최상단에서 시작)
+              var storage_center_y = vertical_top_y - storage_sliding2_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -7396,24 +7567,22 @@
               var storage_flap_depth = 360;
               var storage_flap_height = 400;
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-              var vertical_bottom_y = vertical_y_current - vertical_length / 2;
+              var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
               // 두 수직부재의 중앙 X 좌표 계산
               var left_vertical_x = - (board_width - frame_thickness) / 2;
               var right_vertical_x = + (board_width - frame_thickness) / 2;
               var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-              var storage_height_position = 0;
+              // 모델 높이 결정
               var model_height = 1400; // 기본 모델 높이
               if (vertical_length_idx == 3) {
-                storage_height_position = 1200;
                 model_height = 1400;
               } else if (vertical_length_idx == 4) {
-                storage_height_position = 1400;
                 model_height = 1800; // 1860에 가장 가까운 모델
               } else if (vertical_length == 1600) {
-                storage_height_position = 1200;
                 model_height = 1600;
               }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_flap_height / 2 + (storage_y_offset * 93.5);
+              // 도어의 센터 위치 = 수직부재 최상단 - 도어 높이의 절반 + 오프셋 (최상단에서 시작)
+              var storage_center_y = vertical_top_y + storage_flap_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -7452,24 +7621,22 @@
               var storage_flapstay_depth = 360;
               var storage_flapstay_height = 400;
               var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-              var vertical_bottom_y = vertical_y_current - vertical_length / 2;
+              var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
               // 두 수직부재의 중앙 X 좌표 계산
               var left_vertical_x = - (board_width - frame_thickness) / 2;
               var right_vertical_x = + (board_width - frame_thickness) / 2;
               var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-              var storage_height_position = 0;
+              // 모델 높이 결정
               var model_height_opposite_flapstay = 1400;
               if (vertical_length_idx == 3) {
-                storage_height_position = 1200;
                 model_height_opposite_flapstay = 1400;
               } else if (vertical_length_idx == 4) {
-                storage_height_position = 1400;
                 model_height_opposite_flapstay = 2060;
               } else if (vertical_length == 1600) {
-                storage_height_position = 1200;
                 model_height_opposite_flapstay = 1600;
               }
-              var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5);
+              // 도어의 센터 위치 = 수직부재 최상단 - 도어 높이의 절반 + 오프셋 (최상단에서 시작)
+              var storage_center_y = vertical_top_y + storage_flapstay_height / 2 + (storage_y_offset * 93.5);
               // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
               var shelf_z_offset = 0;
               if (shelf_depth == 360 || (shelf_depth == 200 && shelf_direction == 0)) {
@@ -8342,23 +8509,20 @@
             var storage_sliding1_height = 400; // 높이 400
             // 수직부재 위치 계산
             var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-            var vertical_bottom_y = vertical_y_current - vertical_length / 2; // 수직부재 하단
+            var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
             // 두 수직부재의 중앙 X 좌표 계산
             var left_vertical_x = - (board_width - frame_thickness) / 2;
             var right_vertical_x = + (board_width - frame_thickness) / 2;
             var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-            // 옵션모듈의 높이 위치 계산: 수직부재 하단에서 지정된 높이에 위치
-            var storage_height_position = 0;
+            // 모델 높이 결정
             var model_height = 1400; // 기본 모델 높이
             if (vertical_length_idx == 3) { // 1400
-              storage_height_position = 1200; // 높이 1200에 위치
               model_height = 1400;
             } else if (vertical_length_idx == 4) { // 1860
-              storage_height_position = 1400; // 높이 1400에 위치
               model_height = 2060; // 1860에 가장 가까운 모델
             }
-            // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding1_height / 2 + (storage_y_offset * 93.5);
+            // 도어의 센터 위치 = 수직부재 최상단 - 도어 높이의 절반 + 오프셋 (최상단에서 시작)
+            var storage_center_y = vertical_top_y - storage_sliding1_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
@@ -8407,26 +8571,22 @@
             var storage_sliding2_height = 800; // 높이 800
             // 수직부재 위치 계산
             var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-            var vertical_bottom_y = vertical_y_current - vertical_length / 2; // 수직부재 하단
+            var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
             // 두 수직부재의 중앙 X 좌표 계산
             var left_vertical_x = - (board_width - frame_thickness) / 2;
             var right_vertical_x = + (board_width - frame_thickness) / 2;
             var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-            // 옵션모듈의 높이 위치 계산: 수직부재 하단에서 지정된 높이에 위치
-            var storage_height_position = 0;
+            // 모델 높이 결정
             var model_height = 1400; // 기본 모델 높이
             if (vertical_length_idx == 3) { // 1400
-              storage_height_position = 1200; // 높이 1200에 위치
               model_height = 1400;
             } else if (vertical_length_idx == 4) { // 1860
-              storage_height_position = 1400; // 높이 1400에 위치
               model_height = 2060; // 1860에 가장 가까운 모델
             } else if (vertical_length == 1600) { // 1600
-              storage_height_position = 1200; // 높이 1200에 위치
               model_height = 1600; // 1600 규격에 맞는 모델
             }
-            // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_sliding2_height / 2 + (storage_y_offset * 93.5);
+            // 도어의 센터 위치 = 수직부재 최상단 + 도어 높이의 절반 + 오프셋 (최하단이 수직부재 최상단에 위치)
+            var storage_center_y = vertical_top_y + storage_sliding2_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
@@ -8530,26 +8690,22 @@
             var storage_flap_height = 400; // 높이 400
             // 수직부재 위치 계산
             var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-            var vertical_bottom_y = vertical_y_current - vertical_length / 2; // 수직부재 하단
+            var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
             // 두 수직부재의 중앙 X 좌표 계산
             var left_vertical_x = - (board_width - frame_thickness) / 2;
             var right_vertical_x = + (board_width - frame_thickness) / 2;
             var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-            // 옵션모듈의 높이 위치 계산: 수직부재 하단에서 지정된 높이에 위치
-            var storage_height_position = 0;
+            // 모델 높이 결정
             var model_height = 1400; // 기본 모델 높이
             if (vertical_length_idx == 3) { // 1400
-              storage_height_position = 1200; // 높이 1200에 위치
               model_height = 1400;
             } else if (vertical_length_idx == 4) { // 1860
-              storage_height_position = 1400; // 높이 1400에 위치
               model_height = 2060; // 1860에 가장 가까운 모델
             } else if (vertical_length == 1600) { // 1600
-              storage_height_position = 1200; // 높이 1200에 위치
               model_height = 1600; // 1600 규격에 맞는 모델
             }
-            // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_flap_height / 2 + (storage_y_offset * 93.5);
+            // 도어의 센터 위치 = 수직부재 최상단 - 도어 높이의 절반 + 오프셋 (최상단에서 시작)
+            var storage_center_y = vertical_top_y - storage_flap_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
@@ -8597,26 +8753,22 @@
             var storage_flapstay_height = 400; // 높이 400
             // 수직부재 위치 계산
             var vertical_y_current = vertical_y + (vertical_y_offset * 93.5);
-            var vertical_bottom_y = vertical_y_current - vertical_length / 2; // 수직부재 하단
+            var vertical_top_y = vertical_y_current + vertical_length / 2; // 수직부재 최상단
             // 두 수직부재의 중앙 X 좌표 계산
             var left_vertical_x = - (board_width - frame_thickness) / 2;
             var right_vertical_x = + (board_width - frame_thickness) / 2;
             var vertical_center_x = (left_vertical_x + right_vertical_x) / 2; // 두 수직부재의 중앙
-            // 옵션모듈의 높이 위치 계산: 수직부재 하단에서 지정된 높이에 위치
-            var storage_height_position = 0;
+            // 모델 높이 결정
             var model_height = 1400; // 기본 모델 높이
             if (vertical_length_idx == 3) { // 1400
-              storage_height_position = 1200; // 높이 1200에 위치
               model_height = 1400;
             } else if (vertical_length_idx == 4) { // 1860
-              storage_height_position = 1400; // 높이 1400에 위치
               model_height = 2060; // 1860에 가장 가까운 모델
             } else if (vertical_length == 1600) { // 1600
-              storage_height_position = 1200; // 높이 1200에 위치
               model_height = 1600; // 1600 규격에 맞는 모델
             }
-            // 도어의 센터 위치 = 수직부재 하단 + 지정된 높이 + 도어 높이의 절반 + 오프셋
-            var storage_center_y = vertical_bottom_y + storage_height_position + storage_flapstay_height / 2 + (storage_y_offset * 93.5);
+            // 도어의 센터 위치 = 수직부재 최상단 - 도어 높이의 절반 + 오프셋 (최상단에서 시작)
+            var storage_center_y = vertical_top_y - storage_flapstay_height / 2 + (storage_y_offset * 93.5);
             // 선반360 최상단 위치와 평면위치 동일 (Z 위치)
             // 선반 깊이 200이고 방향이 바깥쪽일 때도 선반 360과 동일한 위치
             var shelf_z_offset = 0;
